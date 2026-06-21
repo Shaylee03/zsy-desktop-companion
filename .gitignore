@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+/output/
+.env
+*.log
+*.sqlite
+*.db
+memory/
+.hermes/
+runtime_snapshot*.json
+local_agent_snapshot*.json
+*secret*
+*token*
+*password*

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="桌面 AI 伴侣机器人低打扰主动交互与 HRI 策略产品原型">
+  <title>桌面 AI 伴侣机器人 | HRI 产品案例</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">桌面 AI 伴侣机器人</a>
+    <nav aria-label="页面导航">
+      <a href="#problem">问题</a>
+      <a href="#strategy">策略</a>
+      <a href="#architecture">架构</a>
+      <a href="#evidence">证据</a>
+      <a href="#limits">边界</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">AI Product · Agent · HRI · Embodied Interaction</p>
+        <h1>桌面 AI 伴侣机器人</h1>
+        <p class="lead">一个不依赖摄像头，通过桌面状态理解用户工作节奏，并在静默、表情动作、字幕和语音之间选择介入强度的低打扰交互原型。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#strategy">查看 HRI 策略</a>
+          <a class="button secondary" href="docs/validation.md">查看验证口径</a>
+        </div>
+      </div>
+
+      <div class="brain-visual" aria-label="系统决策链路图">
+        <div class="visual-label">当前策略模型</div>
+        <div class="signal-row">
+          <span>ActivityWatch</span><span>前台窗口</span><span>键鼠 / AFK</span><span>系统音频</span>
+        </div>
+        <div class="flow-line" aria-hidden="true"></div>
+        <div class="decision-core">
+          <small>CONTEXT → ATTENTION → DELIVERY</small>
+          <strong>现在适合介入吗？</strong>
+          <p>用户可用性 · 任务风险 · 状态置信度 · 设备可用性</p>
+        </div>
+        <div class="tier-row">
+          <span class="tier quiet">QUIET<small>静默记录</small></span>
+          <span class="tier subtle">SUBTLE<small>表情动作</small></span>
+          <span class="tier subtitle">SUBTITLE<small>字幕提示</small></span>
+          <span class="tier speak">SPEAK<small>语音介入</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="band problem-band">
+      <div class="section-heading">
+        <p class="eyebrow">产品问题</p>
+        <h2>主动不等于频繁开口</h2>
+      </div>
+      <div class="problem-grid">
+        <article>
+          <span class="number">01</span>
+          <h3>被动等待</h3>
+          <p>传统语音助手只有在被唤醒后才理解用户，缺少桌面共处感。</p>
+        </article>
+        <article>
+          <span class="number">02</span>
+          <h3>上下文缺失</h3>
+          <p>当用户在会议、阅读或处理消息时，同一条提醒的价值和风险完全不同。</p>
+        </article>
+        <article>
+          <span class="number">03</span>
+          <h3>打扰成本</h3>
+          <p>机器人“能说就说”会变成新的干扰源，因此必须先判断可打扰性。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="strategy" class="section strategy-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">HRI 策略</p>
+          <h2>先决定是否介入，再决定如何表达</h2>
+        </div>
+        <p>策略不仅看窗口标题，而是结合用户输入、AFK、设备使用和机器人自身状态。</p>
+      </div>
+
+      <div class="strategy-table" role="table" aria-label="主动交互策略矩阵">
+        <div class="table-row table-head" role="row">
+          <span>场景</span><span>证据</span><span>表达</span><span>边界</span>
+        </div>
+        <div class="table-row" role="row">
+          <strong>会议勿扰</strong><span>会议软件 + 麦克风/摄像头 active</span><span>quiet / subtle</span><span>禁止主动语音</span>
+        </div>
+        <div class="table-row" role="row">
+          <strong>专注保护</strong><span>工作应用 + 持续输入 + 工作时长</span><span>subtitle / speak</span><span>冷却中自动降级</span>
+        </div>
+        <div class="table-row" role="row">
+          <strong>阅读思考</strong><span>低键盘 + 滚动/点击 + 持续前台</span><span>quiet / subtle</span><span>避免语音打断</span>
+        </div>
+        <div class="table-row" role="row">
+          <strong>离席返回</strong><span>键鼠静默后恢复输入</span><span>subtle / speak</span><span>短离开不语音</span>
+        </div>
+        <div class="table-row" role="row">
+          <strong>硬件离线</strong><span>无机器人 WebSocket session</span><span>quiet</span><span>只记录，不假装已执行</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="band architecture-band">
+      <div class="section-heading">
+        <p class="eyebrow">系统架构</p>
+        <h2>感知、对话与主动决策分层组合</h2>
+      </div>
+      <div class="architecture-flow">
+        <div class="arch-node">
+          <small>LOCAL</small><strong>桌面状态采集端</strong><p>ActivityWatch · 窗口 · 键鼠 · AFK · 音频</p>
+        </div>
+        <span class="arrow">→</span>
+        <div class="arch-node accent">
+          <small>CLOUD</small><strong>Agent Brain</strong><p>Context · Opportunity · Attention · Delivery</p>
+        </div>
+        <span class="arrow">→</span>
+        <div class="arch-node">
+          <small>ROBOT</small><strong>具身表达</strong><p>静默 · 表情 · 动作 · 字幕 · 语音</p>
+        </div>
+      </div>
+
+      <div class="capability-grid">
+        <article><h3>对话编排</h3><p>确定性指令、fast 轻量对话和 Hermes 复杂上下文分路处理。</p></article>
+        <article><h3>分层记忆</h3><p>将用户偏好、行为策略、桌面节奏和反思记录分层管理。</p></article>
+        <article><h3>可观测治理</h3><p>记录触发原因、压制原因、机器人状态、模型路由和延迟。</p></article>
+      </div>
+    </section>
+
+    <section id="evidence" class="section evidence-section">
+      <div class="section-heading split-heading">
+        <div><p class="eyebrow">实现证据</p><h2>用数据说明已做什么，也说清还没验证什么</h2></div>
+        <p>以下是截至 2026-06-18 的代码配置和小样本日志基线。</p>
+      </div>
+      <div class="metrics-grid">
+        <div><strong>13</strong><span>类场景配置</span></div>
+        <div><strong>16</strong><span>项状态阈值</span></div>
+        <div><strong>21</strong><span>组冷却策略</span></div>
+        <div><strong>7</strong><span>类主动机会</span></div>
+        <div><strong>4</strong><span>级介入强度</span></div>
+        <div><strong>75</strong><span>条路由样本</span></div>
+      </div>
+
+      <div class="latency-panel">
+        <div>
+          <small>FAST CHAT · n=3</small>
+          <strong>884 ms</strong>
+          <span>LLM P50 · 小样本，仅作初步观察</span>
+        </div>
+        <div>
+          <small>DEEP AGENT · n=66</small>
+          <strong>5,527.5 ms</strong>
+          <span>LLM P50 · 复杂上下文链路</span>
+        </div>
+      </div>
+      <p class="data-note">不宣称“显著提升”：fast 样本仅 3 条，目前只能说已建立路由和延迟观测口径。</p>
+    </section>
+
+    <section id="limits" class="band limits-band">
+      <div class="section-heading"><p class="eyebrow">边界与反思</p><h2>不把原型包装成已商业化产品</h2></div>
+      <div class="limits-grid">
+        <article class="done"><h3>已验证</h3><ul><li>本地状态采集和云端上报</li><li>桌面状态日志与策略解释</li><li>fast/deep 路由及延迟观测</li><li>Prompt、记忆、阈值管理</li></ul></article>
+        <article class="partial"><h3>原型阶段</h3><ul><li>Hermes 反思与策略建议</li><li>用户偏好和节奏记忆</li><li>会议勿扰真实样本</li><li>主动交互反馈回流</li></ul></article>
+        <article class="todo"><h3>待补验证</h3><ul><li>3–5 名目标用户访谈</li><li>3 天真实桌面自测</li><li>误打扰率与接受率</li><li>硬件在线下发成功率</li></ul></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>桌面 AI 伴侣机器人</strong>
+    <p>产品原型 · 上下文感知 · 低打扰 HRI · Agent 治理</p>
+    <a href="https://github.com/Shaylee03/zsy-desktop-companion">GitHub Repository</a>
+  </footer>
+</body>
+</html>
