@@ -13,7 +13,9 @@
     <a class="brand" href="#top">桌面 AI 伴侣机器人</a>
     <nav aria-label="页面导航">
       <a href="#problem">问题</a>
+      <a href="#demo">Demo</a>
       <a href="#strategy">策略</a>
+      <a href="#decision">决策</a>
       <a href="#architecture">架构</a>
       <a href="#evidence">证据</a>
       <a href="#limits">边界</a>
@@ -28,7 +30,7 @@
         <p class="lead">一个不依赖摄像头，通过桌面状态理解用户工作节奏，并在静默、表情动作、字幕和语音之间选择介入强度的低打扰交互原型。</p>
         <div class="hero-actions">
           <a class="button primary" href="#strategy">查看 HRI 策略</a>
-          <a class="button secondary" href="docs/validation.md">查看验证口径</a>
+          <a class="button secondary" href="#demo">查看场景 Demo</a>
         </div>
       </div>
 
@@ -76,6 +78,50 @@
       </div>
     </section>
 
+    <section id="demo" class="section demo-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">场景 Demo</p>
+          <h2>把“主动提醒”拆成可判断、可降级、可解释的行为</h2>
+        </div>
+        <p>以下 3 个 MVP 场景用于说明系统如何从桌面信号推导机器人表达方式。真实用户效果仍需后续访谈与 3 天自测验证。</p>
+      </div>
+
+      <div class="scenario-grid">
+        <article class="scenario-card">
+          <small>SCENE 01</small>
+          <h3>会议勿扰</h3>
+          <dl>
+            <div><dt>输入信号</dt><dd>会议应用在前台，系统音频或麦克风活跃</dd></div>
+            <div><dt>策略判断</dt><dd>同步沟通中断成本高，禁止普通主动语音</dd></div>
+            <div><dt>机器人行为</dt><dd>quiet 记录或 subtle 轻表情，不抢占用户注意力</dd></div>
+          </dl>
+        </article>
+
+        <article class="scenario-card">
+          <small>SCENE 02</small>
+          <h3>深度专注</h3>
+          <dl>
+            <div><dt>输入信号</dt><dd>工作应用持续前台，键盘活跃，窗口切换少</dd></div>
+            <div><dt>策略判断</dt><dd>提醒可能有价值，但语音打断风险高</dd></div>
+            <div><dt>机器人行为</dt><dd>优先 subtitle，冷却中自动降级为 quiet</dd></div>
+          </dl>
+        </article>
+
+        <article class="scenario-card">
+          <small>SCENE 03</small>
+          <h3>离席返回</h3>
+          <dl>
+            <div><dt>输入信号</dt><dd>AFK 后恢复键鼠输入，桌面状态重新活跃</dd></div>
+            <div><dt>策略判断</dt><dd>用户可能需要恢复上下文，但短离开不语音</dd></div>
+            <div><dt>机器人行为</dt><dd>subtle 表情或 subtitle 短提示，记录反馈</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <a class="text-link" href="docs/decision-flow.md">查看完整决策流与状态机</a>
+    </section>
+
     <section id="strategy" class="section strategy-section">
       <div class="section-heading split-heading">
         <div>
@@ -103,6 +149,43 @@
         </div>
         <div class="table-row" role="row">
           <strong>硬件离线</strong><span>无机器人 WebSocket session</span><span>quiet</span><span>只记录，不假装已执行</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="decision" class="band decision-band">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">决策树与状态机</p>
+          <h2>规则策略优先，Agent 只做辅助判断</h2>
+        </div>
+        <p>会议禁语音、硬件离线只记录、信号不足自动降级属于硬边界，Agent 不绕过这些边界直接触发高打扰行为。</p>
+      </div>
+
+      <div class="decision-layout">
+        <div class="decision-tree" aria-label="策略决策树">
+          <div class="tree-node root">主动机会出现</div>
+          <div class="tree-branch">
+            <div class="tree-node">机器人可用？</div>
+            <div class="tree-node">信号可信？</div>
+            <div class="tree-node">会议/高敏任务？</div>
+            <div class="tree-node">冷却或预算用尽？</div>
+          </div>
+          <div class="tree-result">
+            <span>压制：quiet</span>
+            <span>降级：subtle / subtitle</span>
+            <span>允许：speak</span>
+          </div>
+        </div>
+
+        <div class="state-machine" aria-label="交互状态机">
+          <div>Idle</div>
+          <div>Context Sensed</div>
+          <div>Opportunity Candidate</div>
+          <div>Attention Check</div>
+          <div>Delivery Planned</div>
+          <div>User Response Logged</div>
+          <div>Cooldown</div>
         </div>
       </div>
     </section>
@@ -160,6 +243,12 @@
         </div>
       </div>
       <p class="data-note">不宣称“显著提升”：fast 样本仅 3 条，目前只能说已建立路由和延迟观测口径。</p>
+
+      <div class="evidence-links">
+        <a href="docs/evidence-map.md"><strong>证据地图</strong><span>哪些简历说法能被当前材料支撑</span></a>
+        <a href="docs/research-and-self-test.md"><strong>访谈与 3 天自测计划</strong><span>误打扰率、接受率等指标的后续验证口径</span></a>
+        <a href="docs/validation.md"><strong>指标与验证</strong><span>路由延迟小样本和待验证指标字典</span></a>
+      </div>
     </section>
 
     <section id="limits" class="band limits-band">
