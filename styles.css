@@ -70,7 +70,7 @@ nav a:hover { color: white; }
   background:
     linear-gradient(90deg, rgba(5, 9, 14, .94) 0%, rgba(8, 14, 20, .76) 38%, rgba(8, 14, 20, .2) 74%),
     linear-gradient(180deg, rgba(4, 8, 13, .38), rgba(4, 8, 13, .24)),
-    url("assets/hero-robot-background.jpg") 30% center / cover no-repeat,
+    url("assets/hero-robot-background.jpg") 30% 58% / cover no-repeat,
     #10171c;
 }
 
@@ -124,8 +124,8 @@ nav a:hover { color: white; }
 .feedback-strip span { display: block; }
 .signal-panel strong { color: white; font-size: 17px; }
 .signal-panel span { margin-top: 7px; color: #cdd9dd; font-size: 12px; line-height: 1.5; }
-.signal-panel.active { right: 46px; top: 42px; border-left: 4px solid var(--coral); }
-.signal-panel.focus { right: 0; top: 250px; border-left: 4px solid var(--yellow); }
+.signal-panel.active { right: 390px; top: 102px; border-left: 4px solid var(--coral); }
+.signal-panel.focus { right: -18px; top: 260px; border-left: 4px solid var(--yellow); }
 .signal-panel.return { right: 230px; bottom: 102px; border-left: 4px solid #8dd9cf; }
 
 .feedback-strip {
