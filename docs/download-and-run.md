@@ -1,18 +1,16 @@
-# 下载、启动与连接机器人
+# 本地采集端与连接链路
 
-这个项目提供一个可传递的 Windows 原型体验包。它不是商业安装器，也不会自动接管用户电脑；使用者需要主动配置自有后端地址和机器人配对信息。
+这份文档说明当前原型中“桌面状态 -> 后端策略 -> 机器人反馈”的连接方式。公开页面不把项目包装成下载即用的软件；真实运行需要本地环境、后端地址和机器人硬件配对。
 
-## 下载内容
+## 本地结构
 
-体验包：[`zsy-desktop-agent-starter.zip`](../downloads/zsy-desktop-agent-starter.zip)
-
-解压后包含：
+本地采集端结构包含：
 
 - `agent.py`：本地桌面状态采集端。
 - `config.example.json`：配置模板。
-- `Start-ZSY-Desktop-Agent.ps1`：启动开关。
-- `Stop-ZSY-Desktop-Agent.ps1`：停止开关。
-- `Create-Desktop-Shortcuts.ps1`：创建桌面启动/停止快捷方式。
+- `Start-ZSY-Desktop-Agent.ps1`：启动脚本。
+- `Stop-ZSY-Desktop-Agent.ps1`：停止脚本。
+- `Create-Desktop-Shortcuts.ps1`：桌面启动/停止快捷方式脚本。
 - `README.md` / `DESIGN.md`：运行说明和边界说明。
 
 ## 最小运行条件
@@ -23,15 +21,20 @@
 - 一台已经接入该后端的机器人。
 - 可选：ActivityWatch，用于更丰富的应用使用时长和 AFK 信号。
 
-## 第一次启动
+## 连接流程
 
-在解压目录运行：
-
-```powershell
-Copy-Item .\config.example.json .\config.local.json
-notepad .\config.local.json
-powershell -ExecutionPolicy Bypass -File .\Start-ZSY-Desktop-Agent.ps1
+```text
+本地采集端
+  -> 读取前台窗口、键鼠活跃、AFK、系统音频和应用使用时长
+  -> POST /desktop-context
+  -> 后端判断会议、专注、离席、返回、疲劳等状态
+  -> 策略层选择 quiet / subtle / subtitle / speak
+  -> 机器人执行表情、轻动作、字幕或语音
+  -> 用户接受、忽略、关闭、延后或纠正
+  -> 反馈进入记忆和策略权重
 ```
+
+## 配置边界
 
 `config.local.json` 中至少需要设置：
 
@@ -44,24 +47,7 @@ powershell -ExecutionPolicy Bypass -File .\Start-ZSY-Desktop-Agent.ps1
 }
 ```
 
-启动后会打开本地面板：
-
-```text
-http://127.0.0.1:8765
-```
-
-## 桌面开关
-
-创建桌面快捷方式：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\Create-Desktop-Shortcuts.ps1
-```
-
-桌面会出现：
-
-- `Start ZSY Desktop Agent`
-- `Stop ZSY Desktop Agent`
+默认后端地址应指向本地或使用者自己的后端，不应把桌面状态默认发送到私人服务器。`config.local.json` 可能包含个人后端地址或 token，不应提交到公开仓库。
 
 ## 它如何连接机器人
 
@@ -80,13 +66,13 @@ powershell -ExecutionPolicy Bypass -File .\Create-Desktop-Shortcuts.ps1
 - `subtitle`：屏幕字幕或小卡片。
 - `speak`：语音播报。
 
-也就是说，大模型不直接控制语音打断。高打扰行为必须经过策略层约束。
+也就是说，生成式能力不直接控制语音打断。高打扰行为必须经过策略层约束。
 
 ## 隐私边界
 
 - 默认不使用摄像头画面识别。
 - 默认不读取聊天内容。
 - 默认不上报原始按键内容，只统计输入节奏。
-- `config.local.json` 可能包含个人后端地址或 token，不应提交到公开仓库。
+- 公开材料不包含服务器凭据、个人 token、真实桌面日志或用户记忆。
 
-这个体验包展示了项目从“产品概念”推进到“可启动、可配置、可连接机器人”的原型形态。
+这条链路展示了项目从“产品概念”推进到“可解释、可验证、可连接机器人”的原型形态，但不等同于商业安装器或开箱即用软件。

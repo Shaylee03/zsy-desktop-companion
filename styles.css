@@ -70,7 +70,7 @@ nav a:hover { color: white; }
   background:
     linear-gradient(90deg, rgba(5, 9, 14, .94) 0%, rgba(8, 14, 20, .76) 38%, rgba(8, 14, 20, .2) 74%),
     linear-gradient(180deg, rgba(4, 8, 13, .38), rgba(4, 8, 13, .24)),
-    url("assets/hero-robot-background.jpg") center / cover no-repeat,
+    url("assets/hero-robot-background.jpg") 30% center / cover no-repeat,
     #10171c;
 }
 
@@ -124,9 +124,9 @@ nav a:hover { color: white; }
 .feedback-strip span { display: block; }
 .signal-panel strong { color: white; font-size: 17px; }
 .signal-panel span { margin-top: 7px; color: #cdd9dd; font-size: 12px; line-height: 1.5; }
-.signal-panel.active { right: 330px; top: 30px; border-left: 4px solid var(--coral); }
-.signal-panel.focus { right: 0; top: 246px; border-left: 4px solid var(--yellow); }
-.signal-panel.return { right: 300px; bottom: 96px; border-left: 4px solid #8dd9cf; }
+.signal-panel.active { right: 0; top: 38px; border-left: 4px solid var(--coral); }
+.signal-panel.focus { right: 24px; top: 216px; border-left: 4px solid var(--yellow); }
+.signal-panel.return { right: 0; bottom: 122px; border-left: 4px solid #8dd9cf; }
 
 .feedback-strip {
   position: absolute;
@@ -173,6 +173,27 @@ h1 {
   margin: 26px 0 0;
   font-size: 18px;
   color: #d9e3e8;
+}
+
+.hero-proof {
+  margin-top: 24px;
+  max-width: 720px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-proof span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(141, 217, 207, .38);
+  border-radius: 999px;
+  color: #dcefed;
+  background: rgba(10, 20, 28, .5);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .hero-actions,
@@ -372,6 +393,12 @@ h1 {
   background:
     linear-gradient(180deg, #eef3f1 0%, #f5f7f3 100%);
 }
+
+.product-loop {
+  border-top: 1px solid rgba(217, 223, 216, .72);
+  border-bottom: 1px solid rgba(217, 223, 216, .72);
+}
+
 .try-layout {
   display: grid;
   grid-template-columns: .82fr 1.18fr;
@@ -421,6 +448,31 @@ h1 {
   color: #dfe8e7;
 }
 
+.loop-visual {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.loop-stack {
+  padding: 0 24px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.loop-stack span {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 6px;
+  color: #dcefed;
+  background: rgba(255, 255, 255, .08);
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .try-copy {
   padding: 34px;
   background: var(--white);
@@ -436,6 +488,12 @@ h1 {
 }
 
 .try-copy p { margin: 18px 0 0; }
+
+.prototype-note {
+  padding: 14px 16px;
+  border-left: 4px solid var(--teal);
+  background: var(--soft-teal);
+}
 
 .run-steps {
   margin: 28px 0 0;
@@ -636,6 +694,44 @@ h1 {
 .scenario-list p {
   margin: 0;
   font-size: 14px;
+}
+
+.case-flows {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.case-flows article {
+  padding: 26px;
+  border: 1px solid rgba(217, 223, 216, .86);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.case-flows small {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.case-flows h3 {
+  margin: 12px 0 18px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.case-flows p {
+  margin: 9px 0 0;
+  font-size: 14px;
+}
+
+.case-flows p strong {
+  margin-right: 8px;
+  color: var(--ink);
 }
 
 .architecture-band {
@@ -854,6 +950,14 @@ h1 {
   gap: 14px;
 }
 
+.validation-note {
+  margin: -12px 0 22px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--yellow);
+  background: var(--soft-yellow);
+  color: #594b24;
+}
+
 .validation-metrics article {
   min-height: 178px;
   padding: 22px;
@@ -1044,6 +1148,7 @@ footer a { color: #8fd5ca; }
   .thesis-layout,
   .audience-strip,
   .scenario-showcase,
+  .case-flows,
   .memory-system,
   .policy-lab,
   .strategy-rules {
@@ -1087,6 +1192,7 @@ footer a { color: #8fd5ca; }
   .hero-system { display: none; }
   h1 { font-size: 39px; }
   .lead { font-size: 16px; }
+  .hero-proof span { flex: 1 1 calc(50% - 8px); justify-content: center; }
   .hero-actions,
   .download-actions { flex-direction: column; }
   .button { width: 100%; }
@@ -1098,6 +1204,7 @@ footer a { color: #8fd5ca; }
   .memory-core,
   .policy-question { padding: 22px; }
   .run-steps,
+  .loop-stack,
   .thesis-points,
   .signal-flow,
   .policy-output,
