@@ -124,9 +124,9 @@ nav a:hover { color: white; }
 .feedback-strip span { display: block; }
 .signal-panel strong { color: white; font-size: 17px; }
 .signal-panel span { margin-top: 7px; color: #cdd9dd; font-size: 12px; line-height: 1.5; }
-.signal-panel.active { right: 390px; top: 102px; border-left: 4px solid var(--coral); }
+.signal-panel.active { right: -86px; top: 102px; border-left: 4px solid var(--coral); }
 .signal-panel.focus { right: -18px; top: 260px; border-left: 4px solid var(--yellow); }
-.signal-panel.return { right: 230px; bottom: 102px; border-left: 4px solid #8dd9cf; }
+.signal-panel.return { right: 111px; bottom: 102px; border-left: 4px solid #8dd9cf; }
 
 .feedback-strip {
   position: absolute;
