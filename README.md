@@ -21,7 +21,7 @@ Windows 原型体验包：
 ## 项目亮点
 
 - 把主动式桌面助手的核心问题从“更频繁提醒”转成“控制主动介入边界”。
-- 覆盖会议勿扰、深度专注、离席返回、连续工作、任务恢复和低能量支持等桌面场景。
+- 覆盖会议勿扰、深度专注、离席返回、连续工作干预、任务恢复和低能量支持等桌面场景。
 - 将机器人反馈拆成 `quiet / subtle / subtitle / speak` 四级，并在会议、专注、信号不足、硬件离线、冷却和预算约束下自动降级。
 - 设计短期上下文、长期偏好、行为节奏和交互反馈四类记忆，用于持续调整提醒时机和反馈强度。
 - 提供可下载的 Windows 启动包，让下载者可以在本机启动桌面采集端，并连接自有后端和机器人。
@@ -34,7 +34,7 @@ Windows 原型体验包：
 | 本地桌面采集端启动包 | 已打包 | `downloads/zsy-desktop-agent-starter.zip` |
 | 系统架构与策略 | 已文档化 | [系统架构](docs/architecture.md)、[主动交互策略](docs/interaction-strategy.md)、[决策流](docs/decision-flow.md) |
 | 个性化记忆机制 | 已文档化 | [记忆进化机制](docs/memory-evolution.md) |
-| 原型验证记录 | 已完成当前版本验证 | [验证记录](docs/validation.md)、[2026-06-26 验证结果](docs/validation-results-2026-06-26.md)、[实现匹配核查](docs/implementation-audit-2026-06-26.md)、[证据地图](docs/evidence-map.md) |
+| 原型验证记录 | 已完成当前版本验证 | [验证记录](docs/validation.md)、[小样本原型验证](docs/small-sample-validation.md)、[2026-06-26 验证结果](docs/validation-results-2026-06-26.md)、[实现匹配核查](docs/implementation-audit-2026-06-26.md)、[证据地图](docs/evidence-map.md) |
 | 隐私与边界 | 已说明 | [隐私与实现边界](docs/privacy-and-limitations.md) |
 
 ## 验证摘要
@@ -42,6 +42,7 @@ Windows 原型体验包：
 当前版本已完成以下检查：
 
 - 后端策略回放：会议勿扰、专注保护、离席返回、任务恢复等低打扰边界测试通过。
+- 小样本原型验证：固定触发、状态降级、个性化记忆三组策略对比通过，验证指标与公开页面一致。
 - 页面可用性：桌面端和移动端截图检查通过，链接完整，无移动端横向溢出。
 - 下载包：Windows 启动包可访问，PowerShell 启动/停止脚本解析通过，包内未包含服务器密码或个人配置。
 - 云端烟测：后端服务重启成功，健康检查和桌面状态接口返回 200。

@@ -785,6 +785,46 @@ h1 {
   gap: 14px;
 }
 
+.validation-metrics {
+  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.validation-metrics article {
+  min-height: 178px;
+  padding: 22px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .94), rgba(245, 250, 247, .9));
+  border: 1px solid rgba(15, 118, 110, .18);
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgba(24, 43, 50, .09);
+}
+
+.validation-metrics span {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--teal);
+  font-family: Georgia, serif;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.validation-metrics strong {
+  display: block;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.validation-metrics p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
 .validation-board article {
   min-height: 270px;
   padding: 22px;
@@ -904,6 +944,7 @@ footer a { color: #8fd5ca; }
 @media (max-width: 1120px) {
   .signal-flow,
   .policy-output,
+  .validation-metrics,
   .validation-board,
   .delivery-list {
     grid-template-columns: repeat(2, 1fr);
@@ -1006,6 +1047,7 @@ footer a { color: #8fd5ca; }
   .thesis-points,
   .signal-flow,
   .policy-output,
+  .validation-metrics,
   .validation-board,
   .delivery-list {
     grid-template-columns: 1fr;

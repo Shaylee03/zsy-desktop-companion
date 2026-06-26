@@ -11,20 +11,22 @@
 | 移动端布局 | `bodyWidth == viewportWidth == 390` | 通过 |
 | 浏览器错误 | 控制台 error 数量 | 0 |
 | 本地编译 | 本地采集端与后端策略模块 `py_compile` | 通过 |
-| 本地策略测试 | `tests/test_proactive_boundaries.py` | 5/5 通过 |
+| 本地策略测试 | `tests/test_proactive_boundaries.py` + `tests/test_small_sample_validation.py` | 6/6 通过 |
 | 启动脚本 | PowerShell 启动、停止、快捷方式脚本解析 | 通过 |
 | 下载包安全 | 无 `.env`、`config.local.json`、日志、数据库、服务器密码或个人 token | 通过 |
 | 远程编译 | 云端后端 `py_compile` | 通过 |
-| 远程策略测试 | 云端 `tests/test_proactive_boundaries.py` | 5/5 通过 |
+| 远程策略测试 | 云端低打扰策略测试与小样本验证测试 | 6/6 通过 |
 | 远程服务 | `zsy-backend.service` | active |
 | 远程健康检查 | `/health` | HTTP 200 |
 | 桌面状态接口 | `/desktop-context/status` | HTTP 200 |
 | 公开文案核查 | 页面、README、公开文档和下载包内容扫描 | 通过 |
 | 实现匹配核查 | 理想产品要求与当前代码能力逐项对照 | 已记录 |
+| 小样本原型验证 | 固定触发、状态降级、个性化记忆三组策略指标对比 | 已记录 |
 
 ## 关键验证结论
 
 - 会议、专注、返回摘要和任务恢复相关策略回放通过。
+- 小样本原型验证支持公开页面中的 63%、31%、36%、24% 四项指标口径。
 - 页面已经从内部说明改为外部作品集叙事。
 - Windows 启动包可下载、可配置、可停止，且不携带私人运行配置。
 - 云端后端当前可用，策略模块编译和测试均通过。

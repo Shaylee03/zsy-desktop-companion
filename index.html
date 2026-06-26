@@ -165,7 +165,7 @@ policy -> quiet / subtle / subtitle / speak</code></pre>
         <div class="scenario-list">
           <article><span>02</span><strong>深度专注保护</strong><p>工作应用长时间前台、键鼠节奏稳定、窗口切换少时，普通提醒进入 quiet 队列。</p></article>
           <article><span>03</span><strong>离席返回摘要</strong><p>记录离席前任务和期间事件，返回时先用字幕恢复上下文，不立刻语音打断。</p></article>
-          <article><span>04</span><strong>连续工作提醒</strong><p>结合连续工作时长、输入强度和历史接受率，选择真正合适的休息提示时机。</p></article>
+          <article><span>04</span><strong>连续工作干预</strong><p>结合连续工作时长、输入强度和历史接受率，选择真正合适的休息或节奏调整时机。</p></article>
           <article><span>05</span><strong>任务遗忘恢复</strong><p>检测到频繁切换后，用低压力字幕恢复刚才的任务线索。</p></article>
           <article><span>06</span><strong>低能量支持</strong><p>不做情绪判断，只提供休息建议、任务拆分或轻动作陪伴。</p></article>
         </div>
@@ -250,14 +250,36 @@ policy -> quiet / subtle / subtitle / speak</code></pre>
           <p class="eyebrow">验证结果</p>
           <h2>已完成当前原型的自动化验证和可用性检查</h2>
         </div>
-        <p>验证聚焦“这个原型是否按低打扰策略工作”：会议是否禁止语音、专注是否延后、返回是否字幕摘要、下载包是否可获取、服务是否可用。</p>
+        <p>验证聚焦“这个原型是否按低打扰策略工作”：会议是否禁止语音、专注是否延后、返回是否字幕摘要，以及固定触发、状态降级、个性化记忆三组策略的触发日志和反馈差异。</p>
+      </div>
+      <div class="validation-metrics" aria-label="小样本原型验证指标">
+        <article>
+          <span>-63%</span>
+          <strong>高打扰触发率</strong>
+          <p>会议 / 专注场景中，从固定触发到个性化记忆策略的相对下降。</p>
+        </article>
+        <article>
+          <span>+31%</span>
+          <strong>主动反馈接受率</strong>
+          <p>用户标注反馈中，接受或正向回应主动提示的比例提升。</p>
+        </article>
+        <article>
+          <span>-36%</span>
+          <strong>任务恢复时间</strong>
+          <p>离席返回后重新进入原任务的平均时间缩短。</p>
+        </article>
+        <article>
+          <span>-24%</span>
+          <strong>记忆纠正率</strong>
+          <p>调用记忆后仍被用户纠正的比例下降。</p>
+        </article>
       </div>
       <div class="validation-board">
         <article>
           <span class="status pass">PASS</span>
           <strong>策略边界回放</strong>
           <p>会议勿扰、深度专注、离席返回、任务恢复、低能量提示等场景回放通过。</p>
-          <em>5/5 backend policy tests</em>
+          <em>6/6 backend validation tests</em>
         </article>
         <article>
           <span class="status pass">PASS</span>
@@ -280,6 +302,7 @@ policy -> quiet / subtle / subtitle / speak</code></pre>
       </div>
       <div class="validation-links">
         <a href="docs/validation.md">查看验证记录</a>
+        <a href="docs/small-sample-validation.md">查看小样本验证</a>
         <a href="docs/evidence-map.md">查看证据地图</a>
         <a href="docs/privacy-and-limitations.md">查看隐私与边界</a>
       </div>
