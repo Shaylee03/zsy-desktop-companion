@@ -10,7 +10,7 @@
 | 页面渲染 | Edge/Playwright 桌面端和移动端截图 | 通过 |
 | 移动端布局 | `bodyWidth == viewportWidth == 390` | 通过 |
 | 浏览器错误 | 控制台 error 数量 | 0 |
-| 本地编译 | 本地 Agent 与后端策略模块 `py_compile` | 通过 |
+| 本地编译 | 本地采集端与后端策略模块 `py_compile` | 通过 |
 | 本地策略测试 | `tests/test_proactive_boundaries.py` | 5/5 通过 |
 | 启动脚本 | PowerShell 启动、停止、快捷方式脚本解析 | 通过 |
 | 下载包安全 | 无 `.env`、`config.local.json`、日志、数据库、服务器密码或个人 token | 通过 |
@@ -19,6 +19,8 @@
 | 远程服务 | `zsy-backend.service` | active |
 | 远程健康检查 | `/health` | HTTP 200 |
 | 桌面状态接口 | `/desktop-context/status` | HTTP 200 |
+| 公开文案核查 | 页面、README、公开文档和下载包内容扫描 | 通过 |
+| 实现匹配核查 | 理想产品要求与当前代码能力逐项对照 | 已记录 |
 
 ## 关键验证结论
 
@@ -26,6 +28,7 @@
 - 页面已经从内部说明改为外部作品集叙事。
 - Windows Starter Kit 可下载、可配置、可停止，且不携带私人运行配置。
 - 云端后端当前可用，策略模块编译和测试均通过。
+- GitHub profile 和项目仓库描述已调整为面向外部读者的个人项目入口。
 
 ## 边界说明
 

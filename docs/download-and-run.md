@@ -1,6 +1,6 @@
 # 下载、启动与连接机器人
 
-这个项目提供一个可传递的 Windows 原型体验包。它不是商业安装器，也不会自动接管用户电脑；使用者需要主动配置自己的后端地址和机器人配对信息。
+这个项目提供一个可传递的 Windows 原型体验包。它不是商业安装器，也不会自动接管用户电脑；使用者需要主动配置自有后端地址和机器人配对信息。
 
 ## 下载内容
 
@@ -8,7 +8,7 @@
 
 解压后包含：
 
-- `agent.py`：本地桌面状态采集 Agent。
+- `agent.py`：本地桌面状态采集端。
 - `config.example.json`：配置模板。
 - `Start-ZSY-Desktop-Agent.ps1`：启动开关。
 - `Stop-ZSY-Desktop-Agent.ps1`：停止开关。
@@ -65,7 +65,7 @@ powershell -ExecutionPolicy Bypass -File .\Create-Desktop-Shortcuts.ps1
 
 ## 它如何连接机器人
 
-本地 Agent 只负责上报桌面状态，例如：
+本地采集端只负责上报桌面状态，例如：
 
 - 当前前台窗口。
 - 键鼠活跃与 AFK。
