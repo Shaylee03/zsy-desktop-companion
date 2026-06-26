@@ -13,14 +13,14 @@
     <a class="brand" href="#top">ZSY Desktop Companion</a>
     <nav aria-label="页面导航">
       <a href="#overview">概览</a>
-      <a href="#loop">闭环</a>
-      <a href="#demo">Demo</a>
+      <a href="#problem">问题</a>
       <a href="#scenarios">场景</a>
-      <a href="#architecture">架构</a>
+      <a href="#logic">逻辑</a>
+      <a href="#strategy">策略</a>
       <a href="#memory">记忆</a>
-      <a href="#policy">决策</a>
+      <a href="#prototype">原型</a>
       <a href="#validation">验证</a>
-      <a href="#delivery">交付</a>
+      <a href="#value">价值</a>
     </nav>
   </header>
 
@@ -48,245 +48,170 @@
       </div>
       <div class="hero-copy">
         <p class="eyebrow">Personal Product Project · Desktop Context · Robot Interaction</p>
-        <h1>让桌面 AI 学会什么时候不该打扰</h1>
-        <p class="lead">面向学习、办公和远程协作场景的低打扰主动式桌面 AI 机器人原型：通过桌面状态感知、可打扰性判断、分级反馈和个性化记忆，让主动式 AI 从频繁打断变成有边界的协助。</p>
+        <h1>桌面 AI 机器人低打扰主动交互系统</h1>
+        <p class="lead">面向学习、办公和远程协作场景，设计一套能判断用户状态、控制介入强度、并通过记忆持续调整边界的桌面机器人产品原型。</p>
         <div class="hero-proof" aria-label="当前原型完成度">
-          <span>桌面状态采集</span>
-          <span>主动介入判断</span>
-          <span>四级反馈策略</span>
-          <span>规则路径验证</span>
+          <span>低打扰主动交互</span>
+          <span>桌面状态感知</span>
+          <span>个性化记忆</span>
+          <span>HRI 产品原型</span>
+        </div>
+        <div class="hero-meta" aria-label="项目基本信息">
+          <span><strong>时间</strong>2025.06 - 至今</span>
+          <span><strong>角色</strong>AI 产品设计 / 交互策略 / 原型呈现</span>
+          <span><strong>产出</strong>策略服务、状态链路、作品集案例、规则验证</span>
         </div>
         <div class="hero-actions">
-          <a class="button primary" href="#loop">查看产品闭环</a>
+          <a class="button primary" href="#prototype">查看原型产出</a>
           <a class="button secondary" href="https://github.com/Shaylee03/zsy-desktop-companion">查看 GitHub</a>
-          <a class="button secondary" href="docs/case-study.md">阅读设计说明</a>
+          <a class="button secondary" href="#logic">查看系统逻辑</a>
         </div>
       </div>
     </section>
 
     <section id="overview" class="section overview-section">
-      <div class="project-brief">
-        <article>
-          <span>产品命题</span>
-          <strong>主动式桌面助手的关键不是更频繁出现，而是更懂边界</strong>
-          <p>传统提醒按时间触发，普通助手依赖用户主动提问；这个项目关注桌面机器人什么时候该介入、什么时候该延后、什么时候必须保持安静。</p>
-        </article>
-        <article>
-          <span>目标用户</span>
-          <strong>学生、研究生、远程办公和高频 AI 工具用户</strong>
-          <p>这些人需要任务恢复、会议勿扰、专注保护和低压力节奏支持，但不希望桌面机器人抢走注意力。</p>
-        </article>
-        <article>
-          <span>工作范围</span>
-          <strong>产品策略、桌面采集端、云端策略和原型演示</strong>
-          <p>已完成本地状态采集、后端策略服务、四级反馈、记忆机制设计、公开作品集和 Demo 展示位。</p>
-        </article>
-        <article>
-          <span>验证状态</span>
-          <strong>已完成策略回放、页面检查、本地链路检查和云端烟测</strong>
-          <p>验证聚焦当前原型是否能正确降级、延后、静默和恢复任务线索；这些结果属于原型规则验证，不包装成大规模真实用户实验。</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="loop" class="band try-band product-loop">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">产品闭环</p>
-          <h2>桌面信号进入策略层，再变成有强度边界的机器人反馈</h2>
+          <p class="eyebrow">Project Overview</p>
+          <h2>一个围绕“主动式 AI 介入边界”的产品原型</h2>
         </div>
-        <p>系统不是简单弹窗，而是把桌面状态、可打扰性、反馈强度和用户响应连成闭环，让下一次主动介入更贴合当前工作流。</p>
+        <p>项目不是做一个普通桌面提醒工具，而是把桌面状态理解、可打扰性判断、机器人化反馈和个性化记忆组织成完整闭环。</p>
       </div>
-      <div class="try-layout">
-        <div class="starter-visual loop-visual" aria-label="产品闭环示意">
-          <div class="terminal-bar"><span></span><span></span><span></span><strong>desktop-context-loop</strong></div>
-          <pre><code>config.example.json
-desktop_context_agent.py
-context_panel.html
-
-POST /desktop-context
-policy -> quiet / subtle / subtitle / speak
-feedback_event -> memory weight update</code></pre>
-          <div class="loop-stack">
-            <span>桌面信号</span>
-            <span>状态理解</span>
-            <span>可打扰性判断</span>
-            <span>反馈强度选择</span>
-            <span>用户响应</span>
-            <span>记忆更新</span>
-          </div>
-        </div>
-        <div class="try-copy">
-          <h3>当前原型已经跑通的闭环</h3>
-          <p>本地采集端、后端策略和机器人反馈被拆成清晰链路：采集端上报桌面状态，后端返回反馈等级，再由机器人选择表情/轻动作、字幕或语音。公开展示重点是原型逻辑和产品边界，不把它描述成一键安装应用。</p>
-          <p class="prototype-note">真实运行需要本地环境、后端地址和硬件配对；页面中只展示脱敏后的结构、策略和验证结果。</p>
-          <ol class="run-steps">
-            <li><strong>采集</strong><span>读取前台窗口、键鼠活跃、AFK、音频等非摄像头信号。</span></li>
-            <li><strong>判断</strong><span>结合状态置信度、任务优先级和偏好边界判断可打扰性。</span></li>
-            <li><strong>反馈</strong><span>按 quiet / subtle / subtitle / speak 选择最低可行强度。</span></li>
-            <li><strong>回流</strong><span>记录接受、忽略、关闭和纠正行为，用于更新策略权重。</span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo" class="section demo-section">
-      <div class="section-heading split-heading">
-        <div>
-          <p class="eyebrow">Demo 展示位</p>
-          <h2>用四段路径说明机器人如何选择不同介入强度</h2>
-        </div>
-        <p>当前页面先展示每个 Demo 应验证的核心路径；后续录屏只补充过程画面，不新增页面中没有证据支撑的功能说法。</p>
-      </div>
-      <div class="demo-grid">
+      <div class="project-brief overview-grid">
         <article>
-          <div class="video-placeholder">
-            <span class="play-mark"></span>
-            <strong>Demo 01</strong>
-            <em>视频位预留</em>
-          </div>
-          <div>
-            <small>会议勿扰</small>
-            <h3>会议中禁止普通语音打断</h3>
-            <p>展示会议软件、音频和设备状态触发后，普通主动机会如何降级为静默记录或字幕提示。</p>
-          </div>
+          <span>项目目标</span>
+          <strong>解决主动 AI 有用但容易打扰的问题</strong>
+          <p>让机器人先理解用户当前状态，再决定是否介入、用什么强度表达、是否延后或静默。</p>
         </article>
         <article>
-          <div class="video-placeholder">
-            <span class="play-mark"></span>
-            <strong>Demo 02</strong>
-            <em>视频位预留</em>
-          </div>
-          <div>
-            <small>深度专注</small>
-            <h3>专注时延后低优先级事项</h3>
-            <p>展示写代码、写文档或阅读资料时，机器人如何进入 quiet 队列并降低存在感。</p>
-          </div>
+          <span>我的角色</span>
+          <strong>AI 产品设计、交互策略与原型呈现</strong>
+          <p>拆解使用场景，定义状态判断规则、四级反馈策略、记忆机制和验证口径。</p>
         </article>
         <article>
-          <div class="video-placeholder">
-            <span class="play-mark"></span>
-            <strong>Demo 03</strong>
-            <em>视频位预留</em>
-          </div>
-          <div>
-            <small>离席返回</small>
-            <h3>返回后先给字幕摘要</h3>
-            <p>展示离席前任务、离席期间事件和下一步建议如何汇总为低压力恢复提示。</p>
-          </div>
+          <span>核心产出</span>
+          <strong>状态感知、介入策略、记忆机制和机器人反馈</strong>
+          <p>已形成桌面采集链路、后端策略服务、quiet / subtle / subtitle / speak 四级反馈和规则验证材料。</p>
         </article>
         <article>
-          <div class="video-placeholder">
-            <span class="play-mark"></span>
-            <strong>Demo 04</strong>
-            <em>视频位预留</em>
-          </div>
-          <div>
-            <small>记忆更新</small>
-            <h3>根据反馈调整交互边界</h3>
-            <p>展示接受、忽略、关闭、纠正等反馈如何影响后续介入时机和反馈强度。</p>
-          </div>
+          <span>能力关键词</span>
+          <strong>AI 产品、HRI 交互、智能硬件 / 机器人产品</strong>
+          <p>重点体现主动式 AI 的触发边界、反馈强度治理、记忆权重更新和具身表达策略。</p>
         </article>
       </div>
     </section>
 
-    <section id="positioning" class="band positioning-band">
+    <section id="problem" class="band positioning-band problem-band">
       <div class="thesis-layout">
         <div>
-          <p class="eyebrow">核心定位</p>
-          <h2>解决的不是“提醒”，而是“主动介入边界”</h2>
+          <p class="eyebrow">Problem</p>
+          <h2>主动式 AI 的难点不是“会不会说”，而是“该不该介入”</h2>
         </div>
         <div class="thesis-copy">
-          <p>主动能力越强，越可能有用；也越可能打扰用户。本项目把“是否介入、何时介入、用什么强度反馈、是否延后、是否写入记忆”做成可解释的产品策略。</p>
-          <div class="thesis-points">
-            <span>主动式助手</span>
-            <span>低打扰</span>
-            <span>个性化记忆</span>
-            <span>桌面机器人</span>
+          <p>传统提醒按时间触发，普通助手依赖用户主动提问。桌面机器人一旦变得更主动，就必须先回答：用户现在是否适合被打扰？这次介入应该静默、轻动作、字幕，还是语音？</p>
+          <div class="problem-compare">
+            <article><strong>普通提醒工具</strong><span>按固定时间或事件触发，较少理解会议、专注、离席返回等桌面状态。</span></article>
+            <article><strong>本项目方案</strong><span>先判断状态和置信度，再选择最低可行反馈强度，并把用户响应回流到记忆策略。</span></article>
           </div>
         </div>
-      </div>
-      <div class="audience-strip" aria-label="目标用户">
-        <article><strong>学生 / 研究生</strong><span>长时间学习、忘记任务、休息节奏不稳定</span></article>
-        <article><strong>远程办公 / 知识工作者</strong><span>会议多、任务切换频繁、消息打断专注</span></article>
-        <article><strong>智能工具高频用户</strong><span>希望助手更主动，但不愿被频繁打扰</span></article>
       </div>
     </section>
 
     <section id="scenarios" class="section scenario-section">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">核心场景</p>
-          <h2>同一次主动机会，会因为用户状态而改变存在感</h2>
+          <p class="eyebrow">User Scenario</p>
+          <h2>从高打扰风险场景拆出主动交互规则</h2>
         </div>
-        <p>会议中静默，专注中延后，离席返回后用字幕摘要，空闲且重要时才允许语音。产品重点不是“会说话”，而是知道什么时候不该说话。</p>
+        <p>场景不是为了堆功能，而是用于定义机器人何时沉默、何时弱提示、何时给字幕，以及什么情况下才允许语音。</p>
       </div>
       <div class="scenario-showcase">
         <article class="scenario-feature">
-          <small>SCENE 01</small>
+          <small>Primary Scene</small>
           <h3>会议勿扰</h3>
-          <p>会议软件、麦克风/摄像头、系统音频和日历信号共同提高置信度。会议中默认禁止普通语音介入，低优先级事项静默记录。</p>
+          <p>会议软件、麦克风/摄像头、系统音频等信号提高会议置信度。会议中默认禁止普通语音介入，低优先级事项静默记录。</p>
           <div class="scenario-policy">
             <span>meeting detected</span>
             <strong>voice -> quiet</strong>
           </div>
         </article>
         <div class="scenario-list">
-          <article><span>02</span><strong>深度专注保护</strong><p>工作应用长时间前台、键鼠节奏稳定、窗口切换少时，普通主动机会进入 quiet 队列。</p></article>
-          <article><span>03</span><strong>离席返回摘要</strong><p>记录离席前任务和期间事件，返回时先用字幕恢复上下文，不立刻语音打断。</p></article>
-          <article><span>04</span><strong>连续工作干预</strong><p>结合连续工作时长、输入强度和历史接受率，选择真正合适的休息或节奏调整时机。</p></article>
+          <article><span>02</span><strong>深度专注保护</strong><p>工作应用持续前台、输入稳定、切换少时，普通主动机会进入 quiet 队列。</p></article>
+          <article><span>03</span><strong>离席返回摘要</strong><p>AFK 后恢复输入时，先用字幕恢复离席前任务线索。</p></article>
+          <article><span>04</span><strong>连续工作干预</strong><p>结合工作时长、输入强度和切换频率，选择更合适的节奏调整时机。</p></article>
           <article><span>05</span><strong>任务遗忘恢复</strong><p>检测到频繁切换后，用低压力字幕恢复刚才的任务线索。</p></article>
-          <article><span>06</span><strong>低能量支持</strong><p>不做情绪判断，只提供休息建议、任务拆分或轻动作陪伴。</p></article>
+          <article><span>06</span><strong>低能量支持</strong><p>不做情绪诊断，只提供休息建议、任务拆分或轻动作陪伴。</p></article>
         </div>
       </div>
-      <div class="case-flows" aria-label="代表性场景路径">
+    </section>
+
+    <section id="logic" class="band architecture-band system-logic-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">System Logic</p>
+          <h2>核心系统图：从桌面信号到记忆更新</h2>
+        </div>
+        <p>生成式能力只用于理解、总结和表达。是否介入、反馈强度、会议禁语音和记忆写入由状态规则、置信度、偏好和安全边界共同控制。</p>
+      </div>
+      <div class="logic-map" aria-label="核心系统逻辑图">
+        <article><small>01</small><strong>桌面信号输入</strong><span>前台窗口、键鼠、AFK、系统音频、应用时长</span></article>
+        <article><small>02</small><strong>状态理解</strong><span>会议、专注、离席、返回、疲劳、任务切换</span></article>
+        <article><small>03</small><strong>可打扰性判断</strong><span>状态置信度、任务优先级、用户偏好、硬件状态</span></article>
+        <article><small>04</small><strong>主动介入策略</strong><span>是否介入、是否延后、降级原因、冷却预算</span></article>
+        <article><small>05</small><strong>多模态反馈</strong><span>quiet / subtle / subtitle / speak</span></article>
+        <article><small>06</small><strong>记忆更新</strong><span>接受、忽略、关闭、延后、纠正</span></article>
+      </div>
+      <div class="logic-evidence">
+        <span>已接入 `/desktop-context` 桌面状态接口</span>
+        <span>后端策略输出 `interaction_tier` 和降级原因</span>
+        <span>策略测试覆盖会议、专注、离席返回和任务恢复</span>
+      </div>
+    </section>
+
+    <section id="strategy" class="section strategy-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Interaction Strategy</p>
+          <h2>同一次主动机会，会因为用户状态而改变存在感</h2>
+        </div>
+        <p>策略层始终选择最低可行打扰强度，让机器人先学会沉默，再学会表达。</p>
+      </div>
+      <div class="policy-output strategy-modes" aria-label="反馈强度">
+        <div><strong>quiet</strong><span>会议、深度专注、不确定状态：静默记录，不主动出现。</span></div>
+        <div><strong>subtle</strong><span>低风险提示：表情、灯效或轻动作，弱存在感。</span></div>
+        <div><strong>subtitle</strong><span>离席返回、任务恢复：用短字幕恢复上下文。</span></div>
+        <div><strong>speak</strong><span>空闲、高置信、重要事项：才允许语音播报。</span></div>
+      </div>
+      <div class="case-flows compact-cases" aria-label="策略路径示例">
         <article>
           <small>Case A</small>
           <h3>会议中收到低优先级事项</h3>
-          <p><strong>系统理解</strong>会议软件与音频信号提高会议置信度。</p>
-          <p><strong>策略选择</strong>语音被阻止，事项进入 quiet 或 subtitle。</p>
-          <p><strong>后续处理</strong>会议结束后再结合用户状态决定是否汇总。</p>
+          <p><strong>状态</strong>会议置信度高。</p>
+          <p><strong>策略</strong>语音阻止，进入 quiet 或 subtitle。</p>
+          <p><strong>回流</strong>会议结束后再判断是否汇总。</p>
         </article>
         <article>
           <small>Case B</small>
           <h3>离席返回后恢复任务线索</h3>
-          <p><strong>系统理解</strong>AFK 后恢复输入，并读取离席前任务上下文。</p>
-          <p><strong>策略选择</strong>先用字幕摘要，不在返回瞬间语音打断。</p>
-          <p><strong>后续处理</strong>根据用户是否继续原任务更新短期上下文。</p>
+          <p><strong>状态</strong>AFK 后恢复输入。</p>
+          <p><strong>策略</strong>先给字幕摘要，不直接说话。</p>
+          <p><strong>回流</strong>是否继续原任务进入短期上下文。</p>
         </article>
       </div>
     </section>
 
-    <section id="architecture" class="band architecture-band">
+    <section id="memory" class="band memory-band">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">系统架构</p>
-          <h2>从桌面信号到机器人反馈，拆成可解释的 6 层</h2>
-        </div>
-        <p>生成式能力只用于理解、总结和表达，不直接控制高打扰行为。触发时机、反馈强度、记忆写入和会议禁语音都由状态规则、置信度、用户偏好和安全边界共同约束。</p>
-      </div>
-      <div class="signal-flow" aria-label="系统链路">
-        <div><small>01</small><strong>桌面状态感知</strong><span>前台窗口、键鼠、AFK、系统音频、应用时长</span></div>
-        <div><small>02</small><strong>用户状态判断</strong><span>会议、专注、离席、返回、疲劳、可打扰</span></div>
-        <div><small>03</small><strong>主动介入决策</strong><span>是否介入、如何降级、何时再尝试</span></div>
-        <div><small>04</small><strong>机器人化反馈</strong><span>quiet、subtle、subtitle、speak</span></div>
-        <div><small>05</small><strong>个性化记忆</strong><span>偏好、节奏、上下文、反馈</span></div>
-        <div><small>06</small><strong>观测与治理</strong><span>降级原因、记忆命中、延迟、纠正</span></div>
-      </div>
-    </section>
-
-    <section id="memory" class="section memory-section">
-      <div class="section-heading split-heading">
-        <div>
-          <p class="eyebrow">记忆机制</p>
+          <p class="eyebrow">Memory Mechanism</p>
           <h2>记忆不是越多越好，而是持续修正主动边界</h2>
         </div>
-        <p>系统不默认保存所有行为，而是根据任务相关性、重复性、用户反馈和时间衰减，决定信息是否进入长期记忆。记忆只在可解释、可更新、可降权的前提下影响策略。</p>
+        <p>系统不默认保存所有行为，而是根据任务相关性、重复性、用户反馈和时间衰减，决定信息是否进入长期记忆。</p>
       </div>
       <div class="memory-system">
         <div class="memory-core">
           <strong>记录 -> 总结 -> 合并 -> 调用 -> 更新 -> 降权</strong>
-          <span>系统基于长期反馈更新用户偏好权重和主动介入边界</span>
+          <span>基于长期反馈更新用户偏好权重和主动介入边界</span>
         </div>
         <article><small>Context</small><h3>短期上下文</h3><p>离席前任务、最近切换、待处理主动机会。</p></article>
         <article><small>Preference</small><h3>长期偏好</h3><p>会议禁声、偏好字幕、晚上不做工作介入。</p></article>
@@ -295,37 +220,35 @@ feedback_event -> memory weight update</code></pre>
       </div>
     </section>
 
-    <section id="policy" class="band policy-band">
+    <section id="prototype" class="section prototype-section">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">主动决策</p>
-          <h2>生成式能力负责表达，产品规则负责边界与约束</h2>
+          <p class="eyebrow">Prototype / What I Built</p>
+          <h2>最终产出不是一组概念，而是一套可解释的原型链路</h2>
         </div>
-        <p>同一个“需要节奏调整”的主动机会，在会议、专注、轻工作和空闲状态下会被映射成不同强度。策略层始终选择最低可行打扰强度。</p>
+        <p>页面展示的是当前已经完成的产品结构和原型能力：状态采集、策略判断、机器人反馈、记忆更新和规则验证。</p>
       </div>
-      <div class="policy-lab">
-        <div class="policy-question">
-          <span>Policy Check</span>
-          <h3>每次主动机会先过 4 个问题</h3>
-          <ol>
-            <li>这件事要不要介入？</li>
-            <li>现在是不是合适时间？</li>
-            <li>应该使用什么反馈强度？</li>
-            <li>如果不介入，什么时候再尝试？</li>
-          </ol>
-        </div>
-        <div class="policy-output" aria-label="反馈强度">
-          <div><strong>quiet</strong><span>会议、深度专注、不确定</span></div>
-          <div><strong>subtle</strong><span>轻动作、表情、灯效</span></div>
-          <div><strong>subtitle</strong><span>摘要、任务恢复、低压力说明</span></div>
-          <div><strong>speak</strong><span>空闲、高置信、重要事项</span></div>
-        </div>
-      </div>
-      <div class="strategy-rules">
-        <p><strong>会议中</strong><span>普通主动机会不出声，高优先级事项也先降级或延后。</span></p>
-        <p><strong>专注中</strong><span>可延后事项进入 quiet 队列，专注结束后集中总结。</span></p>
-        <p><strong>离席返回</strong><span>先用字幕恢复上下文，不把用户刚回来的一刻变成语音打断。</span></p>
-        <p><strong>低置信状态</strong><span>不做强判断，不让模型直接触发高打扰反馈。</span></p>
+      <div class="prototype-grid">
+        <article>
+          <small>01</small>
+          <h3>状态感知规则层</h3>
+          <p>以非摄像头桌面信号判断会议、专注、离席、返回和疲劳等状态。</p>
+        </article>
+        <article>
+          <small>02</small>
+          <h3>低打扰主动策略</h3>
+          <p>通过 quiet / subtle / subtitle / speak 控制反馈强度，会议和专注中自动降级。</p>
+        </article>
+        <article>
+          <small>03</small>
+          <h3>个性化记忆机制</h3>
+          <p>把用户偏好、行为节奏和交互反馈转成可更新的策略权重。</p>
+        </article>
+        <article>
+          <small>04</small>
+          <h3>桌面机器人原型展示</h3>
+          <p>用作品集页面、GitHub 文档和本地链路说明呈现产品逻辑与验证证据。</p>
+        </article>
       </div>
     </section>
 
@@ -337,7 +260,6 @@ feedback_event -> memory weight update</code></pre>
         </div>
         <p>验证聚焦“这个原型是否按低打扰策略工作”：会议是否禁止语音、专注是否延后、返回是否字幕摘要，以及固定触发、状态降级、个性化记忆三组策略的模拟状态日志和标注反馈差异。</p>
       </div>
-      <p class="validation-note">下面的百分比来自规则路径回放与小样本原型验证，用于说明策略方向，不等同于大规模真实用户实验或商业化效果。</p>
       <div class="validation-metrics" aria-label="小样本原型验证指标">
         <article>
           <span>-63%</span>
@@ -376,7 +298,7 @@ feedback_event -> memory weight update</code></pre>
         <article>
           <span class="status pass">PASS</span>
           <strong>本地链路检查</strong>
-          <p>本地采集端、配置模板和启动脚本解析通过，公开材料未包含服务器密码或个人配置。</p>
+          <p>本地采集端、配置模板和启动脚本解析通过，能说明桌面状态如何进入后端策略层。</p>
           <em>local prototype verified</em>
         </article>
         <article>
@@ -394,19 +316,23 @@ feedback_event -> memory weight update</code></pre>
       </div>
     </section>
 
-    <section id="delivery" class="band delivery-band">
+    <section id="value" class="band delivery-band value-section">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">项目价值</p>
+          <p class="eyebrow">Reflection / Value</p>
           <h2>它的价值不在于“提醒用户做事”，而在于设计主动式 AI 的介入边界</h2>
         </div>
-        <p>公开内容面向外部读者：说明产品问题、核心场景、系统设计、验证结果和演示方式；不展示私人凭据、原始日志、真实用户记忆或服务器敏感配置。</p>
+        <p>项目从产品问题、交互机制、系统实现到验证记录形成闭环，重点呈现主动式 AI 在桌面工作流中的介入边界设计。</p>
       </div>
       <div class="delivery-list">
         <article><strong>AI 产品判断</strong><span>把模型能力放进状态规则、置信度、偏好和安全边界中，而不是让模型直接决定高打扰行为。</span></article>
         <article><strong>HRI 交互策略</strong><span>把机器人表达拆成静默、轻动作、字幕和语音四级，控制存在感和打扰感。</span></article>
         <article><strong>具身智能表达</strong><span>机器人不是通知容器，而是根据桌面状态选择姿态、文字和声音强度的桌面智能体。</span></article>
         <article><strong>工程与验证闭环</strong><span>本地采集、云端策略、记忆机制、规则回放和页面证据保持一致。</span></article>
+      </div>
+      <div class="next-steps">
+        <strong>后续可补充材料</strong>
+        <span>真实演示录屏、更多桌面场景样本、记忆编辑界面、长期使用反馈。</span>
       </div>
     </section>
   </main>
