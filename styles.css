@@ -70,7 +70,7 @@ nav a:hover { color: white; }
   background:
     linear-gradient(90deg, rgba(5, 9, 14, .94) 0%, rgba(8, 14, 20, .76) 38%, rgba(8, 14, 20, .2) 74%),
     linear-gradient(180deg, rgba(4, 8, 13, .38), rgba(4, 8, 13, .24)),
-    url("assets/hero-robot-background.jpg") 30% 58% / cover no-repeat,
+    url("assets/111.png") 30% 58% / cover no-repeat,
     #10171c;
 }
 
