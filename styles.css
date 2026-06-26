@@ -103,20 +103,20 @@ nav a:hover { color: white; }
 .hero-system {
   position: absolute;
   inset: 86px max(24px, calc((100vw - 1180px) / 2)) 46px auto;
-  width: min(650px, 49vw);
+  width: min(720px, 52vw);
   min-height: 570px;
   z-index: 1;
 }
 
 .signal-panel {
   position: absolute;
-  width: 250px;
-  padding: 16px;
+  width: 238px;
+  padding: 14px 15px;
   border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 8px;
-  background: rgba(17, 28, 39, .48);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, .22);
+  background: rgba(12, 22, 32, .42);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .18);
 }
 
 .signal-panel strong,
@@ -124,15 +124,15 @@ nav a:hover { color: white; }
 .feedback-strip span { display: block; }
 .signal-panel strong { color: white; font-size: 17px; }
 .signal-panel span { margin-top: 7px; color: #cdd9dd; font-size: 12px; line-height: 1.5; }
-.signal-panel.active { right: 0; top: 38px; border-left: 4px solid var(--coral); }
-.signal-panel.focus { right: 24px; top: 216px; border-left: 4px solid var(--yellow); }
-.signal-panel.return { right: 0; bottom: 122px; border-left: 4px solid #8dd9cf; }
+.signal-panel.active { right: 46px; top: 42px; border-left: 4px solid var(--coral); }
+.signal-panel.focus { right: 0; top: 250px; border-left: 4px solid var(--yellow); }
+.signal-panel.return { right: 230px; bottom: 102px; border-left: 4px solid #8dd9cf; }
 
 .feedback-strip {
   position: absolute;
-  right: 0;
+  right: 22px;
   bottom: 0;
-  width: 430px;
+  width: 410px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
