@@ -1251,10 +1251,241 @@ h1 {
   line-height: 1.65;
 }
 
+.student-section {
+  background:
+    linear-gradient(180deg, #f5f7f3 0%, #eef3f1 100%);
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: .92fr 1.08fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.student-feature {
+  min-height: 520px;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(19, 118, 111, .24), transparent 48%),
+    linear-gradient(160deg, #14202a, #1d2d36);
+  border-radius: 8px;
+  box-shadow: var(--shadow-strong);
+}
+
+.student-feature small,
+.hardware-card small,
+.demo-flow-card small {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.student-feature small { color: #8dd9cf; }
+
+.student-feature h3 {
+  margin: 26px 0 14px;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.1;
+}
+
+.student-feature p {
+  color: #dce5e8;
+  font-size: 17px;
+}
+
+.student-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.student-steps article {
+  min-height: 250px;
+  padding: 24px;
+  display: grid;
+  align-content: start;
+  background: rgba(255, 255, 255, .84);
+  border: 1px solid rgba(217, 223, 216, .84);
+  border-radius: 8px;
+  box-shadow: 0 14px 36px rgba(23, 32, 40, .06);
+}
+
+.student-steps span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--teal);
+  background: var(--soft-teal);
+  border-radius: 999px;
+  font-weight: 850;
+}
+
+.student-steps strong {
+  margin-top: 26px;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.student-steps p {
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
+.hardware-section {
+  background: var(--paper);
+}
+
+.hardware-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .95fr .95fr .95fr;
+  gap: 14px;
+}
+
+.hardware-card {
+  min-height: 280px;
+  padding: 24px;
+  display: grid;
+  align-content: start;
+  background: rgba(255, 255, 255, .86);
+  border: 1px solid rgba(217, 223, 216, .84);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.hardware-card.dark-card {
+  min-height: 340px;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(201, 155, 36, .22), transparent 48%),
+    var(--ink);
+  box-shadow: var(--shadow-strong);
+}
+
+.hardware-card.dark-card small { color: #8dd9cf; }
+
+.hardware-card h3 {
+  margin: 28px 0 0;
+  font-size: 25px;
+  line-height: 1.22;
+}
+
+.hardware-card.dark-card h3 {
+  font-size: clamp(28px, 3vw, 40px);
+}
+
+.hardware-card p {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.hardware-card.dark-card p {
+  color: #dce5e8;
+  font-size: 16px;
+}
+
+.demo-video-section {
+  background:
+    linear-gradient(115deg, #e9efec, #f4f0e7);
+}
+
+.demo-video-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.video-frame,
+.demo-flow-card {
+  background: white;
+  border: 1px solid rgba(217, 223, 216, .84);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.video-frame .video-placeholder {
+  min-height: 430px;
+}
+
+.demo-flow-card {
+  padding: 28px;
+}
+
+.demo-flow-card h3 {
+  margin: 18px 0 20px;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.18;
+}
+
+.demo-flow-card p {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.demo-flow-card p strong {
+  margin-right: 10px;
+  color: var(--teal);
+}
+
 footer {
   padding: 46px max(24px, calc((100vw - 1180px) / 2));
   background: var(--ink);
   color: white;
+}
+
+@media (max-width: 1120px) {
+  .student-grid,
+  .hardware-grid,
+  .demo-video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hardware-card.dark-card {
+    grid-column: 1 / -1;
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 980px) {
+  .student-grid,
+  .student-steps,
+  .hardware-grid,
+  .demo-video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-feature,
+  .video-frame .video-placeholder {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 620px) {
+  .student-feature,
+  .student-steps article,
+  .hardware-card,
+  .demo-flow-card {
+    padding: 22px;
+  }
+
+  .student-steps article,
+  .hardware-card {
+    min-height: 210px;
+  }
+
+  .video-frame .video-placeholder {
+    min-height: 280px;
+  }
 }
 
 footer p { margin: 7px 0; color: #aeb9bd; }
