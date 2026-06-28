@@ -1,166 +1,149 @@
-# 主动式桌面 AI 陪伴机器人
+# ZSY Desktop Companion
 
-这是一个面向研究生、办公人员和远程协作者的个人产品原型。项目希望解决的问题不是“再做一个提醒工具”，而是：
+<p align="center">
+  <img src="assets/hero-robot-background.jpg" alt="ZSY Desktop Companion robot prototype" width="100%">
+</p>
 
-> 长时间坐在电脑前学习或工作时，AI 能不能像一个懂节奏的桌面伙伴一样，在合适的时候出现，用合适的方式提供低压力陪伴，并随着使用逐步理解用户习惯？
+<p align="center">
+  <strong>主动式桌面 AI 陪伴机器人 / Active Desktop AI Companion Robot</strong>
+</p>
 
-项目把本地桌面感知端、云端主动策略、个性化记忆和桌面机器人硬件连接成一条原型链路：
+<p align="center">
+  A portfolio-ready open-source prototype for study, office and remote-work scenarios.
+  <br>
+  面向研究生与办公人群，探索一个放在电脑旁边的机器人如何感知桌面状态、主动陪伴、学习偏好，并用表情、字幕、动作或语音低压力地回应用户。
+</p>
 
-```text
-本地桌面感知端
-  -> 桌面状态摘要
-  -> 云端主动策略
-  -> 表情 / 字幕 / 动作 / 语音反馈
-  -> 用户响应记录
-  -> 记忆与场景偏好更新
-```
+<p align="center">
+  <a href="https://shaylee03.github.io/zsy-desktop-companion/"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-online-0f766e"></a>
+  <a href="docs/architecture.md"><img alt="Architecture" src="https://img.shields.io/badge/Docs-architecture-2563eb"></a>
+  <img alt="Status" src="https://img.shields.io/badge/Status-prototype-f59e0b">
+  <img alt="Hardware" src="https://img.shields.io/badge/Hardware-off--the--shelf%20robot-64748b">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-111827"></a>
+</p>
 
-线上作品集页面：
+## Why / 项目初衷
 
-https://shaylee03.github.io/zsy-desktop-companion/
+People who study or work alone in front of a computer do not just need another chatbot or timer. They need a small desktop companion that understands rhythm: when to appear, when to stay quiet, and how to become more personal over time.
 
-## 项目定位
+这个项目关注的不是“再做一个提醒工具”，而是：
 
-电脑前的人不缺 AI 工具，缺一个懂节奏的桌面伙伴。
+> 长时间坐在电脑前学习或工作时，AI 能不能像一个懂节奏的桌面伙伴一样，在合适的时候主动出现，用合适的方式提供低压力陪伴，并随着使用逐步理解用户习惯？
 
-普通 AI 工具大多等用户主动打开和提问；普通提醒工具只按固定时间触发。这个项目关注的是：机器人如何结合桌面状态、用户状态、反馈强度和长期偏好，在学习 / 办公场景里提供主动但克制的陪伴。
+## Highlights / 项目看点
 
-适配方向：
+| Area | What it shows |
+| --- | --- |
+| Desktop Sensing / 桌面状态感知 | 本地感知端采集前台窗口、键鼠活跃、AFK、系统音频、ActivityWatch 等非摄像头信号，形成桌面状态摘要。 |
+| Proactive Strategy / 主动陪伴策略 | 后端根据桌面状态、场景风险、偏好和机器人可用性，在 `quiet / subtle / subtitle / speak` 中选择反馈强度。 |
+| Memory Evolution / 记忆进化 | 记录任务上下文、长期偏好、行为节奏和交互反馈，让机器人逐步调整出现时机和表达方式。 |
+| Embodied Feedback / 机器人化反馈 | 将策略结果落到表情屏、底部字幕、点头 / 摇头 / 转向等动作，而不是只停留在聊天窗口。 |
 
-- AI 产品经理
-- HRI 产品 / 人机交互产品
-- 智能硬件 / 具身智能产品
-- 桌面感知与个人效率工具
+低打扰不是项目主卖点，而是主动陪伴必须遵守的 interaction boundary。
 
-## 当前完成内容
-
-| 模块 | 当前状态 | 说明 |
-| --- | --- | --- |
-| 作品集页面 | 已完成 | 展示项目定位、系统逻辑、记忆机制、硬件联调和验证方式 |
-| 本地桌面感知端 | 已完成原型 | 采集前台窗口、键鼠活跃、AFK、系统音频、ActivityWatch 等非摄像头信号 |
-| 云端主动策略 | 已完成原型 | 根据桌面状态、用户状态、场景风险和机器人可用性选择反馈方式 |
-| 个性化记忆 | 已完成工程雏形 | 记录任务上下文、场景偏好、交互反馈和节奏摘要 |
-| 机器人硬件联调 | 已跑通链路 | 基于 ESP32-S3N16R8-EMOJI 开源硬件 / 固件框架完成自有后端接入与表情、字幕、动作反馈联调 |
-| 原型验证 | 已整理 | 覆盖规则回放、小样本路径验证、页面可用性和本地链路检查 |
-
-## 核心能力
-
-### 1. 本地桌面感知端
-
-本地感知端使用非摄像头信号整理当前桌面节奏：
-
-- 前台应用和窗口标题摘要
-- 键盘、鼠标、滚动与 idle 状态
-- AFK / 返回电脑状态
-- 系统音频、麦克风和摄像头占用状态
-- ActivityWatch 的窗口和 AFK 信息
-- 最近应用使用时长和切换趋势
-
-这些信号不会直接等同于“用户情绪”，而是作为学习、工作、任务漂移、会议、低能量和返回电脑等状态的判断依据。
-
-### 2. 主动陪伴策略
-
-后端将桌面状态摘要转成主动机会，再根据状态、置信度、用户偏好、冷却和机器人状态选择反馈方式：
-
-| 反馈方式 | 适用场景 | 表达方式 |
-| --- | --- | --- |
-| `quiet` | 会议、深度专注、信号不足 | 静默记录，不主动出现 |
-| `subtle` | 低风险陪伴、阅读思考 | 表情、轻动作、弱存在感 |
-| `subtitle` | 任务恢复、节奏建议、返回电脑 | 短字幕，避免直接语音打断 |
-| `speak` | 空闲、高置信、重要事项 | 语音播报 |
-
-低打扰不是项目主卖点，而是主动陪伴必须遵守的边界。
-
-### 3. 个性化记忆
-
-记忆机制围绕“越用越懂我”设计：
-
-- 短期上下文：当前任务、最近切换、待处理主动机会。
-- 长期偏好：不喜欢语音、偏好字幕、晚上减少工作提醒。
-- 行为节奏：高专注时段、容易低能量的时间、会议密集日。
-- 交互反馈：接受、忽略、关闭、延后或纠正主动反馈。
-
-记忆生命周期：
+## System Flow / 系统链路
 
 ```text
-记录 -> 总结 -> 合并 -> 调用 -> 更新 -> 降权
+Local Desktop Sensing
+  -> desktop state summary
+  -> cloud proactive strategy
+  -> quiet / subtle / subtitle / speak
+  -> robot expression / caption / motion / voice
+  -> user response
+  -> memory and preference update
 ```
 
-### 4. 机器人硬件联调
+## What Is Included / 当前仓库内容
 
-硬件部分基于 ESP32-S3N16R8-EMOJI 桌面机器人硬件与开源固件框架进行适配。
-
-已完成的联调重点：
-
-- OTA / WebSocket 指向自有后端。
-- 后端可下发 `expression / motion / status` 等机器人指令。
-- 硬件端支持表情屏、底部字幕、点头 / 摇头 / 转向等动作反馈。
-- 当前链路已跑通：本地桌面感知端 -> 云端后端策略 -> 机器人表情 / 字幕 / 动作反馈。
-
-这部分表达的是产品定义、系统整合、固件适配和硬件联调，不把底层开源硬件框架包装成从零原创。
-
-## 代表场景
-
-| 场景 | 系统理解 | 机器人行为 |
+| Module | Status | Notes |
 | --- | --- | --- |
-| 长时间学习低能量 | 输入下降、停留但推进慢、切换增多 | 轻动作或短字幕，提供低压力节奏支持 |
-| 任务漂移 | 多窗口切换后离开原任务 | 适合时用字幕恢复任务线索 |
-| 会议中 | 会议软件、麦克风 / 摄像头或系统音频占用 | 禁止普通语音，静默或弱提示 |
-| 深度专注 | 工作应用持续前台、输入稳定、切换少 | 延后普通主动机会 |
-| 返回电脑 | AFK 后恢复输入 | 先用短字幕恢复上下文，不直接语音打断 |
+| Portfolio website | Done | 静态作品集页面，展示项目定位、系统逻辑、记忆机制、硬件联调和验证方式。 |
+| Local sensing side | Prototype | 本地桌面状态采集与 `/desktop-context` 上报链路说明。 |
+| Cloud proactive strategy | Prototype | 根据状态、风险、偏好、冷却和机器人可用性选择反馈强度。 |
+| Memory mechanism | Prototype | 任务上下文、偏好、行为节奏、交互反馈的结构化说明和验证口径。 |
+| Robot hardware integration | Linked | 自有后端接入、WebSocket 指令、表情 / 字幕 / 动作反馈链路已跑通。 |
+| Validation notes | Documented | 规则回放、小样本路径验证、页面可用性和本地链路检查。 |
 
-## 原型验证
+## Hardware Note / 硬件说明
 
-当前验证目标是确认原型链路和规则路径是否符合产品设计，不包装成大规模商业化效果。
+The robot hardware is an off-the-shelf desktop robot kit purchased for this prototype. It is not hand-built from raw components.
 
-基于固定触发、状态降级、个性化记忆三组策略版本的原型回放和小样本标注，当前记录了以下指标：
+硬件部分基于 ESP32-S3N16R8-EMOJI 桌面机器人硬件与开源固件框架进行适配。项目贡献重点在于产品定义、系统整合、后端策略、本地桌面感知端、固件配置适配和硬件联调，不把底层硬件或开源固件包装成从零原创。
 
-| 指标 | 固定触发 | 个性化记忆策略 | 变化 |
+## Representative Scenarios / 代表场景
+
+| Scenario | System reading | Robot response |
+| --- | --- | --- |
+| Long study session / 长时间学习 | 输入下降、停留但推进慢、窗口切换增多 | 轻动作或短字幕，提供低压力节奏支持 |
+| Task drift / 任务漂移 | 多窗口切换后离开原任务 | 在合适时机用字幕恢复任务线索 |
+| Meeting mode / 会议中 | 会议软件、麦克风 / 摄像头或系统音频占用 | 禁止普通语音，静默或弱提示 |
+| Deep focus / 深度专注 | 工作应用持续前台、输入稳定、切换少 | 延后普通主动机会 |
+| Return to desk / 返回电脑 | AFK 后恢复输入 | 先用短字幕恢复状态，不直接语音打断 |
+
+## Prototype Validation / 原型验证
+
+当前验证目标是确认原型链路和规则路径是否符合产品设计，不包装成大规模商业化效果或正式用户实验。
+
+| Metric | Fixed trigger | Personalized memory strategy | Change |
 | --- | --- | --- | --- |
-| 会议 / 专注场景高打扰触发率 | 41% | 15% | 下降 63% |
-| 主动反馈接受率 | 42% | 55% | 提升 31% |
-| 返回电脑后的任务恢复时间 | 125 秒 | 80 秒 | 缩短 36% |
-| 记忆调用后用户纠正率 | 25% | 19% | 下降 24% |
+| High-interruption trigger rate in meeting/focus scenes | 41% | 15% | -63% |
+| Proactive feedback acceptance rate | 42% | 55% | +31% |
+| Task recovery time after returning to desk | 125s | 80s | -36% |
+| User correction rate after memory recall | 25% | 19% | -24% |
 
-相关文档：
+Details:
 
-- [验证记录](docs/validation.md)
-- [小样本原型验证](docs/small-sample-validation.md)
-- [实现说明](docs/evidence-map.md)
-- [隐私与边界](docs/privacy-and-limitations.md)
+- [Validation notes](docs/validation.md)
+- [Small-sample prototype validation](docs/small-sample-validation.md)
+- [Evidence map](docs/evidence-map.md)
+- [Privacy and limitations](docs/privacy-and-limitations.md)
 
-## 目录结构
+## Quick Preview / 本地查看
 
-```text
-.
-├── index.html                 # 公开作品集页面
-├── styles.css                 # 页面视觉样式
-├── assets/                    # 页面图像资源
-├── docs/
-│   ├── case-study.md
-│   ├── architecture.md
-│   ├── interaction-strategy.md
-│   ├── decision-flow.md
-│   ├── memory-evolution.md
-│   ├── validation.md
-│   └── privacy-and-limitations.md
-└── validation/                # 原型验证脚本与指标口径
-```
-
-## 本地查看页面
-
-这是静态作品集页面，不需要构建流程。可以直接打开 `index.html`，也可以用本地静态服务查看：
+This repository currently ships a static portfolio page. It does not provide a one-click consumer installer.
 
 ```bash
 python -m http.server 8000
 ```
 
-然后访问：
+Then open:
 
 ```text
 http://localhost:8000
 ```
 
-## 当前边界
+## Documentation / 文档入口
 
-当前仓库以作品集展示和原型说明为主，不提供开箱即用安装包。完整运行需要本地感知端、云端后端和机器人硬件配对。后续可继续补充真实演示视频、硬件联调截图、更多学习场景样本和长期使用反馈。
+- [Case study](docs/case-study.md)
+- [Architecture](docs/architecture.md)
+- [Interaction strategy](docs/interaction-strategy.md)
+- [Decision flow](docs/decision-flow.md)
+- [Memory evolution](docs/memory-evolution.md)
+- [Local sensing and run notes](docs/download-and-run.md)
+
+## Repository Map / 目录结构
+
+```text
+.
+├── index.html                 # public portfolio page
+├── styles.css                 # visual design
+├── assets/                    # images used by the page and README
+├── docs/                      # case study, architecture, strategy, validation
+├── validation/                # prototype validation scripts
+└── downloads/                 # archived local starter material, not a consumer installer
+```
+
+## Roadmap / 后续计划
+
+- Add a real demo video showing the local sensing side, backend policy and robot feedback chain.
+- Add hardware setup photos and a clearer robot command reference.
+- Extract a minimal local sensing example that can run without private configuration.
+- Improve memory review/editing screens for safer long-term personalization.
+
+## Contributing / 参与方式
+
+This is a personal portfolio prototype, but issues and documentation suggestions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License / 许可
+
+Code and documentation in this repository are released under the [MIT License](LICENSE), unless otherwise noted. The purchased robot hardware, third-party firmware framework and external dependencies follow their own licenses.
