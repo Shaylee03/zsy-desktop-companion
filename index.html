@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="主动式桌面 AI 陪伴机器人产品原型，面向研究生和办公人群，结合本地桌面感知端、后端主动策略、个性化记忆和机器人硬件联调。">
-  <title>主动式桌面 AI 陪伴机器人 | 产品案例</title>
+  <meta name="description" content="An active desktop AI companion robot prototype for study and office scenarios, combining local desktop sensing, proactive backend strategy, personalized memory, and robot hardware integration.">
+  <title>ZSY Desktop Companion | Product Case Study</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#top">ZSY Desktop Companion</a>
-    <nav aria-label="页面导航">
+    <nav aria-label="Page navigation">
       <a href="#overview">概览</a>
       <a href="#problem">问题</a>
       <a href="#prototype">产出</a>
@@ -22,6 +22,10 @@
       <a href="#demo">Demo</a>
       <a href="#validation">验证</a>
     </nav>
+    <div class="language-switch" aria-label="Language switch">
+      <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-option="zh" aria-pressed="false">中文</button>
+    </div>
   </header>
 
   <main id="top">
@@ -55,7 +59,7 @@
           <p class="eyebrow">Project Overview</p>
           <h2>一个把桌面状态、主动交互和机器人表达连起来的产品原型</h2>
         </div>
-        <p>这个项目不是普通提醒工具，也不是只会聊天的桌面助手。它关注的是：一个放在电脑旁边的机器人，如何理解用户当下的学习 / 工作节奏，并在合适的时候用合适的表达方式提供陪伴和支持。</p>
+        <p>这个项目关注一个放在电脑旁边的机器人，如何理解用户当下的学习 / 工作节奏，并在合适的时候用合适的表达方式提供陪伴和支持。</p>
       </div>
       <div class="project-brief overview-grid">
         <article>
@@ -85,10 +89,10 @@
       <div class="thesis-layout">
         <div>
           <p class="eyebrow">Problem</p>
-          <h2>电脑前的人不缺 AI 工具，缺一个懂节奏的桌面伙伴</h2>
+          <h2>电脑前的人需要一个懂节奏的桌面伙伴</h2>
         </div>
         <div class="thesis-copy">
-          <p>研究生和办公人员经常长时间坐在电脑前：资料、论文、代码、会议和消息不断切换。真正影响体验的不是某一个提醒没响，而是低能量、任务漂移、孤立工作和 AI 工具过于被动带来的节奏断裂。</p>
+          <p>研究生和办公人员经常长时间坐在电脑前：资料、论文、代码、会议和消息不断切换。体验痛点集中在低能量、任务漂移、孤立工作，以及工具难以理解当下节奏带来的状态断裂。</p>
           <div class="problem-compare">
             <article><strong>普通 AI 工具</strong><span>等用户主动打开、主动提问，无法感知当前桌面节奏，也很难在用户低能量或任务漂移时自然出现。</span></article>
             <article><strong>本项目方案</strong><span>把电脑使用状态、机器人状态和用户反馈放进同一条链路，让机器人通过表情、字幕、轻动作或语音成为低压力桌面伙伴。</span></article>
@@ -135,7 +139,7 @@
           <p class="eyebrow">Student Scenario</p>
           <h2>以研究生学习场景为主线：越用越懂我</h2>
         </div>
-        <p>学生场景更能体现这个项目的初衷：用户不是一直需要效率工具，而是在长时间独自学习时需要一个有存在感但不过度打扰的桌面伙伴。</p>
+        <p>学生场景更能体现这个项目的初衷：长时间独自学习时，用户需要一个有存在感、懂节奏、不过度打扰的桌面伙伴。</p>
       </div>
       <div class="student-grid">
         <article class="student-feature">
@@ -162,7 +166,7 @@
           <p class="eyebrow">System Logic</p>
           <h2>从桌面状态到机器人反馈，再回到记忆更新</h2>
         </div>
-        <p>桌面状态不是最终卖点，而是实现主动陪伴的路径。本地感知端负责形成状态摘要，后端 Agent 能力用于理解、总结和生成表达，策略层负责控制表达边界，机器人端负责把结果变成具身反馈。</p>
+        <p>桌面状态是实现主动陪伴的关键路径。本地感知端负责形成状态摘要，后端 Agent 能力用于理解、总结和生成表达，策略层负责控制表达边界，机器人端负责把结果变成具身反馈。</p>
       </div>
       <div class="logic-map" aria-label="核心系统逻辑图">
         <article><small>01</small><strong>桌面信号</strong><span>前台窗口、键鼠、AFK、系统音频、应用使用时长</span></article>
@@ -183,9 +187,9 @@
       <div class="section-heading split-heading">
         <div>
           <p class="eyebrow">Interaction Strategy</p>
-          <h2>低打扰不是项目主卖点，而是主动陪伴必须遵守的边界</h2>
+          <h2>低打扰是主动陪伴必须遵守的边界</h2>
         </div>
-        <p>机器人越主动，越需要克制。策略层不会让 Agent 直接决定高打扰行为，而是通过规则、置信度、用户偏好和硬件状态选择最低可行反馈强度。</p>
+        <p>机器人越主动，越需要克制。策略层通过规则、置信度、用户偏好和硬件状态选择最低可行反馈强度，让表达保持可解释和可控。</p>
       </div>
       <div class="policy-output strategy-modes" aria-label="反馈强度">
         <div><strong>quiet</strong><span>会议、深度专注、信号不足：只记录，不主动出现。</span></div>
@@ -206,7 +210,7 @@
           <h3>学习中出现任务漂移</h3>
           <p><strong>状态</strong>窗口切换增多、输入下降、学习上下文被打断。</p>
           <p><strong>策略</strong>先记录上下文，适合时用短字幕帮助用户重新聚焦。</p>
-          <p><strong>价值</strong>不是催促用户，而是降低重新进入任务的心理负担。</p>
+          <p><strong>价值</strong>降低用户重新进入任务的心理负担。</p>
         </article>
       </div>
     </section>
@@ -217,7 +221,7 @@
           <p class="eyebrow">Memory Mechanism</p>
           <h2>记忆让机器人从“能主动”变成“越用越懂我”</h2>
         </div>
-        <p>系统不默认保存所有行为，而是围绕任务相关性、重复场景、用户反馈和时间衰减管理记忆。它学习的不是隐私细节，而是用户更愿意在哪些场景被怎样陪伴。</p>
+        <p>系统围绕任务相关性、重复场景、用户反馈和时间衰减管理记忆。记忆侧重学习用户更愿意在哪些场景被怎样陪伴。</p>
       </div>
       <div class="memory-system">
         <div class="memory-core">
@@ -237,7 +241,7 @@
           <p class="eyebrow">Hardware Integration</p>
           <h2>原型实现：机器人硬件联调</h2>
         </div>
-        <p>硬件部分不是概念图，而是基于 ESP32-S3N16R8-EMOJI 桌面机器人硬件与开源固件框架进行适配，把自有后端、WebSocket 指令和机器人表情 / 字幕 / 动作反馈串起来。</p>
+        <p>硬件部分基于 ESP32-S3N16R8-EMOJI 桌面机器人硬件与开源固件框架进行适配，把自有后端、WebSocket 指令和机器人表情 / 字幕 / 动作反馈串起来。</p>
       </div>
       <div class="hardware-grid">
         <article class="hardware-card dark-card">
@@ -258,7 +262,7 @@
         <article class="hardware-card">
           <small>Product Boundary</small>
           <h3>基于开源框架适配</h3>
-          <p>项目工作重点放在产品定义、系统整合、后端策略、本地感知端、固件适配和联调，不把底层硬件框架包装成从零原创。</p>
+          <p>项目工作重点放在产品定义、系统整合、后端策略、本地感知端、固件适配和联调；底层硬件框架遵循其原有来源和许可。</p>
         </article>
       </div>
     </section>
@@ -337,12 +341,12 @@
           <p class="eyebrow">Reflection / Value</p>
           <h2>项目价值在于把主动 AI、桌面状态和具身反馈做成一个可解释闭环</h2>
         </div>
-        <p>这个项目最重要的不是“多一个提醒功能”，而是探索一个桌面机器人如何在学习 / 办公场景中感知节奏、选择表达、学习偏好，并把陪伴感控制在合适强度。</p>
+        <p>这个项目探索一个桌面机器人如何在学习 / 办公场景中感知节奏、选择表达、学习偏好，并把陪伴感控制在合适强度。</p>
       </div>
       <div class="delivery-list">
-        <article><strong>AI 产品判断</strong><span>把 Agent 能力放进可解释的状态规则和用户偏好里，而不是让模型直接决定高打扰行为。</span></article>
+        <article><strong>AI 产品判断</strong><span>把 Agent 能力放进可解释的状态规则和用户偏好里，让主动行为保持可控。</span></article>
         <article><strong>HRI 交互策略</strong><span>把机器人表达拆成表情、轻动作、字幕和语音，控制存在感与打扰感之间的平衡。</span></article>
-        <article><strong>具身智能落地</strong><span>不只停留在聊天界面，而是让桌面状态最终影响硬件表情、姿态和字幕。</span></article>
+        <article><strong>具身智能落地</strong><span>让桌面状态最终影响硬件表情、姿态和字幕，形成可感知的机器人反馈。</span></article>
         <article><strong>工程原型闭环</strong><span>本地感知端、云端后端、记忆模块、硬件固件和作品集展示保持一致。</span></article>
       </div>
       <div class="next-steps">
@@ -357,5 +361,164 @@
     <p>桌面感知 · 主动陪伴 · 记忆进化 · 机器人硬件联调</p>
     <a href="https://github.com/Shaylee03/zsy-desktop-companion">GitHub Repository</a>
   </footer>
+  <script>
+    const copy = {
+      en: {
+        title: "ZSY Desktop Companion | Product Case Study",
+        description: "An active desktop AI companion robot prototype for study and office scenarios, combining local desktop sensing, proactive backend strategy, personalized memory, and robot hardware integration.",
+        text: {
+          ".brand": "ZSY Desktop Companion",
+          ".hero .eyebrow": "Personal Product Project - Desktop Sensing - Embodied Interaction",
+          ".hero h1": "An active desktop AI companion robot that learns your work rhythm",
+          ".hero .lead": "A personal prototype for graduate students and office workers. A local desktop sensing client summarizes the current work state, the backend decides when and how to appear, and the robot responds through expression, captions, subtle motion, and voice.",
+          "#overview .eyebrow": "Project Overview",
+          "#overview h2": "A product prototype connecting desktop rhythm, proactive interaction, and embodied robot feedback",
+          "#overview .split-heading > p": "This project explores how a small companion placed beside a computer can understand study or work rhythm and respond with the right level of presence.",
+          "#problem .eyebrow": "Problem",
+          "#problem h2": "People in front of computers need a companion that understands rhythm.",
+          "#problem .thesis-copy > p": "Graduate students and office workers often stay in front of a computer for long sessions, switching between papers, code, meetings, writing, and messages. The main friction comes from low energy, task drift, isolated work, and tools that rarely understand the current rhythm.",
+          "#prototype .eyebrow": "What I Built",
+          "#prototype h2": "The output is a working proactive companion prototype chain",
+          "#prototype .split-heading > p": "The current project includes a local desktop sensing client, a cloud backend that detects proactive opportunities and response modes, a memory module that records preferences and feedback, and robot hardware feedback through expressions, captions, and motion.",
+          "#student .eyebrow": "Student Scenario",
+          "#student h2": "A graduate study scenario: it becomes more personal over time",
+          "#student .split-heading > p": "The study scenario best reflects the original goal. During long solo study sessions, the user needs a present, rhythm-aware, and restrained desktop companion.",
+          ".student-feature small": "Core Scene",
+          ".student-feature h3": "Low-energy state after a long study session",
+          ".student-feature p": "When the user has been writing, reading, or coding for a long time, and input slows down while window switching increases, the robot provides low-pressure support through subtle motion, short captions, or a small task-framing suggestion.",
+          ".scenario-policy span": "rhythm becomes scattered",
+          ".scenario-policy strong": "subtle / subtitle",
+          "#logic .eyebrow": "System Logic",
+          "#logic h2": "From desktop state to robot feedback, then back into memory",
+          "#logic .split-heading > p": "Desktop state is the key path toward proactive companionship. The local client summarizes state, the backend agent capability helps interpret and generate expression, the policy layer controls boundaries, and the robot turns the result into embodied feedback.",
+          "#strategy .eyebrow": "Interaction Strategy",
+          "#strategy h2": "Low interruption is the boundary that proactive companionship must respect.",
+          "#strategy .split-heading > p": "The more proactive a robot becomes, the more restrained it must be. The policy layer selects the lowest useful feedback level based on rules, confidence, user preference, and hardware state, keeping behavior explainable and controllable.",
+          "#memory .eyebrow": "Memory Mechanism",
+          "#memory h2": "Memory turns the robot from proactive into progressively personal",
+          "#memory .split-heading > p": "Memory is organized around task relevance, repeated scenes, user feedback, and time decay. It focuses on preferred interaction patterns and long-term rhythm.",
+          ".memory-core strong": "Record -> summarize -> merge -> retrieve -> update -> decay",
+          ".memory-core span": "User feedback and repeated contexts become adjustable strategy weights, so proactive companionship gradually fits personal habits.",
+          "#hardware .eyebrow": "Hardware Integration",
+          "#hardware h2": "Prototype implementation: robot hardware integration",
+          "#hardware .split-heading > p": "The hardware part is adapted from an ESP32-S3N16R8-EMOJI desktop robot kit and an open-source firmware framework, connecting my backend, WebSocket commands, robot expressions, captions, and motion feedback.",
+          "#demo .eyebrow": "Demo Video",
+          "#demo h2": "Demo video placeholder for real hardware interaction",
+          "#demo .split-heading > p": "After recording, this area will show three scenes: low-energy study companionship, subtitle support after task drift, and robot expression or motion feedback after backend policy dispatch.",
+          ".video-placeholder strong": "Demo video placeholder",
+          ".video-placeholder em": "Will show the local sensing client -> backend policy -> robot hardware feedback chain",
+          ".demo-flow-card small": "Planned demo path",
+          ".demo-flow-card h3": "One video to explain how it proactively accompanies the user",
+          "#validation .eyebrow": "Validation",
+          "#validation h2": "Current validation focuses on rule paths and prototype chains",
+          "#validation .split-heading > p": "Validation checks whether the system chooses logging, expression, captions, or voice as expected under meeting, focus, task recovery, low-energy, and hardware-offline states.",
+          "#value .eyebrow": "Reflection / Value",
+          "#value h2": "The value is an explainable loop across proactive AI, desktop state, and embodied feedback",
+          "#value .split-heading > p": "The project explores how a desktop robot can sense rhythm, choose expression, learn preference, and keep companionship at an appropriate intensity in study and office scenarios.",
+          ".next-steps strong": "Future materials",
+          ".next-steps span": "Real demo video, hardware integration screenshots, more study-scene samples, memory review UI, and longer-term feedback.",
+          "footer strong": "Active Desktop AI Companion Robot",
+          "footer p": "Desktop sensing · proactive companionship · memory evolution · robot hardware integration"
+        },
+        lists: {
+          "nav a": ["Overview", "Problem", "Build", "Scenario", "Logic", "Memory", "Hardware", "Demo", "Validation"],
+          ".hero-proof span": ["Proactive companionship", "Desktop state sensing chain", "Habit learning and memory evolution", "Robot-style feedback"],
+          ".hero-meta span": ["<strong>Time</strong>2025.06 - Present", "<strong>Role</strong>AI product design / prototype development / hardware integration", "<strong>Output</strong>Local sensing client, backend strategy, memory mechanism, robot feedback chain"],
+          ".hero-actions a": ["View GitHub Repository", "Demo Placeholder", "View System Logic"],
+          "#overview .project-brief article span": ["Goal", "My Role", "Core Output", "Relevant Roles"],
+          "#overview .project-brief article strong": ["Turn AI beside the computer from passive Q&A into a rhythm-aware companion", "Product definition, interaction strategy, frontend/backend prototype, and hardware integration", "Sensing chain, proactive strategy, memory mechanism, and robot feedback", "AI product, HRI product, smart hardware / embodied AI product"],
+          "#overview .project-brief article p": ["Designed for people who study, write, work, and collaborate alone for long periods, this prototype observes desktop rhythm, proactively accompanies the user, and gradually learns preferences.", "I independently defined the target scenes, designed proactive interaction rules, memory behavior, and feedback tiers, then connected the local sensing client, cloud backend, and desktop robot hardware into one prototype chain.", "The prototype covers local desktop state collection, backend proactive opportunity detection, user feedback logging, memory strategy updates, and expression / caption / motion feedback on robot hardware.", "The project highlights product boundaries for proactive AI, desktop state sensing, low-pressure companionship, robot-style feedback, and long-term personalization."],
+          ".problem-compare strong": ["Typical AI tools", "This project"],
+          ".problem-compare span": ["They wait for the user to open them and ask. They cannot sense desktop rhythm and rarely appear naturally when energy drops or tasks drift.", "It puts computer usage state, robot state, and user feedback into one chain, turning expression, captions, subtle motion, or voice into low-pressure companionship."],
+          ".prototype-grid small": ["01", "02", "03", "04"],
+          ".prototype-grid h3": ["Local desktop sensing client", "Proactive companion strategy", "Personalized memory mechanism", "Robot hardware integration"],
+          ".prototype-grid p": ["Collects foreground window, keyboard/mouse activity, AFK, system audio, ActivityWatch, and other non-camera signals to form a desktop state summary.", "The backend turns desktop summaries into proactive opportunities, then selects a feedback mode based on state, risk, preference, and robot availability.", "Records task context, interaction feedback, scene preferences, and rhythm summaries so the robot can learn when it should appear.", "Based on ESP32 desktop robot hardware, the prototype connects backend output to facial expression, bottom captions, and head movement."],
+          ".student-steps span": ["01", "02", "03", "04"],
+          ".student-steps strong": ["Study starts", "Task begins to drift", "Rhythm support is useful", "Feedback enters memory"],
+          ".student-steps p": ["The robot uses a small expression or motion to acknowledge the study state without interrupting the task.", "When switching increases or input drops, the system records context first instead of immediately pushing the user.", "At the right time, a short caption helps the user focus the next 15 minutes on one target.", "After the user accepts, ignores, closes, delays, or corrects the feedback, future frequency and expression style adjust."],
+          ".logic-map small": ["01", "02", "03", "04", "05", "06"],
+          ".logic-map strong": ["Desktop signals", "State summary", "Proactive opportunity", "Feedback strategy", "Robot expression", "Memory update"],
+          ".logic-map span": ["Foreground window, keyboard/mouse, AFK, system audio, app usage duration", "Study, writing, meeting, task drift, low energy, return to desk", "Whether to accompany, support task recovery, provide rhythm help, or stay quiet", "Choose intensity based on state risk, preference, cooldown, and robot availability", "Expression, subtle motion, bottom captions, voice", "Accepted, ignored, closed, delayed, corrected, and scene preference updates"],
+          ".logic-evidence span": ["The local sensing client supports `/desktop-context` reporting", "The backend outputs `interaction_tier`, scene, reason, and fallback information", "The robot can receive expression, motion, status, and caption feedback"],
+          ".policy-output div strong": ["quiet", "subtle", "subtitle", "speak"],
+          ".policy-output div span": ["Meeting, deep focus, or insufficient signal: stay silent and log context.", "Low-risk companionship: expression, light, or subtle motion with weak presence.", "Task recovery or rhythm support: express through short captions with low interruption.", "Idle, high confidence, or important moments: voice is reserved for these cases."],
+          ".case-flows small": ["Case A", "Case B"],
+          ".case-flows h3": ["A proactive opportunity appears during a meeting", "Task drift appears during study"],
+          ".case-flows article:first-child p": ["<strong>State</strong>Meeting software, microphone, or camera signals raise meeting confidence.", "<strong>Strategy</strong>Normal voice is suppressed. Necessary information falls back to silent logging or short captions.", "<strong>Value</strong>The robot keeps a sense of presence without creating social awkwardness."],
+          ".case-flows article:last-child p": ["<strong>State</strong>Window switching increases, input drops, and the study context is interrupted.", "<strong>Strategy</strong>The system records context first, then uses a short caption when appropriate to help the user refocus.", "<strong>Value</strong>It lowers the cost of returning to the task."],
+          ".memory-system article small": ["Context", "Preference", "Rhythm", "Feedback"],
+          ".memory-system article h3": ["Short-term context", "Long-term preference", "Behavior rhythm", "Interaction feedback"],
+          ".memory-system article p": ["Current task, recent switching, study fragments, and pending proactive opportunities.", "Prefers captions, dislikes voice, wants fewer work prompts at night, likes concise wording.", "High-focus periods, low-energy moments, meeting-heavy days, and long study patterns.", "Accept, ignore, close, delay, or correct feedback to update scene strategy and expression intensity."],
+          ".hardware-card small": ["Prototype Chain", "Firmware Adaptation", "Embodied Feedback", "Product Boundary"],
+          ".hardware-card h3": ["Local desktop sensing client -> cloud backend strategy -> robot feedback", "Custom backend access", "Expression, captions, and head motion", "Adapted from open-source frameworks"],
+          ".hardware-card p": ["The prototype has run the basic chain from desktop state reporting, backend proactive policy, to robot expression and motion feedback.", "OTA and WebSocket endpoints point to my own server, enabling the robot to validate proactive companion behavior through the custom backend.", "The backend can send expression / motion / status payloads, and the hardware shows facial expressions, bottom captions, and nodding, shaking, or turning motions.", "The project focus is product definition, system integration, backend strategy, local sensing, firmware adaptation, and hardware debugging. The base hardware and firmware follow their original sources and licenses."],
+          ".demo-flow-card p": ["<strong>01</strong> The local sensing client panel shows the current desktop state summary.", "<strong>02</strong> The backend policy identifies the scene, feedback tier, and fallback reason.", "<strong>03</strong> The robot responds with expression, bottom caption, or motion in a low-pressure way."],
+          ".validation-board .status": ["PASS", "PASS", "PASS", "PASS"],
+          ".validation-board strong": ["Proactive policy paths", "Local sensing chain", "Memory and feedback", "Hardware integration"],
+          ".validation-board p": ["Meeting suppression, deep-focus delay, task-drift subtitle support, and low-energy subtle companionship have been validated through replay.", "The client structure, configuration template, and startup scripts explain how desktop state enters the backend policy layer.", "The system records proactive feedback, scene preferences, and strategy update candidates to support the prototype logic of becoming more personal over time.", "After firmware adaptation, the robot can receive backend expression and motion commands, closing the loop from desktop state to robot feedback."],
+          ".validation-board em": ["backend policy replay", "desktop context path", "memory feedback loop", "robot feedback path"],
+          ".validation-links a": ["View validation notes", "View prototype validation data", "View implementation evidence", "View boundaries"],
+          ".delivery-list strong": ["AI product judgment", "HRI interaction strategy", "Embodied AI implementation", "Engineering prototype loop"],
+          ".delivery-list span": ["Put agent capability inside explainable state rules and user preferences so proactive behavior stays controllable.", "Split robot expression into facial expression, subtle motion, captions, and voice to balance presence and interruption.", "Let desktop state influence hardware expression, posture, and captions to create perceivable robot feedback.", "Keep the local sensing client, cloud backend, memory module, firmware, and portfolio story aligned."]
+        }
+      },
+      zh: {
+        title: "主动式桌面 AI 陪伴机器人 | 产品案例",
+        description: "主动式桌面 AI 陪伴机器人产品原型，面向研究生和办公人群，结合本地桌面感知端、后端主动策略、个性化记忆和机器人硬件联调。",
+        text: {},
+        lists: {}
+      }
+    };
+
+    const zhSnapshot = {
+      text: {},
+      lists: {}
+    };
+
+    const textSelectors = Object.keys(copy.en.text);
+    const listSelectors = Object.keys(copy.en.lists);
+
+    textSelectors.forEach((selector) => {
+      const node = document.querySelector(selector);
+      if (node) zhSnapshot.text[selector] = node.textContent;
+    });
+
+    listSelectors.forEach((selector) => {
+      zhSnapshot.lists[selector] = Array.from(document.querySelectorAll(selector)).map((node) => node.innerHTML);
+    });
+
+    copy.zh.text = zhSnapshot.text;
+    copy.zh.lists = zhSnapshot.lists;
+
+    function applyLanguage(lang) {
+      const dict = copy[lang] || copy.en;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = dict.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dict.description);
+
+      Object.entries(dict.text).forEach(([selector, value]) => {
+        const node = document.querySelector(selector);
+        if (node) node.textContent = value;
+      });
+
+      Object.entries(dict.lists).forEach(([selector, values]) => {
+        document.querySelectorAll(selector).forEach((node, index) => {
+          if (values[index] !== undefined) node.innerHTML = values[index];
+        });
+      });
+
+      document.querySelectorAll("[data-lang-option]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.langOption === lang));
+      });
+
+      localStorage.setItem("zsy-language", lang);
+    }
+
+    document.querySelectorAll("[data-lang-option]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.langOption));
+    });
+
+    applyLanguage(localStorage.getItem("zsy-language") || "en");
+  </script>
 </body>
 </html>
