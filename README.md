@@ -75,6 +75,13 @@ http://localhost:8000
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-111827"></a>
 </p>
 
+## Demo Video
+
+<video src="assets/demo.mp4" controls width="100%"></video>
+
+If the video does not render in GitHub, open the live portfolio:
+[shaylee03.github.io/zsy-desktop-companion/#demo](https://shaylee03.github.io/zsy-desktop-companion/#demo)
+
 ## Project Overview
 
 ZSY Desktop Companion explores an active desktop AI companion robot for people who study, write, research, or work alone in front of a computer for long sessions.
@@ -188,7 +195,6 @@ http://localhost:8000
 
 ## Roadmap
 
-- Add a real demo video showing the local sensing side, backend policy, and robot feedback chain.
 - Add hardware setup photos and a clearer robot command reference.
 - Extract a minimal local sensing example that can run without private configuration.
 - Improve memory review/editing screens for safer long-term personalization.

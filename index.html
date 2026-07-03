@@ -47,7 +47,7 @@
         </div>
         <div class="hero-actions">
           <a class="button primary" href="https://github.com/Shaylee03/zsy-desktop-companion">查看 GitHub</a>
-          <a class="button secondary" href="#demo">演示视频预留</a>
+          <a class="button secondary" href="#demo">观看演示视频</a>
           <a class="button secondary" href="#logic">查看系统逻辑</a>
         </div>
       </div>
@@ -271,24 +271,23 @@
       <div class="section-heading split-heading">
         <div>
           <p class="eyebrow">Demo Video</p>
-          <h2>演示视频预留位：后续用于展示真实硬件交互</h2>
+          <h2>真实原型演示：从桌面状态到机器人反馈</h2>
         </div>
-        <p>视频录制后会放在这里，重点展示三个场景：学习中低能量陪伴、任务漂移后的字幕支持、后端策略下发后的机器人表情 / 动作反馈。</p>
+        <p>一段视频展示本地桌面感知、后端主动策略、记忆反馈与机器人硬件交互的完整链路。</p>
       </div>
       <div class="demo-video-grid">
         <article class="video-frame">
-          <div class="video-placeholder">
-            <span class="play-mark" aria-hidden="true"></span>
-            <strong>Demo video placeholder</strong>
-            <em>将展示本地感知端 -> 后端策略 -> 机器人硬件反馈链路</em>
-          </div>
+          <video class="demo-video" controls preload="metadata" playsinline poster="assets/hero-robot-background.jpg">
+            <source src="assets/demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </article>
         <article class="demo-flow-card">
-          <small>Planned demo path</small>
-          <h3>一段视频讲清楚它如何“主动陪伴”</h3>
-          <p><strong>01</strong> 本地感知端面板显示当前桌面状态摘要。</p>
-          <p><strong>02</strong> 后端策略判断场景、反馈强度和降级原因。</p>
-          <p><strong>03</strong> 机器人通过表情、底部字幕或动作做出低压力回应。</p>
+          <small>Prototype demo</small>
+          <h3>主动陪伴原型链路</h3>
+          <p><strong>01</strong> 桌面端整理当前学习 / 工作状态。</p>
+          <p><strong>02</strong> 后端判断是否适合主动介入。</p>
+          <p><strong>03</strong> 机器人通过动作、字幕或语音回应。</p>
         </article>
       </div>
     </section>
@@ -403,12 +402,10 @@
           "#hardware h2": "Prototype implementation: robot hardware integration",
           "#hardware .split-heading > p": "The hardware part is adapted from an ESP32-S3N16R8-EMOJI desktop robot kit and an open-source firmware framework, connecting my backend, WebSocket commands, robot expressions, captions, and motion feedback.",
           "#demo .eyebrow": "Demo Video",
-          "#demo h2": "Demo video placeholder for real hardware interaction",
-          "#demo .split-heading > p": "After recording, this area will show three scenes: low-energy study companionship, subtitle support after task drift, and robot expression or motion feedback after backend policy dispatch.",
-          ".video-placeholder strong": "Demo video placeholder",
-          ".video-placeholder em": "Will show the local sensing client -> backend policy -> robot hardware feedback chain",
-          ".demo-flow-card small": "Planned demo path",
-          ".demo-flow-card h3": "One video to explain how it proactively accompanies the user",
+          "#demo h2": "Real prototype demo: from desktop state to robot feedback",
+          "#demo .split-heading > p": "A short demo showing the full chain across local desktop sensing, backend proactive strategy, memory feedback, and robot hardware interaction.",
+          ".demo-flow-card small": "Prototype demo",
+          ".demo-flow-card h3": "The proactive companion prototype chain",
           "#validation .eyebrow": "Validation",
           "#validation h2": "Current validation focuses on rule paths and prototype chains",
           "#validation .split-heading > p": "Validation checks whether the system chooses logging, expression, captions, or voice as expected under meeting, focus, task recovery, low-energy, and hardware-offline states.",
@@ -416,7 +413,7 @@
           "#value h2": "The value is an explainable loop across proactive AI, desktop state, and embodied feedback",
           "#value .split-heading > p": "The project explores how a desktop robot can sense rhythm, choose expression, learn preference, and keep companionship at an appropriate intensity in study and office scenarios.",
           ".next-steps strong": "Future materials",
-          ".next-steps span": "Real demo video, hardware integration screenshots, more study-scene samples, memory review UI, and longer-term feedback.",
+          ".next-steps span": "Hardware integration screenshots, more study-scene samples, memory review UI, and longer-term feedback.",
           "footer strong": "Active Desktop AI Companion Robot",
           "footer p": "Desktop sensing · proactive companionship · memory evolution · robot hardware integration"
         },
@@ -424,7 +421,7 @@
           "nav a": ["Overview", "Problem", "Build", "Scenario", "Logic", "Memory", "Hardware", "Demo", "Validation"],
           ".hero-proof span": ["Proactive companionship", "Desktop state sensing chain", "Habit learning and memory evolution", "Robot-style feedback"],
           ".hero-meta span": ["<strong>Time</strong>2025.06 - Present", "<strong>Role</strong>AI product design / prototype development / hardware integration", "<strong>Output</strong>Local sensing client, backend strategy, memory mechanism, robot feedback chain"],
-          ".hero-actions a": ["View GitHub Repository", "Demo Placeholder", "View System Logic"],
+          ".hero-actions a": ["View GitHub Repository", "Watch Demo Video", "View System Logic"],
           "#overview .project-brief article span": ["Goal", "My Role", "Core Output", "Relevant Roles"],
           "#overview .project-brief article strong": ["Turn AI beside the computer from passive Q&A into a rhythm-aware companion", "Product definition, interaction strategy, frontend/backend prototype, and hardware integration", "Sensing chain, proactive strategy, memory mechanism, and robot feedback", "AI product, HRI product, smart hardware / embodied AI product"],
           "#overview .project-brief article p": ["Designed for people who study, write, work, and collaborate alone for long periods, this prototype observes desktop rhythm, proactively accompanies the user, and gradually learns preferences.", "I independently defined the target scenes, designed proactive interaction rules, memory behavior, and feedback tiers, then connected the local sensing client, cloud backend, and desktop robot hardware into one prototype chain.", "The prototype covers local desktop state collection, backend proactive opportunity detection, user feedback logging, memory strategy updates, and expression / caption / motion feedback on robot hardware.", "The project highlights product boundaries for proactive AI, desktop state sensing, low-pressure companionship, robot-style feedback, and long-term personalization."],
@@ -452,7 +449,7 @@
           ".hardware-card small": ["Prototype Chain", "Firmware Adaptation", "Embodied Feedback", "Product Boundary"],
           ".hardware-card h3": ["Local desktop sensing client -> cloud backend strategy -> robot feedback", "Custom backend access", "Expression, captions, and head motion", "Adapted from open-source frameworks"],
           ".hardware-card p": ["The prototype has run the basic chain from desktop state reporting, backend proactive policy, to robot expression and motion feedback.", "OTA and WebSocket endpoints point to my own server, enabling the robot to validate proactive companion behavior through the custom backend.", "The backend can send expression / motion / status payloads, and the hardware shows facial expressions, bottom captions, and nodding, shaking, or turning motions.", "The project focus is product definition, system integration, backend strategy, local sensing, firmware adaptation, and hardware debugging. The base hardware and firmware follow their original sources and licenses."],
-          ".demo-flow-card p": ["<strong>01</strong> The local sensing client panel shows the current desktop state summary.", "<strong>02</strong> The backend policy identifies the scene, feedback tier, and fallback reason.", "<strong>03</strong> The robot responds with expression, bottom caption, or motion in a low-pressure way."],
+          ".demo-flow-card p": ["<strong>01</strong> The desktop client summarizes the current study or work state.", "<strong>02</strong> The backend decides whether this is a suitable moment to intervene.", "<strong>03</strong> The robot responds through motion, captions, or voice."],
           ".validation-board .status": ["PASS", "PASS", "PASS", "PASS"],
           ".validation-board strong": ["Proactive policy paths", "Local sensing chain", "Memory and feedback", "Hardware integration"],
           ".validation-board p": ["Meeting suppression, deep-focus delay, task-drift subtitle support, and low-energy subtle companionship have been validated through replay.", "The client structure, configuration template, and startup scripts explain how desktop state enters the backend policy layer.", "The system records proactive feedback, scene preferences, and strategy update candidates to support the prototype logic of becoming more personal over time.", "After firmware adaptation, the robot can receive backend expression and motion commands, closing the loop from desktop state to robot feedback."],
