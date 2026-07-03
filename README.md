@@ -77,7 +77,7 @@ http://localhost:8000
 
 ## Demo Video
 
-<video src="assets/demo.mp4" controls width="100%"></video>
+<video src="https://raw.githubusercontent.com/Shaylee03/zsy-desktop-companion/89d877ccb68acffeffbf1fec5e8901992dd4e0f9/assets/demo.mp4" controls width="100%"></video>
 
 Live demo video is also embedded in the portfolio page.
 
