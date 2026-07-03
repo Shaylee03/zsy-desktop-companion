@@ -1425,9 +1425,11 @@ h1 {
 
 .demo-video-grid {
   display: grid;
-  grid-template-columns: 1.15fr .85fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   align-items: stretch;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .video-frame,
@@ -1443,9 +1445,60 @@ h1 {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
-  min-height: 430px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   background: #0d1117;
+}
+
+.video-fallback {
+  margin: 0;
+  padding: 14px 18px 16px;
+  color: var(--muted);
+  font-size: 14px;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.video-fallback a {
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.ai-boundaries-section {
+  background: #f7f9f5;
+}
+
+.boundary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.boundary-grid article {
+  min-height: 230px;
+  padding: 22px;
+  border: 1px solid rgba(217, 223, 216, .9);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 12px 28px rgba(24, 40, 35, .06);
+}
+
+.boundary-grid small {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.boundary-grid h3 {
+  margin: 16px 0 12px;
+  font-size: 20px;
+  line-height: 1.22;
+}
+
+.boundary-grid p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .video-frame .video-placeholder {
@@ -1483,7 +1536,7 @@ footer {
 @media (max-width: 1120px) {
   .student-grid,
   .hardware-grid,
-  .demo-video-grid {
+  .boundary-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1497,13 +1550,12 @@ footer {
   .student-grid,
   .student-steps,
   .hardware-grid,
-  .demo-video-grid {
+  .boundary-grid {
     grid-template-columns: 1fr;
   }
 
   .student-feature,
-  .video-frame .video-placeholder,
-  .demo-video {
+  .video-frame .video-placeholder {
     min-height: 360px;
   }
 }
@@ -1512,17 +1564,18 @@ footer {
   .student-feature,
   .student-steps article,
   .hardware-card,
-  .demo-flow-card {
+  .demo-flow-card,
+  .boundary-grid article {
     padding: 22px;
   }
 
   .student-steps article,
-  .hardware-card {
+  .hardware-card,
+  .boundary-grid article {
     min-height: 210px;
   }
 
-  .video-frame .video-placeholder,
-  .demo-video {
+  .video-frame .video-placeholder {
     min-height: 280px;
   }
 }

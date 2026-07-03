@@ -79,6 +79,8 @@ http://localhost:8000
 
 <video src="assets/demo.mp4" controls width="100%"></video>
 
+Live demo video is also embedded in the portfolio page.
+
 If the video does not render in GitHub, open the live portfolio:
 [shaylee03.github.io/zsy-desktop-companion/#demo](https://shaylee03.github.io/zsy-desktop-companion/#demo)
 
@@ -100,6 +102,14 @@ The core product question is:
 | Embodied Feedback | Strategy output is expressed through the robot screen, bottom captions, nodding, shaking, turning, and voice feedback. |
 
 Low interruption is treated as the interaction boundary for proactive companionship.
+
+## AI Boundaries
+
+Generative AI is used for understanding user requests, generating natural wording, summarizing desktop activity, and organizing feedback into memory candidates.
+
+The policy layer controls whether the robot should intervene, which feedback tier to use, meeting voice suppression, low-confidence downgrade, cooldown, and user preferences. The model is not allowed to directly control high-interruption behavior.
+
+Model selection prioritizes stable Chinese dialogue, acceptable latency, controllable cost, and behavior that can be constrained by explicit rules. Real-time queries such as weather use built-in routes instead of free-form guessing.
 
 ## System Flow
 
@@ -134,8 +144,8 @@ The project contribution focuses on product definition, system integration, back
 
 | Scenario | System reading | Robot response |
 | --- | --- | --- |
-| Long study session | Lower input, slow progress, more window switching | Subtle motion or short captions for low-pressure rhythm support |
-| Task drift | The user leaves the original task after multi-window switching | Caption-based context recovery at an appropriate moment |
+| Long study session | Lower input, long idle stays, or more window switching | Quiet logging, subtle motion, or short captions when risk is low |
+| Task interruption | The user leaves the original task after multi-window switching | Caption-based task clue recovery at an appropriate moment |
 | Meeting mode | Meeting software, microphone/camera, or system audio occupancy | Silent or weak feedback with voice suppressed |
 | Deep focus | Work app stays foreground, input is stable, switching is low | Defer ordinary proactive opportunities |
 | Return to desk | Input resumes after AFK | Short caption to restore context before stronger feedback |

@@ -20,6 +20,7 @@
       <a href="#memory">记忆</a>
       <a href="#hardware">硬件</a>
       <a href="#demo">Demo</a>
+      <a href="#ai-boundaries">边界</a>
       <a href="#validation">验证</a>
     </nav>
     <div class="language-switch" aria-label="Language switch">
@@ -145,17 +146,17 @@
         <article class="student-feature">
           <small>Core Scene</small>
           <h3>长时间学习后的低能量状态</h3>
-          <p>当用户长时间写论文、查资料或改代码，输入速度下降、窗口切换变多、停留但无明显推进时，机器人不做情绪诊断，只用轻动作、短字幕或任务拆分建议提供低压力陪伴。</p>
+          <p>当用户长时间写论文、查资料或改代码，出现输入下降、长时间停留、频繁切换等桌面行为信号时，机器人不做情绪判断，只在风险可控时给出低压力反馈。</p>
           <div class="scenario-policy">
-            <span>rhythm becomes scattered</span>
-            <strong>subtle / subtitle</strong>
+            <span>state signal + policy boundary</span>
+            <strong>quiet / subtle / subtitle / speak</strong>
           </div>
         </article>
         <div class="student-steps">
-          <article><span>01</span><strong>学习进入状态</strong><p>机器人通过轻微表情或动作确认进入学习，不打断任务本身。</p></article>
-          <article><span>02</span><strong>任务开始漂移</strong><p>检测到频繁切换或低输入停留时，先记录，不立刻催促。</p></article>
-          <article><span>03</span><strong>需要节奏支持</strong><p>适合时用短字幕建议把接下来 15 分钟聚焦到一个目标。</p></article>
-          <article><span>04</span><strong>反馈进入记忆</strong><p>用户接受、忽略、关闭或纠正后，后续场景的频率和表达方式会调整。</p></article>
+          <article><span>01</span><strong>桌面状态形成</strong><p>本地端整理前台窗口、键鼠活跃、AFK、音频和应用停留时间，形成当前学习 / 工作状态摘要。</p></article>
+          <article><span>02</span><strong>后端判断是否适合介入</strong><p>后端结合状态置信度、会议 / 专注风险、冷却时间、机器人在线状态和历史反馈，决定静默、轻动作、字幕或语音。</p></article>
+          <article><span>03</span><strong>机器人低压力反馈</strong><p>当系统有明确依据且风险可控时，机器人通过动作、短字幕或语音回应；不确定时保持安静。</p></article>
+          <article><span>04</span><strong>反馈进入策略记忆</strong><p>用户的接受、忽略、关闭、延后、纠正和 bad case 标注会影响后续同类场景的频率、强度和话术边界。</p></article>
         </div>
       </div>
     </section>
@@ -170,8 +171,8 @@
       </div>
       <div class="logic-map" aria-label="核心系统逻辑图">
         <article><small>01</small><strong>桌面信号</strong><span>前台窗口、键鼠、AFK、系统音频、应用使用时长</span></article>
-        <article><small>02</small><strong>状态摘要</strong><span>学习、写作、会议、任务漂移、低能量、返回电脑</span></article>
-        <article><small>03</small><strong>主动机会</strong><span>是否需要陪伴、任务恢复、节奏支持或静默记录</span></article>
+        <article><small>02</small><strong>状态摘要</strong><span>学习、写作、会议、任务中断、工作状态分散、返回电脑</span></article>
+        <article><small>03</small><strong>主动机会</strong><span>是否需要陪伴、任务线索恢复、低压力状态反馈或静默记录</span></article>
         <article><small>04</small><strong>反馈策略</strong><span>根据状态风险、偏好、冷却和机器人可用性选择强度</span></article>
         <article><small>05</small><strong>机器人表达</strong><span>表情、轻动作、底部字幕、语音播报</span></article>
         <article><small>06</small><strong>记忆更新</strong><span>接受、忽略、关闭、延后、纠正和场景偏好</span></article>
@@ -194,7 +195,7 @@
       <div class="policy-output strategy-modes" aria-label="反馈强度">
         <div><strong>quiet</strong><span>会议、深度专注、信号不足：只记录，不主动出现。</span></div>
         <div><strong>subtle</strong><span>低风险陪伴：表情、灯效或轻动作，弱存在感。</span></div>
-        <div><strong>subtitle</strong><span>任务恢复、节奏建议：用短字幕表达，不直接语音打断。</span></div>
+        <div><strong>subtitle</strong><span>任务恢复、低压力说明：用短字幕表达，不直接语音打断。</span></div>
         <div><strong>speak</strong><span>空闲、高置信、重要事项：才允许语音播报。</span></div>
       </div>
       <div class="case-flows compact-cases" aria-label="策略路径示例">
@@ -271,9 +272,9 @@
       <div class="section-heading split-heading">
         <div>
           <p class="eyebrow">Demo Video</p>
-          <h2>真实原型演示：从桌面状态到机器人反馈</h2>
+          <h2>真实原型演示</h2>
         </div>
-        <p>一段视频展示本地桌面感知、后端主动策略、记忆反馈与机器人硬件交互的完整链路。</p>
+        <p>展示本地桌面状态、后端策略判断与机器人反馈链路。</p>
       </div>
       <div class="demo-video-grid">
         <article class="video-frame">
@@ -281,13 +282,39 @@
             <source src="assets/demo.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          <p class="video-fallback">如果视频无法加载，可在 <a href="README.md#demo-video">GitHub README</a> 中查看。</p>
         </article>
-        <article class="demo-flow-card">
-          <small>Prototype demo</small>
-          <h3>主动陪伴原型链路</h3>
-          <p><strong>01</strong> 桌面端整理当前学习 / 工作状态。</p>
-          <p><strong>02</strong> 后端判断是否适合主动介入。</p>
-          <p><strong>03</strong> 机器人通过动作、字幕或语音回应。</p>
+      </div>
+    </section>
+
+    <section id="ai-boundaries" class="section ai-boundaries-section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">AI Capability & Boundaries</p>
+          <h2>生成式能力负责理解与表达，产品规则负责边界</h2>
+        </div>
+        <p>项目没有把模型放在最高权限位置，而是把模型能力放进可解释的状态规则、用户偏好、冷却和硬件可用性约束里。</p>
+      </div>
+      <div class="boundary-grid">
+        <article>
+          <small>Model Role</small>
+          <h3>生成式模型做什么</h3>
+          <p>理解用户问题、生成自然语言、总结桌面活动，并把反馈整理成记忆候选。</p>
+        </article>
+        <article>
+          <small>Policy Role</small>
+          <h3>规则策略控什么</h3>
+          <p>是否主动介入、反馈强度、会议禁语音、低置信降级、冷却时间和用户偏好。</p>
+        </article>
+        <article>
+          <small>Model Choice</small>
+          <h3>模型选型原则</h3>
+          <p>优先选择中文对话稳定、延迟可接受、成本可控、且能被规则层约束的模型。</p>
+        </article>
+        <article>
+          <small>Real-time & Privacy</small>
+          <h3>实时能力与隐私边界</h3>
+          <p>天气等实时查询走内置路由；默认不使用摄像头、不读取原始按键、不公开私人日志和记忆。</p>
         </article>
       </div>
     </section>
@@ -298,13 +325,13 @@
           <p class="eyebrow">Validation</p>
           <h2>当前验证聚焦规则路径和原型链路</h2>
         </div>
-        <p>验证重点是确认会议、专注、任务恢复、低能量陪伴、硬件离线等状态下，系统是否能按预期选择记录、表情、字幕或语音。</p>
+          <p>验证重点是确认会议、专注、任务恢复、低压力陪伴、硬件离线等状态下，系统是否能按预期选择记录、动作、字幕或语音。</p>
       </div>
       <div class="validation-board">
         <article>
           <span class="status pass">PASS</span>
           <strong>主动策略路径</strong>
-          <p>会议压制、深度专注延后、任务漂移字幕支持、低能量轻陪伴等规则路径已完成回放验证。</p>
+          <p>会议压制、深度专注延后、任务恢复、低压力反馈等规则路径已完成回放验证。</p>
           <em>backend policy replay</em>
         </article>
         <article>
@@ -350,7 +377,7 @@
       </div>
       <div class="next-steps">
         <strong>后续可补充材料</strong>
-        <span>真实演示视频、硬件联调截图、更多学习场景样本、记忆编辑界面和长期使用反馈。</span>
+        <span>硬件联调截图、更多学习场景样本、记忆编辑界面和长期使用反馈。</span>
       </div>
     </section>
   </main>
@@ -375,7 +402,7 @@
           "#overview .split-heading > p": "This project explores how a small companion placed beside a computer can understand study or work rhythm and respond with the right level of presence.",
           "#problem .eyebrow": "Problem",
           "#problem h2": "People in front of computers need a companion that understands rhythm.",
-          "#problem .thesis-copy > p": "Graduate students and office workers often stay in front of a computer for long sessions, switching between papers, code, meetings, writing, and messages. The main friction comes from low energy, task drift, isolated work, and tools that rarely understand the current rhythm.",
+          "#problem .thesis-copy > p": "Graduate students and office workers often stay in front of a computer for long sessions, switching between papers, code, meetings, writing, and messages. The main friction comes from low energy, interrupted task clues, isolated work, and tools that rarely understand the current state.",
           "#prototype .eyebrow": "What I Built",
           "#prototype h2": "The output is a working proactive companion prototype chain",
           "#prototype .split-heading > p": "The current project includes a local desktop sensing client, a cloud backend that detects proactive opportunities and response modes, a memory module that records preferences and feedback, and robot hardware feedback through expressions, captions, and motion.",
@@ -384,9 +411,9 @@
           "#student .split-heading > p": "The study scenario best reflects the original goal. During long solo study sessions, the user needs a present, rhythm-aware, and restrained desktop companion.",
           ".student-feature small": "Core Scene",
           ".student-feature h3": "Low-energy state after a long study session",
-          ".student-feature p": "When the user has been writing, reading, or coding for a long time, and input slows down while window switching increases, the robot provides low-pressure support through subtle motion, short captions, or a small task-framing suggestion.",
-          ".scenario-policy span": "rhythm becomes scattered",
-          ".scenario-policy strong": "subtle / subtitle",
+          ".student-feature p": "When long writing, reading, or coding sessions lead to slower input, long idle stays, or frequent switching, the robot does not infer emotion. It only responds when the signal and risk checks are strong enough.",
+          ".scenario-policy span": "state signal + policy boundary",
+          ".scenario-policy strong": "quiet / subtle / subtitle / speak",
           "#logic .eyebrow": "System Logic",
           "#logic h2": "From desktop state to robot feedback, then back into memory",
           "#logic .split-heading > p": "Desktop state is the key path toward proactive companionship. The local client summarizes state, the backend agent capability helps interpret and generate expression, the policy layer controls boundaries, and the robot turns the result into embodied feedback.",
@@ -402,10 +429,11 @@
           "#hardware h2": "Prototype implementation: robot hardware integration",
           "#hardware .split-heading > p": "The hardware part is adapted from an ESP32-S3N16R8-EMOJI desktop robot kit and an open-source firmware framework, connecting my backend, WebSocket commands, robot expressions, captions, and motion feedback.",
           "#demo .eyebrow": "Demo Video",
-          "#demo h2": "Real prototype demo: from desktop state to robot feedback",
-          "#demo .split-heading > p": "A short demo showing the full chain across local desktop sensing, backend proactive strategy, memory feedback, and robot hardware interaction.",
-          ".demo-flow-card small": "Prototype demo",
-          ".demo-flow-card h3": "The proactive companion prototype chain",
+          "#demo h2": "Real prototype demo",
+          "#demo .split-heading > p": "Shows the chain from local desktop state to backend policy decision and robot feedback.",
+          "#ai-boundaries .eyebrow": "AI Capability & Boundaries",
+          "#ai-boundaries h2": "Generative AI handles understanding and wording; product rules control boundaries",
+          "#ai-boundaries .split-heading > p": "The model is not placed in the highest-control position. It works inside explainable state rules, user preferences, cooldowns, and hardware availability constraints.",
           "#validation .eyebrow": "Validation",
           "#validation h2": "Current validation focuses on rule paths and prototype chains",
           "#validation .split-heading > p": "Validation checks whether the system chooses logging, expression, captions, or voice as expected under meeting, focus, task recovery, low-energy, and hardware-offline states.",
@@ -418,7 +446,7 @@
           "footer p": "Desktop sensing · proactive companionship · memory evolution · robot hardware integration"
         },
         lists: {
-          "nav a": ["Overview", "Problem", "Build", "Scenario", "Logic", "Memory", "Hardware", "Demo", "Validation"],
+          "nav a": ["Overview", "Problem", "Build", "Scenario", "Logic", "Memory", "Hardware", "Demo", "Boundaries", "Validation"],
           ".hero-proof span": ["Proactive companionship", "Desktop state sensing chain", "Habit learning and memory evolution", "Robot-style feedback"],
           ".hero-meta span": ["<strong>Time</strong>2025.06 - Present", "<strong>Role</strong>AI product design / prototype development / hardware integration", "<strong>Output</strong>Local sensing client, backend strategy, memory mechanism, robot feedback chain"],
           ".hero-actions a": ["View GitHub Repository", "Watch Demo Video", "View System Logic"],
@@ -426,21 +454,21 @@
           "#overview .project-brief article strong": ["Turn AI beside the computer from passive Q&A into a rhythm-aware companion", "Product definition, interaction strategy, frontend/backend prototype, and hardware integration", "Sensing chain, proactive strategy, memory mechanism, and robot feedback", "AI product, HRI product, smart hardware / embodied AI product"],
           "#overview .project-brief article p": ["Designed for people who study, write, work, and collaborate alone for long periods, this prototype observes desktop rhythm, proactively accompanies the user, and gradually learns preferences.", "I independently defined the target scenes, designed proactive interaction rules, memory behavior, and feedback tiers, then connected the local sensing client, cloud backend, and desktop robot hardware into one prototype chain.", "The prototype covers local desktop state collection, backend proactive opportunity detection, user feedback logging, memory strategy updates, and expression / caption / motion feedback on robot hardware.", "The project highlights product boundaries for proactive AI, desktop state sensing, low-pressure companionship, robot-style feedback, and long-term personalization."],
           ".problem-compare strong": ["Typical AI tools", "This project"],
-          ".problem-compare span": ["They wait for the user to open them and ask. They cannot sense desktop rhythm and rarely appear naturally when energy drops or tasks drift.", "It puts computer usage state, robot state, and user feedback into one chain, turning expression, captions, subtle motion, or voice into low-pressure companionship."],
+          ".problem-compare span": ["They wait for the user to open them and ask. They cannot sense desktop state and rarely appear naturally when energy drops or task clues are interrupted.", "It puts computer usage state, robot state, and user feedback into one chain, turning expression, captions, subtle motion, or voice into low-pressure companionship."],
           ".prototype-grid small": ["01", "02", "03", "04"],
           ".prototype-grid h3": ["Local desktop sensing client", "Proactive companion strategy", "Personalized memory mechanism", "Robot hardware integration"],
           ".prototype-grid p": ["Collects foreground window, keyboard/mouse activity, AFK, system audio, ActivityWatch, and other non-camera signals to form a desktop state summary.", "The backend turns desktop summaries into proactive opportunities, then selects a feedback mode based on state, risk, preference, and robot availability.", "Records task context, interaction feedback, scene preferences, and rhythm summaries so the robot can learn when it should appear.", "Based on ESP32 desktop robot hardware, the prototype connects backend output to facial expression, bottom captions, and head movement."],
           ".student-steps span": ["01", "02", "03", "04"],
-          ".student-steps strong": ["Study starts", "Task begins to drift", "Rhythm support is useful", "Feedback enters memory"],
-          ".student-steps p": ["The robot uses a small expression or motion to acknowledge the study state without interrupting the task.", "When switching increases or input drops, the system records context first instead of immediately pushing the user.", "At the right time, a short caption helps the user focus the next 15 minutes on one target.", "After the user accepts, ignores, closes, delays, or corrects the feedback, future frequency and expression style adjust."],
+          ".student-steps strong": ["Desktop state is summarized", "Backend checks whether to intervene", "The robot responds with low pressure", "Feedback updates strategy memory"],
+          ".student-steps p": ["The local client summarizes foreground window, keyboard/mouse activity, AFK, audio, and app dwell time.", "The backend combines state confidence, meeting/focus risk, cooldown, robot availability, and history feedback to choose quiet, subtle, subtitle, or speak.", "When there is clear evidence and acceptable risk, the robot responds through motion, short captions, or voice. If uncertain, it stays quiet.", "Accepting, ignoring, closing, delaying, correcting, and bad-case labels affect future frequency, intensity, and wording boundaries."],
           ".logic-map small": ["01", "02", "03", "04", "05", "06"],
           ".logic-map strong": ["Desktop signals", "State summary", "Proactive opportunity", "Feedback strategy", "Robot expression", "Memory update"],
-          ".logic-map span": ["Foreground window, keyboard/mouse, AFK, system audio, app usage duration", "Study, writing, meeting, task drift, low energy, return to desk", "Whether to accompany, support task recovery, provide rhythm help, or stay quiet", "Choose intensity based on state risk, preference, cooldown, and robot availability", "Expression, subtle motion, bottom captions, voice", "Accepted, ignored, closed, delayed, corrected, and scene preference updates"],
+          ".logic-map span": ["Foreground window, keyboard/mouse, AFK, system audio, app usage duration", "Study, writing, meeting, task interruption, scattered work state, return to desk", "Whether to accompany, restore task clues, provide low-pressure state feedback, or stay quiet", "Choose intensity based on state risk, preference, cooldown, and robot availability", "Expression, subtle motion, bottom captions, voice", "Accepted, ignored, closed, delayed, corrected, and scene preference updates"],
           ".logic-evidence span": ["The local sensing client supports `/desktop-context` reporting", "The backend outputs `interaction_tier`, scene, reason, and fallback information", "The robot can receive expression, motion, status, and caption feedback"],
           ".policy-output div strong": ["quiet", "subtle", "subtitle", "speak"],
-          ".policy-output div span": ["Meeting, deep focus, or insufficient signal: stay silent and log context.", "Low-risk companionship: expression, light, or subtle motion with weak presence.", "Task recovery or rhythm support: express through short captions with low interruption.", "Idle, high confidence, or important moments: voice is reserved for these cases."],
+          ".policy-output div span": ["Meeting, deep focus, or insufficient signal: stay silent and log context.", "Low-risk companionship: expression, light, or subtle motion with weak presence.", "Task recovery or low-pressure explanation: express through short captions with low interruption.", "Idle, high confidence, or important moments: voice is reserved for these cases."],
           ".case-flows small": ["Case A", "Case B"],
-          ".case-flows h3": ["A proactive opportunity appears during a meeting", "Task drift appears during study"],
+          ".case-flows h3": ["A proactive opportunity appears during a meeting", "Work state becomes scattered during study"],
           ".case-flows article:first-child p": ["<strong>State</strong>Meeting software, microphone, or camera signals raise meeting confidence.", "<strong>Strategy</strong>Normal voice is suppressed. Necessary information falls back to silent logging or short captions.", "<strong>Value</strong>The robot keeps a sense of presence without creating social awkwardness."],
           ".case-flows article:last-child p": ["<strong>State</strong>Window switching increases, input drops, and the study context is interrupted.", "<strong>Strategy</strong>The system records context first, then uses a short caption when appropriate to help the user refocus.", "<strong>Value</strong>It lowers the cost of returning to the task."],
           ".memory-system article small": ["Context", "Preference", "Rhythm", "Feedback"],
@@ -449,10 +477,13 @@
           ".hardware-card small": ["Prototype Chain", "Firmware Adaptation", "Embodied Feedback", "Product Boundary"],
           ".hardware-card h3": ["Local desktop sensing client -> cloud backend strategy -> robot feedback", "Custom backend access", "Expression, captions, and head motion", "Adapted from open-source frameworks"],
           ".hardware-card p": ["The prototype has run the basic chain from desktop state reporting, backend proactive policy, to robot expression and motion feedback.", "OTA and WebSocket endpoints point to my own server, enabling the robot to validate proactive companion behavior through the custom backend.", "The backend can send expression / motion / status payloads, and the hardware shows facial expressions, bottom captions, and nodding, shaking, or turning motions.", "The project focus is product definition, system integration, backend strategy, local sensing, firmware adaptation, and hardware debugging. The base hardware and firmware follow their original sources and licenses."],
-          ".demo-flow-card p": ["<strong>01</strong> The desktop client summarizes the current study or work state.", "<strong>02</strong> The backend decides whether this is a suitable moment to intervene.", "<strong>03</strong> The robot responds through motion, captions, or voice."],
+          ".video-fallback": ["If the video cannot load, view it in the <a href=\"README.md#demo-video\">GitHub README</a>."],
+          ".boundary-grid small": ["Model Role", "Policy Role", "Model Choice", "Real-time & Privacy"],
+          ".boundary-grid h3": ["What the generative model does", "What the policy layer controls", "Model selection principles", "Real-time and privacy boundaries"],
+          ".boundary-grid p": ["Understand user requests, generate natural wording, summarize desktop activity, and organize feedback into memory candidates.", "Whether to intervene, feedback intensity, meeting voice suppression, low-confidence downgrade, cooldown, and user preferences.", "Prefer models with stable Chinese dialogue, acceptable latency, controllable cost, and behavior that can be constrained by rules.", "Weather and similar real-time queries use built-in routes. The prototype does not use camera recognition, raw keystroke logging, or public private logs and memories."],
           ".validation-board .status": ["PASS", "PASS", "PASS", "PASS"],
           ".validation-board strong": ["Proactive policy paths", "Local sensing chain", "Memory and feedback", "Hardware integration"],
-          ".validation-board p": ["Meeting suppression, deep-focus delay, task-drift subtitle support, and low-energy subtle companionship have been validated through replay.", "The client structure, configuration template, and startup scripts explain how desktop state enters the backend policy layer.", "The system records proactive feedback, scene preferences, and strategy update candidates to support the prototype logic of becoming more personal over time.", "After firmware adaptation, the robot can receive backend expression and motion commands, closing the loop from desktop state to robot feedback."],
+          ".validation-board p": ["Meeting suppression, deep-focus delay, task recovery, and low-pressure feedback paths have been validated through replay.", "The client structure, configuration template, and startup scripts explain how desktop state enters the backend policy layer.", "The system records proactive feedback, scene preferences, and strategy update candidates to support the prototype logic of becoming more personal over time.", "After firmware adaptation, the robot can receive backend expression and motion commands, closing the loop from desktop state to robot feedback."],
           ".validation-board em": ["backend policy replay", "desktop context path", "memory feedback loop", "robot feedback path"],
           ".validation-links a": ["View validation notes", "View prototype validation data", "View implementation evidence", "View boundaries"],
           ".delivery-list strong": ["AI product judgment", "HRI interaction strategy", "Embodied AI implementation", "Engineering prototype loop"],
