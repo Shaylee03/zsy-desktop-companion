@@ -1,6 +1,6 @@
 # Contributing / 参与方式
 
-Thanks for your interest in ZSY Desktop Companion.
+Thanks for your interest in Moqi.
 
 This repository is primarily a portfolio prototype. It is open for reading, discussion and lightweight contributions, but it is not yet a packaged consumer product.
 

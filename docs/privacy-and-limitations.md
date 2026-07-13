@@ -1,30 +1,35 @@
-# 隐私与实现边界
+# Privacy and Limitations
 
-这个项目默认遵循低隐私侵入原则：优先使用非摄像头、本地化、可解释的桌面信号，让桌面机器人保持陪伴属性和清晰边界。
+## Local-First Controls
 
-## 默认不做什么
+Moqi for Windows keeps a local SQLite rhythm timeline and exposes pause, visual consent, excluded apps, retention, and deletion controls in the product UI.
 
-- 不使用摄像头画面做人脸、表情或情绪识别。
-- 不读取聊天内容。
-- 不记录原始按键内容，只统计输入节奏。
-- 不让大模型直接决定是否突然语音打断。
-- `config.local.json`、token、密码、日志和数据库保留在本地或私有环境中。
+- Foreground titles are desensitized before cloud upload.
+- Raw key content is never recorded; only activity counts and rhythm are used.
+- Visual understanding is disabled until explicit consent.
+- Visual capture is limited to the active window at a configurable interval.
+- Locked screen, AFK, meetings, password managers, chat, banking, and excluded apps stop capture.
+- Image bytes remain in memory during analysis and are not written to local or server storage.
+- Cloud responses contain only task category, safe summary, sensitivity, confidence, and a constrained memory suggestion.
 
-## 当前公开内容
+## Memory Controls
 
-- 产品案例页面。
-- 策略矩阵、决策流和系统架构。
-- 脱敏后的本地采集端链路说明。
-- 验证记录和证据地图。
-- 隐私边界和实现边界说明。
+Users can inspect, correct, confirm, or delete memory. Desktop understanding may be referenced in conversation only when it is relevant and safe. The setting can be disabled independently of desktop sensing.
 
-## 当前实现边界
+Default retention:
 
-- 本地采集端负责采集桌面状态和展示本地面板，不直接决定机器人是否说话。
-- 后端策略层负责可打扰性判断、反馈强度选择、降级和冷却。
-- 生成式能力可以用于总结和生成表达，但不能绕过会议禁语音、低置信降级、用户偏好和硬件状态。
-- 本地采集端默认使用本地后端地址；连接真实机器人时需要使用者配置自有后端。
+- Raw activity segments: 7 days.
+- Semantic summaries: 90 days.
+- Stable preferences: confidence and time-decay managed.
 
-## 产品化后续
+## Current Limitations
 
-当前原型已经完成可运行链路和关键策略验证。若进入产品化阶段，还需要继续积累多用户长期使用数据、完善记忆编辑界面、补齐安装器体验和硬件兼容性测试。
+- Windows 10/11 is the first supported desktop platform.
+- The current product model supports one active user installation and one robot at a time.
+- Visual understanding requires a configured compatible provider and is subject to model uncertainty.
+- The prototype still needs longer multi-week use and 3-5 reset-isolated usability sessions.
+- Base robot hardware and upstream firmware are third-party components.
+
+## Public Repository Scope
+
+The public repository contains the product case study, architecture, interaction strategy, validation notes, and media. Runtime credentials, private logs, personal memory, and deployment secrets remain outside version control.

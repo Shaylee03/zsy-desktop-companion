@@ -1,93 +1,61 @@
-# 系统架构
+# Moqi System Architecture
 
-## 总体链路
+## Three Product Surfaces
+
+| Surface | Independent form | Responsibility |
+| --- | --- | --- |
+| Moqi Robot | ESP32-S3 desktop robot | Expression, gaze, motion, captions, voice, and continuous presence |
+| Moqi for Windows | Tray app and control center | Local sensing, privacy, rhythm timeline, understanding review, pairing, and diagnostics |
+| Moqi Cloud | Intelligent service and operations console | Authentication, signal fusion, visual understanding, proactive policy, memory, and device orchestration |
+
+## End-to-End Flow
 
 ```text
-本地桌面采集端
-  -> 桌面状态感知
-  -> 用户状态判断
-  -> 主动介入决策
-  -> 多模态反馈规划
-  -> 机器人硬件执行
-  -> 用户反馈回流
-  -> 个性化记忆更新
+Foreground app / desensitized title / dwell time / input rhythm / AFK / device state
+  -> local SQLite timeline
+  -> authenticated desktop context
+  -> optional temporary active-window visual understanding
+  -> proactive policy and memory retrieval
+  -> compatible robot command(presence_mode, expression, motion, display_text, source)
+  -> robot expression / gaze / caption / motion / voice
+  -> robot feedback and user response
+  -> memory confirm / correction / decay / deletion
 ```
 
-## 六层架构
+## Local Data Lifecycle
 
-| 层级 | 输入 | 输出 | 职责 |
-| --- | --- | --- | --- |
-| 桌面状态感知层 | 前台窗口、ActivityWatch、键鼠、AFK、系统音频、会议设备、应用时长 | 原始桌面状态 | 优先使用非摄像头、本地化、低隐私侵入信号 |
-| 用户状态判断层 | 原始上下文、历史节奏、信号质量 | 会议、专注、离席、返回、疲劳、任务切换、可打扰等状态和置信度 | 把信号转成可解释状态 |
-| 主动介入决策层 | 用户状态、任务优先级、偏好、机器人状态 | 是否介入、是否延后、反馈等级、压制/降级原因 | 控制主动行为边界 |
-| 多模态反馈层 | 策略结果、设备能力 | quiet/subtle/subtitle/speak | 将同一主动机会映射为不同打扰强度 |
-| 个性化记忆层 | 任务上下文、偏好、行为节奏、交互反馈 | 可调用偏好和策略权重 | 持续学习用户边界 |
-| 观测与治理层 | 决策过程、路由、记忆、延迟、反馈 | 看板、日志、指标 | 复盘误介入、错误记忆和强度不合适问题 |
+- Raw activity segments: 7 days by default.
+- Daily semantic summaries: 90 days by default.
+- Stable preferences and rhythm memories: confidence and time-decay managed.
+- ActivityWatch: optional enhancement source.
+- Screenshots: active-window only after consent, held in memory, never written to disk.
 
-## 模块职责
+Visual requests stop when Windows is locked, the user is AFK, a meeting device is active, or the foreground app is sensitive or excluded. A failed or unavailable vision request falls back to metadata understanding.
 
-| 模块 | 作用 | 当前状态 |
+## Cloud Interfaces
+
+| Method | Path | Purpose |
 | --- | --- | --- |
-| 本地桌面采集端 | 采集桌面状态并上报 `/desktop-context` | 已实现 |
-| 本地桌面采集端链路 | 提供配置模板、启动/停止脚本和本地面板结构 | 已完成原型结构说明 |
-| Desktop Rhythm Controller | rhythm event、冷却、预算、策略计划 | 已实现主体逻辑 |
-| Proactive Brain | context normalizer、opportunity detector、attention policy、delivery planner | 已有模块化雏形 |
-| Work Assistant | 专注、倒计时、任务支持 | 已实现，与主动交互分层 |
-| Memory Service | profile、procedural、rhythm、reflection 分层记忆 | 已实现基础存储和合并 |
-| Admin Panel | Prompt、阈值、记忆、主动策略、路由延迟观测 | 已实现原型 |
-| Firmware | 表情、动作、字幕、语音、WebSocket 执行 | 本地固件已支持字幕与动作指令 |
+| POST | `/api/v1/pair/claim` | Exchange a one-time pairing code for an installation credential |
+| POST | `/api/v1/desktop/context` | Submit desensitized rhythm and semantic context |
+| POST | `/api/v1/vision/understand` | Temporarily analyze an active-window image |
+| GET | `/api/v1/companion/status` | Read local, cloud, robot, presence, and understanding state |
+| GET/PUT | `/api/v1/preferences` | Manage visual consent, quiet hours, and expression preferences |
+| GET/PATCH/DELETE | `/api/v1/memories` | Review, correct, confirm, or delete memory |
+| POST | `/api/v1/feedback` | Record accepted, ignored, corrected, or uncomfortable feedback |
 
-## 桌面状态字段示例
+The legacy `/desktop-context` and `/ws` paths remain during migration. New desktop and vision requests require a paired installation token; tokens are stored as hashes on the server.
 
-```json
-{
-  "desktop_context": "coding",
-  "current_app": "Code.exe",
-  "current_title": "desktop_rhythm.py",
-  "input_activity": {
-    "keys_last_60s": 18,
-    "mouse_clicks_last_60s": 2,
-    "scroll_events_last_60s": 1,
-    "idle_seconds": 4
-  },
-  "device_activity": {
-    "mic_active": false,
-    "camera_active": false,
-    "audio_playing": false
-  },
-  "signal_quality": {
-    "foreground": "available",
-    "keyboard": "available",
-    "mic": "available"
-  }
-}
-```
+## Robot Presence States
 
-## 主动策略输出字段示例
+`offline`, `connecting`, `quiet_present`, `noticed`, `available`, `listening`, `thinking`, `speaking`, `do_not_disturb`, `recovering`
 
-```json
-{
-  "rhythm_event": "work_scattered",
-  "confidence": 0.82,
-  "interaction_tier": "subtitle",
-  "suppression_reason": "",
-  "downgrade_reason": "cooldown_to_subtle",
-  "decision_reason": "frequent_context_switches_5m",
-  "policy_budget": {
-    "voice": { "remaining": 3 },
-    "subtitle": { "remaining": 8 },
-    "motion": { "remaining": 24 }
-  }
-}
-```
+`quiet_present` uses screen-level micro-expression without random servo motion. Meeting and high-focus states remain still. Cloud presence states map to the robot's existing expression, caption, motion, and voice commands.
 
-## 责任边界
+## Product Boundaries
 
-- 本地桌面采集端只采集和展示状态，不直接决定机器人是否说话。
-- 状态判断层输出状态和置信度，不直接触发高打扰行为。
-- 生成式能力可以生成话术和总结，但不能绕过会议禁语音、硬件离线、冷却和用户偏好。
-- 长期记忆写入必须来自明确偏好、重复反馈或合并后的稳定结论。
-
-## 公开仓库说明
-
-公开仓库保留产品逻辑、策略边界、字段口径、验证记录和脱敏后的本地采集端链路说明。涉及服务器凭据、API Key、原始桌面日志、用户记忆、Hermes 会话和硬件固件的内容不公开。
+- Local sensing collects rhythm, not raw keystroke content.
+- Broad task descriptions and user-confirmed project names may enter conversation; window titles, file names, messages, and account data do not.
+- Low-confidence understanding stays internal.
+- User correction updates or deletes the corresponding memory.
+- The hardware is a purchased robot kit adapted through firmware and system integration.
