@@ -915,13 +915,13 @@ h1 {
 
 .memory-system {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
 .memory-core {
   grid-column: 1 / -1;
-  min-height: 180px;
+  min-height: 168px;
   display: grid;
   align-content: center;
   padding: 30px;
@@ -936,7 +936,8 @@ h1 {
 }
 
 .memory-core strong {
-  font-size: clamp(26px, 3vw, 38px);
+  margin-top: 12px;
+  font-size: clamp(23px, 2.5vw, 32px);
   line-height: 1.2;
 }
 
@@ -946,7 +947,7 @@ h1 {
 }
 
 .memory-system article {
-  min-height: 220px;
+  min-height: 205px;
   padding: 22px;
   border-top: 5px solid var(--teal);
   border-radius: 8px;
@@ -963,6 +964,42 @@ h1 {
 }
 
 .memory-system p { margin: 0; }
+
+.confidence-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 26px;
+  padding: 26px;
+  border: 1px solid rgba(217, 223, 216, .9);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .78);
+}
+
+.confidence-panel h3 {
+  margin: 12px 0 10px;
+  font-size: 23px;
+}
+
+.confidence-signals {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.confidence-signals span {
+  min-height: 72px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--teal);
+  background: var(--white);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.confidence-signals strong { color: var(--ink); }
 
 .strategy-section {
   padding-top: 92px;
@@ -1049,11 +1086,11 @@ h1 {
 }
 
 .policy-output div {
-  min-height: 330px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height: 218px;
+  padding: 18px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
   background: white;
   color: var(--ink);
   border-top: 5px solid var(--teal);
@@ -1065,12 +1102,29 @@ h1 {
 .policy-output div:nth-child(3) { border-color: var(--yellow); }
 .policy-output div:nth-child(4) { border-color: var(--coral); }
 .policy-output strong {
-  font-size: 25px;
+  margin-top: 16px;
+  font-size: 22px;
 }
 
-.policy-output span {
+.policy-output small {
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.policy-output .tier-output {
+  margin-top: 10px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.policy-output p {
+  margin: 12px 0 0;
   color: var(--muted);
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .strategy-rules {
@@ -1636,6 +1690,7 @@ footer a { color: #8fd5ca; }
   .case-flows,
   .logic-evidence,
   .memory-system,
+  .confidence-panel,
   .policy-lab,
   .strategy-rules {
     grid-template-columns: 1fr;
@@ -1655,6 +1710,7 @@ footer a { color: #8fd5ca; }
   }
   .scenario-list p { grid-column: 2; }
   .memory-core { grid-column: auto; }
+  .confidence-panel { grid-column: auto; }
   .thesis-points { grid-template-columns: repeat(2, 1fr); }
   .thesis-points span:nth-child(2) { border-right: 0; }
   .audience-strip article,
@@ -1695,6 +1751,7 @@ footer a { color: #8fd5ca; }
   .scenario-feature,
   .demo-grid article > div:last-child,
   .memory-core,
+  .confidence-panel,
   .policy-question { padding: 22px; }
   .run-steps,
   .loop-stack,
@@ -1720,7 +1777,8 @@ footer a { color: #8fd5ca; }
     border-bottom: 1px solid #44515a;
   }
   .thesis-points span:last-child { border-bottom: 0; }
-  .policy-output div { min-height: 180px; }
+  .policy-output div { min-height: 190px; }
+  .confidence-signals { grid-template-columns: 1fr; }
   .validation-board article { min-height: 220px; }
   .next-steps {
     align-items: flex-start;

@@ -113,10 +113,10 @@
         <p>机器人越主动，越需要克制。策略层通过规则、置信度、用户偏好和硬件状态选择最低可行反馈强度，让表达保持可解释和可控。</p>
       </div>
       <div class="policy-output strategy-modes" aria-label="反馈强度">
-        <div><strong>quiet</strong><span>会议、深度专注、信号不足：只记录，不主动出现。</span></div>
-        <div><strong>subtle</strong><span>低风险陪伴：表情、灯效或轻动作，弱存在感。</span></div>
-        <div><strong>subtitle</strong><span>任务恢复、低压力说明：用短字幕表达，不直接语音打断。</span></div>
-        <div><strong>speak</strong><span>空闲、高置信、重要事项：才允许语音播报。</span></div>
+        <div><small>Level 01</small><strong>quiet</strong><span class="tier-output">静默</span><p>会议、深度专注或信号不足时，只记录状态，不主动表达。</p></div>
+        <div><small>Level 02</small><strong>expression</strong><span class="tier-output">表情 + 字幕</span><p>低风险陪伴或简单回应，用表情和短字幕保持轻量存在感。</p></div>
+        <div><small>Level 03</small><strong>motion</strong><span class="tier-output">动作 + 字幕</span><p>任务恢复或明确的主动机会，用动作和字幕增强可感知反馈。</p></div>
+        <div><small>Level 04</small><strong>voice</strong><span class="tier-output">语音 / 语音 + 动作表情</span><p>仅在空闲、高置信或重要时刻使用语音，并按需要组合动作与表情。</p></div>
       </div>
     </section>
 
@@ -129,13 +129,27 @@
         <p>这里的记忆不是对用户做固定画像，而是保存可追溯的偏好与节奏假设，并根据新证据持续校正。</p>
       </div>
       <div class="memory-system">
+        <article><small>Preference</small><h3>交互偏好记忆</h3><p>记录用户更接受字幕还是语音、偏好的表达长度，以及希望保持安静的时间与场景。</p></article>
+        <article><small>Rhythm</small><h3>行为节奏记忆</h3><p>保存经过重复观察的专注时段、离席返回规律和会议密集时间，不记录原始桌面内容。</p></article>
+        <article><small>Feedback</small><h3>反馈策略记忆</h3><p>记录确认、纠正、删除、接受、忽略和延后如何影响相似场景下的表达策略。</p></article>
         <div class="memory-core">
-          <strong>候选形成 -> 置信度评估 -> 调用 -> 反馈校正 -> 衰减或删除</strong>
-          <span>系统只在内容相关且置信度足够时调用记忆；用户纠正、长期未验证或出现相反证据时，记忆会更新或降权。</span>
+          <small>Memory Lifecycle</small>
+          <strong>候选形成 → 总结合并 → 置信度评估 → 相关场景调用 → 反馈更新 → 衰减或删除</strong>
+          <span>单次行为只形成候选；相似证据被合并后，记忆才可能在相关场景参与策略判断。</span>
         </div>
-        <article><small>Evidence</small><h3>从重复证据形成候选</h3><p>桌面摘要和交互反馈先形成候选，不把单次行为直接当作长期偏好。</p></article>
-        <article><small>Update</small><h3>显式与隐式反馈共同校正</h3><p>纠正、删除和确认是强信号；接受、忽略和延后只用于调整置信度与表达策略。</p></article>
-        <article><small>Control</small><h3>用户可以查看和修改</h3><p>偏好与节奏记忆保留来源、置信度和更新时间，支持确认、纠正、删除与时间衰减。</p></article>
+        <div class="confidence-panel">
+          <div>
+            <small>Confidence</small>
+            <h3>置信度来自规则加权，不伪装成模型概率</h3>
+            <p>当前原型综合证据重复度、跨日稳定性、反馈强度、时间新鲜度和冲突证据，形成可解释的置信度。</p>
+          </div>
+          <div class="confidence-signals">
+            <span><strong>高权重</strong>用户确认、纠正或删除</span>
+            <span><strong>增加</strong>同类证据重复且跨日稳定</span>
+            <span><strong>弱信号</strong>接受、忽略和延后只做小幅调整</span>
+            <span><strong>降低</strong>长期未验证或出现相反证据</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -226,8 +240,10 @@
           "#memory .eyebrow": "Memory Mechanism",
           "#memory h2": "Memory updates with feedback and decays when evidence is weak",
           "#memory .split-heading > p": "Memory is not a fixed user profile. It stores traceable preference and rhythm hypotheses that can be corrected as new evidence arrives.",
-          ".memory-core strong": "Candidate -> confidence -> retrieval -> feedback update -> decay or deletion",
-          ".memory-core span": "Memory is used only when relevant and sufficiently confident. Corrections, missing confirmation, and conflicting evidence update or reduce its weight.",
+          ".memory-core strong": "Candidate formation → summary and merge → confidence assessment → contextual retrieval → feedback update → decay or deletion",
+          ".memory-core span": "A single action only creates a candidate. Memory can influence policy after similar evidence has been merged and assessed.",
+          ".confidence-panel h3": "Confidence is a rule-based weighted score, not a model probability",
+          ".confidence-panel p": "The prototype combines evidence recurrence, cross-day consistency, feedback strength, recency, and conflicting evidence into an explainable confidence score.",
           "#demo .eyebrow": "Demo Video",
           "#demo h2": "Real prototype demo",
           "#demo .split-heading > p": "Shows the chain from local desktop state to backend policy decision and robot feedback.",
@@ -249,11 +265,13 @@
           ".logic-map small": ["01", "02", "03", "04", "05", "06"],
           ".logic-map strong": ["Desktop signals", "State summary", "Proactive opportunity", "Feedback strategy", "Robot expression", "Memory update"],
           ".logic-map span": ["Foreground window, keyboard/mouse, AFK, system audio, app usage duration", "Study, writing, meeting, task interruption, scattered work state, return to desk", "Whether to accompany, restore task clues, provide low-pressure state feedback, or stay quiet", "Choose intensity based on state risk, preference, cooldown, and robot availability", "Expression, subtle motion, bottom captions, voice", "Accepted, ignored, closed, delayed, corrected, and scene preference updates"],
-          ".policy-output div strong": ["quiet", "subtle", "subtitle", "speak"],
-          ".policy-output div span": ["Meeting, deep focus, or insufficient signal: stay silent and log context.", "Low-risk companionship: expression, light, or subtle motion with weak presence.", "Task recovery or low-pressure explanation: express through short captions with low interruption.", "Idle, high confidence, or important moments: voice is reserved for these cases."],
-          ".memory-system article small": ["Evidence", "Update", "Control"],
-          ".memory-system article h3": ["Candidates require repeated evidence", "Explicit and implicit feedback update confidence", "Users can inspect and change memory"],
-          ".memory-system article p": ["Desktop summaries and interaction feedback first form candidates; a single action does not become a durable preference.", "Correction, deletion, and confirmation are strong signals. Acceptance, ignoring, and delay only adjust confidence and response policy.", "Preference and rhythm memories retain source, confidence, and update time, with support for confirmation, correction, deletion, and decay."],
+          ".policy-output div strong": ["quiet", "expression", "motion", "voice"],
+          ".policy-output .tier-output": ["Silent", "Expression + caption", "Motion + caption", "Voice / voice + motion and expression"],
+          ".policy-output div p": ["During meetings, deep focus, or weak signals, record state without active expression.", "For low-risk companionship or a simple response, use expression and a short caption.", "For task recovery or a clear proactive opportunity, combine motion with a caption.", "Use voice only when idle, highly confident, or important, optionally combined with motion and expression."],
+          ".memory-system article small": ["Preference", "Rhythm", "Feedback"],
+          ".memory-system article h3": ["Interaction preference memory", "Behavior rhythm memory", "Feedback policy memory"],
+          ".memory-system article p": ["Stores whether the user prefers captions or voice, preferred response length, and quiet times or contexts.", "Stores repeatedly observed focus periods, return patterns, and meeting-heavy times without retaining raw desktop content.", "Tracks how confirmation, correction, deletion, acceptance, ignoring, and delay should affect policy in similar contexts."],
+          ".confidence-signals span": ["<strong>High weight</strong>User confirmation, correction, or deletion", "<strong>Increase</strong>Repeated evidence remains stable across days", "<strong>Weak signal</strong>Acceptance, ignoring, and delay make small adjustments only", "<strong>Decrease</strong>Long periods without confirmation or conflicting evidence"],
           ".video-fallback": ["If the video cannot load, view it in the <a href=\"README.md#demo-video\">GitHub README</a>."],
           ".validation-board .status": ["PASS", "PASS", "NEXT"],
           ".validation-board strong": ["Three-part integration", "Key policy paths", "Still to validate"],
