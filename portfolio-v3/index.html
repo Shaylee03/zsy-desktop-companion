@@ -30,9 +30,9 @@
       <div class="hero-shade"></div>
       <div class="hero-content page-shell">
         <p class="eyebrow">Personal Product Project · Desktop Context Sensing · Embodied Interaction</p>
-        <h1>Moqi，理解桌面节奏的<br>主动式 AI 陪伴机器人</h1>
-        <p class="hero-lead">Moqi 将 Windows 桌面状态、云端策略与实体机器人连接起来，判断用户当前是否适合被打扰，并通过表情、内置动作、短字幕和语音完成主动反馈。</p>
-        <p class="hero-note">这是我独立搭建并持续迭代的可运行产品原型，目前重点验证主动交互、具身反馈与个性化记忆的核心闭环。</p>
+        <h1>理解桌面节奏的<br>主动式 AI 陪伴机器人</h1>
+        <p class="hero-lead">Moqi 将 Windows 桌面状态、云端策略与实体机器人连接起来，判断用户当前是否适合主动交互，并通过表情、动作、短字幕和语音完成主动反馈。</p>
+        <p class="hero-note">独立搭建并持续迭代的可运行产品原型，目前重点验证主动交互、具身反馈与个性化记忆的核心闭环。</p>
         <div class="tag-row" aria-label="项目关键词">
           <span>主动交互</span><span>桌面状态感知</span><span>云端策略</span><span>具身反馈</span><span>个性化记忆</span>
         </div>
@@ -71,9 +71,9 @@
 
     <section id="problem" class="dark-band">
       <div class="page-shell problem-layout">
-        <div><p class="eyebrow">Problem</p><h2>现有 AI 能回答问题，<br>但不知道什么时候该出现</h2></div>
+        <div><p class="eyebrow">Problem</p><h2>现有 AI 能被动回答、解决问题，可以被动交互，<br>但很少有主动交互</h2></div>
         <div class="problem-copy">
-          <p class="large-copy">长期学习和办公中，用户并不总是缺少答案。更关键的是，机器人能否理解当前是否正在专注、会议、离席或任务切换，并在合适的时机提供适当强度的反馈。</p>
+          <p class="large-copy">长期学习与办公场景下，用户从不缺 AI 工具、被动应答与现成答案，真正稀缺的是懂分寸、有温度的智能陪伴，以及贴合当下状态的主动交互。AI 核心能力不在于给出解决方案，而在于精准识别用户此刻是专注工作、参会、临时离席还是切换任务，在恰当时机给出适配强度的反馈。</p>
           <div class="compare-grid">
             <article><small>传统 AI 工具</small><ul><li>依赖用户主动调用</li><li>缺少桌面状态理解</li><li>反馈集中在文字或语音</li><li>缺少连续的偏好依据</li></ul></article>
             <article><small>Moqi 的探索方向</small><ul><li>桌面信号形成状态摘要</li><li>先判断主动机会是否成立</li><li>按场景选择多模态反馈</li><li>根据反馈更新后续策略</li></ul></article>
@@ -89,10 +89,10 @@
         <p>当前原型优先验证状态明确、触发逻辑可解释，并适合观察主动交互效果的场景。</p>
       </div>
       <div class="scenario-grid">
-        <article><span class="status pass">PASS</span><small>会议静默</small><h3>检测会议状态后主动进入勿扰</h3><dl><div><dt>输入</dt><dd>会议应用、麦克风或摄像头活跃</dd></div><div><dt>策略</dt><dd>禁止主动语音和明显动作</dd></div><div><dt>反馈</dt><dd>静默与低存在感待机表情</dd></div></dl></article>
-        <article><span class="status progress">IN PROGRESS</span><small>专注保护</small><h3>高专注状态下不使用语音打断</h3><dl><div><dt>输入</dt><dd>持续输入、工作应用前台、切换较少</dd></div><div><dt>策略</dt><dd>普通提醒延后，低置信度不介入</dd></div><div><dt>反馈</dt><dd>静默或在自然节点轻量提示</dd></div></dl></article>
         <article><span class="status pass">PASS</span><small>离席返回</small><h3>帮助用户低负担地重新进入任务</h3><dl><div><dt>输入</dt><dd>AFK 后重新检测到键鼠活动</dd></div><div><dt>策略</dt><dd>读取离席前任务状态摘要</dd></div><div><dt>反馈</dt><dd>表情、内置动作与简短欢迎语</dd></div></dl></article>
-        <article><span class="status next">NEXT</span><small>久坐提醒</small><h3>结合专注程度与历史反馈再提醒</h3><dl><div><dt>输入</dt><dd>持续活跃较长时间且近期未拒绝</dd></div><div><dt>策略</dt><dd>判断当前是否存在合适提醒机会</dd></div><div><dt>反馈</dt><dd>动作、表情与字幕，必要时语音</dd></div></dl></article>
+        <article><span class="status pass">PASS</span><small>久坐提醒</small><h3>结合专注程度与历史反馈再提醒</h3><dl><div><dt>输入</dt><dd>持续活跃较长时间且近期未拒绝</dd></div><div><dt>策略</dt><dd>判断当前是否存在合适提醒机会</dd></div><div><dt>反馈</dt><dd>动作、表情与字幕，必要时语音</dd></div></dl></article>
+        <article><span class="status pass">PASS</span><small>会议静默</small><h3>检测会议状态后主动进入勿扰</h3><dl><div><dt>输入</dt><dd>会议应用、麦克风或摄像头活跃</dd></div><div><dt>策略</dt><dd>禁止主动语音和明显动作</dd></div><div><dt>反馈</dt><dd>静默与低存在感待机表情</dd></div></dl></article>
+        <article><span class="status pass">PASS</span><small>专注保护</small><h3>高专注状态下不使用语音打断</h3><dl><div><dt>输入</dt><dd>持续输入、工作应用前台、切换较少</dd></div><div><dt>策略</dt><dd>普通提醒延后，低置信度不介入</dd></div><div><dt>反馈</dt><dd>静默或在自然节点轻量提示</dd></div></dl></article>
       </div>
       <a class="detail-link" href="details/scenario-flows/index.html">查看完整场景流程 <span aria-hidden="true">→</span></a>
     </section>
@@ -121,8 +121,8 @@
       <div class="level-grid">
         <article><small>Level 0</small><h3>QUIET</h3><strong>保持安静</strong><p>适用于会议、高专注、近期被拒绝、状态不明确或没有足够交互价值的场景。机器人不主动播报，也不执行明显动作，维持低存在感待机。</p></article>
         <article><small>Level 1</small><h3>VISUAL CUE</h3><strong>表情 + 短字幕</strong><p>适用于紧急度较低、无需立即回应，但可以在自然停顿时注意到的场景。使用表情与短字幕组合，不把单一通道作为完整反馈。</p></article>
-        <article><small>Level 2</small><h3>EMBODIED CUE</h3><strong>内置动作 + 表情 + 短字幕</strong><p>适用于需要用户注意，但不适合用语音打断的场景。从已有动作库选择匹配意图的动作，并与表情和字幕组合。</p></article>
-        <article><small>Level 3</small><h3>VOICE</h3><strong>简短语音 + 具身反馈</strong><p>适用于高优先级且用户可被打扰，或用户已进入交互状态的场景。语音保持简短，并按场景搭配表情或内置动作。</p></article>
+        <article><small>Level 2</small><h3>EMBODIED CUE</h3><strong>动作 + 表情 + 短字幕</strong><p>适用于需要用户注意，但不适合用语音打断的场景。从已有动作库选择匹配意图的动作，并与表情和字幕组合。</p></article>
+        <article><small>Level 3</small><h3>VOICE</h3><strong>简短语音 + 动作 + 表情 + 短字幕</strong><p>适用于高优先级且用户可被打扰，或用户已进入交互状态的场景。语音保持简短，并按场景搭配表情或内置动作。</p></article>
       </div>
       <p class="hardware-note">机器人动作来自第三方硬件的内置动作库。本项目负责根据交互场景选择动作，并与表情、短字幕和语音进行映射和联调，不涉及动作轨迹、动作幅度或底层舵机控制设计。</p>
       <a class="detail-link" href="details/interaction-strategy/index.html">查看主动策略矩阵 <span aria-hidden="true">→</span></a>
@@ -152,7 +152,7 @@
       </div>
       <div class="memory-example">
         <div><small>Example</small><h3>专注场景下减少语音打断</h3></div>
-        <div class="memory-example-copy"><p>写作或编程状态下多次关闭、忽略或延后语音提醒时，系统先形成低置信度候选，不把单次行为直接认定为长期偏好。</p><p>相似反馈重复出现，或用户明确确认“专注时不要主动说话”后，置信度才逐渐提高。再次进入相似场景时，普通提醒优先延后；确需提示时采用表情、内置动作与短字幕组合。</p><p>用户修改会立即更新记忆；长期没有新证据时逐渐降低权重。</p><small>机制示例，长期效果仍需要结合真实使用持续优化。</small></div>
+        <div class="memory-example-copy"><p>写作或编程状态下多次关闭、忽略或延后语音提醒时，系统先形成低置信度候选，不把单次行为直接认定为长期偏好。</p><p>相似反馈重复出现，或用户明确确认“专注时不要主动说话”后，置信度才逐渐提高。再次进入相似场景时，普通提醒优先延后；确需提示时采用表情、内置动作与短字幕组合。</p><p>用户修改会立即更新记忆；长期没有新证据时逐渐降低权重。</p></div>
       </div>
       <div class="memory-guard"><strong>可见、可纠正、可撤回</strong><p>只有场景相关且置信度足够的记忆才影响策略。冲突或证据不足时降级、暂停调用或向用户确认。</p><span class="status progress">IN PROGRESS</span></div>
       <a class="detail-link" href="details/memory/index.html">查看记忆结构与置信度规则 <span aria-hidden="true">→</span></a>
@@ -160,9 +160,9 @@
 
     <section id="iteration" class="dark-band latency-band model-section">
       <div class="page-shell">
-        <div class="section-heading split"><div><p class="eyebrow">Model Selection & Latency</p><h2>不是选择能力最强的模型，而是选择最适合实时陪伴的模型</h2></div><p>Moqi 的大模型负责理解桌面状态摘要、结合偏好生成简短反馈，并输出可供程序执行的结果。这类任务更强调速度、中文短表达、输出稳定性和调用成本。</p></div>
+        <div class="section-heading split"><div><p class="eyebrow">Model Selection & Latency</p><h2>模型选型</h2></div><p>Moqi 的大模型负责理解桌面状态摘要、结合偏好生成简短反馈，并输出可供程序执行的结果。这类任务更强调速度、中文短表达、输出稳定性和调用成本。</p></div>
         <div class="model-responsibilities">
-          <article><small>01</small><h3>状态理解</h3><p>根据状态摘要理解用户可能处于专注、会议、离席或任务切换状态。</p></article>
+          <article><small>01</small><h3>状态理解</h3><p>根据状态摘要理解用户可能处于专注、会议、离席或任务切换等状态。</p></article>
           <article><small>02</small><h3>表达生成</h3><p>结合当前场景和相关偏好，生成适合机器人表达的简短中文反馈。</p></article>
           <article><small>03</small><h3>结构化输出</h3><p>返回是否主动、反馈等级、表达内容和机器人能力指令，供程序执行。</p></article>
         </div>
@@ -203,7 +203,7 @@
           <div><h3><span class="status progress">IN PROGRESS</span> 持续完善</h3><article><strong>个性化记忆机制</strong><p>已跑通记忆候选、相关调用和反馈更新的基础链路，仍在完善记忆管理和冲突处理。</p></article><article><strong>主动交互策略</strong><p>持续补充不同任务状态下的触发条件、频率控制和反馈方式。</p></article><article><strong>三端运行体验</strong><p>持续优化本地端、云端服务与机器人之间的运行稳定性。</p></article></div>
         </div>
         <p class="stage-note">当前项目定位为可运行的产品原型，下一阶段将结合更多真实体验，继续迭代主动交互时机和个性化效果。</p>
-        <div class="boundary-panel"><small>Project Boundary</small><h3>我负责的是产品闭环，不是机器人本体研发</h3><p>机器人本体、机械结构、舵机能力和内置动作库来自第三方硬件。本项目不涉及机械结构、动作轨迹、动作幅度或底层控制算法；我的工作集中在产品定义、主动策略、Windows 与云端原型、模型调用、个性化记忆、协议接入和能力联调。</p></div>
+        <div class="boundary-panel"><small>Project Boundary</small><p>机器人本体、机械结构、舵机能力和内置动作库来自第三方硬件。本项目不涉及机械结构、动作轨迹、动作幅度或底层控制算法；我的工作集中在产品定义、主动策略、Windows 与云端原型、模型调用、个性化记忆、协议接入和能力联调。</p></div>
         <div class="detail-hub"><a href="details/failure-cases/index.html"><strong>Failure Cases</strong><span>真实问题与调整 →</span></a><a href="details/validation-plan/index.html"><strong>验证计划</strong><span>指标与测试方法 →</span></a><a href="details/contribution/index.html"><strong>贡献边界</strong><span>完成、复用与未涉及 →</span></a></div>
       </div>
     </section>
