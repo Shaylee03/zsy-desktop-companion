@@ -177,6 +177,10 @@ h1, h2, h3 { letter-spacing: 0; }
 .model-table code, .model-source-note code { color: var(--lime); font-family: Consolas, monospace; font-size: 13px; }
 .model-table td small { display: block; margin-top: 5px; color: rgba(255,255,255,.5); }
 .model-table .selected-model { background: rgba(201,239,118,.08); }
+.model-table th:nth-child(1) { width: 21%; }
+.model-table th:nth-child(2) { width: 17%; }
+.model-table th:nth-child(3) { width: 42%; }
+.model-table th:nth-child(4) { width: 20%; }
 .model-source-note, .benchmark-note { margin: 14px 0 0; color: rgba(255,255,255,.53); font-size: 13px; }
 .selected-model-panel { display: grid; grid-template-columns: .85fr 1.15fr; gap: 50px; margin: 72px 0 18px; padding: 32px; color: var(--ink); background: var(--lime); border-radius: var(--radius); }
 .selected-model-panel small { color: var(--teal-dark); }

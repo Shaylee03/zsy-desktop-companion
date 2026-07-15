@@ -6,7 +6,7 @@
   <meta name="description" content="Moqi 主动式桌面 AI 陪伴机器人产品作品集：桌面状态感知、主动交互策略、具身反馈与可持续更新的个性化记忆。">
   <title>Moqi | 主动式桌面 AI 陪伴机器人</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <header class="site-header">
@@ -169,10 +169,12 @@
         <p class="model-boundary">会议静默、拒绝后冷却和隐私边界等确定性规则由程序控制，模型只在规则允许的范围内参与状态理解与内容生成。</p>
 
         <div class="model-comparison-heading"><div><small>Scenario Comparison</small><h3>围绕 Moqi 的真实任务进行小范围对比</h3></div><p>对比围绕会议静默、专注状态、离席返回、久坐提醒和简短对话等典型任务展开。</p></div>
-        <div class="model-table-wrap"><table class="model-table"><thead><tr><th>模型 / 参数</th><th>使用模式</th><th>项目与官方信息</th><th>当前判断</th></tr></thead><tbody>
-          <tr><td data-label="模型 / 参数"><code>deepseek-v4-pro</code></td><td data-label="使用模式">主 / 深链路</td><td data-label="项目与官方信息">当前后端深链路代码使用；适合保留给复杂处理与回退。</td><td data-label="当前判断">不作为低延迟实时主路径</td></tr>
-          <tr><td data-label="模型 / 参数"><code>deepseek-chat</code><small>兼容名</small></td><td data-label="使用模式">快速非思考</td><td data-label="项目与官方信息">当前 fast client 默认参数；官方目前映射到 V4-Flash 非思考模式。</td><td data-label="当前判断">兼容参数，需在停用前迁移</td></tr>
-          <tr class="selected-model"><td data-label="模型 / 参数"><code>deepseek-v4-flash</code></td><td data-label="使用模式">快速非思考</td><td data-label="项目与官方信息">V4-Flash 的显式 API 名称；当前兼容路由的底层模型。</td><td data-label="当前判断"><strong>实时交互链路最终选型</strong></td></tr>
+        <div class="model-table-wrap"><table class="model-table"><thead><tr><th>模型类别 / 参数</th><th>使用模式</th><th>项目中的实际观察</th><th>当前判断</th></tr></thead><tbody>
+          <tr><td data-label="模型类别 / 参数"><strong>国外闭源快速模型</strong><br><code>Gemini 3.5 Flash</code><br><code>GPT-5.4 Mini</code></td><td data-label="使用模式">快速通用模型<br>非深度推理链路</td><td data-label="项目中的实际观察">对复杂语境的理解较完整，中文表达自然，经过格式约束后可以完成短回复和结构化输出。但在 Moqi 需要持续调试和高频调用的情况下，综合 API 成本和接入维护成本相对较高。</td><td data-label="当前判断"><strong>PASS</strong><br>能力满足需求，但不作为当前默认实时链路。</td></tr>
+          <tr><td data-label="模型类别 / 参数"><strong>DeepSeek V4 Pro</strong><br><code>deepseek-v4-pro</code></td><td data-label="使用模式">深度思考模式<br>复杂推理链路</td><td data-label="项目中的实际观察">对多条件状态判断、复杂上下文和记忆冲突的分析更充分，但响应等待感更明显，回复也容易偏长。对于离席欢迎、久坐提醒等简单实时任务存在能力过剩。</td><td data-label="当前判断"><strong>不作为实时主链路</strong><br>保留用于记忆总结、冲突分析等非实时任务。</td></tr>
+          <tr><td data-label="模型类别 / 参数"><strong>国内轻量 / 专项模型</strong><br><code>GLM-4.7-Flash</code><br><code>Qwen3-Coder-Flash</code></td><td data-label="使用模式">快速模型<br>轻量或专项任务</td><td data-label="项目中的实际观察">响应速度和调用成本较有优势，经过提示词约束后能够完成短回复和结构化输出。其中 Qwen3-Coder-Flash 更偏代码与结构化任务，在通用陪伴和自然交互场景中没有体现出明显优势。</td><td data-label="当前判断"><strong>备用候选</strong><br>适合专项任务，不作为当前通用实时链路。</td></tr>
+          <tr><td data-label="模型类别 / 参数"><strong>国内旗舰通用模型</strong><br><code>Qwen Max</code><br><code>ERNIE 5.0</code><br><code>GLM-5.2</code></td><td data-label="使用模式">旗舰通用模型<br>复杂任务与长上下文</td><td data-label="项目中的实际观察">在复杂语义理解、长上下文和内容生成方面能力较完整，但 Moqi 的实时任务主要是理解简短状态摘要、选择交互等级并生成一句短回复，旗舰模型的能力没有被充分利用，响应耗时和调用成本也相对更高。</td><td data-label="当前判断"><strong>不作为实时默认模型</strong><br>更适合复杂任务或非实时处理。</td></tr>
+          <tr class="selected-model"><td data-label="模型类别 / 参数"><strong>最终选型</strong><br><code>DeepSeek V4 Flash</code></td><td data-label="使用模式">快速非思考模式<br>实时交互链路</td><td data-label="项目中的实际观察">在会议静默、专注保护、离席返回、久坐提醒和简短对话等场景中，状态理解能够满足当前原型需求。经过字数、格式和字段约束后，能够较稳定地输出交互等级、简短中文回复和反馈指令，速度与成本也更适合高频测试。</td><td data-label="当前判断"><strong>实时交互链路最终选型</strong></td></tr>
         </tbody></table></div>
         <div class="selected-model-panel"><div><small>Final Choice</small><h3>当前实时链路：deepseek-v4-flash 快速非思考模式</h3><p>实时反馈使用快速模型，记忆合并与冲突分析等复杂任务采用分层处理。</p></div><div class="selection-reasons"><span><strong>响应速度</strong>尽快开始反馈，维持桌面对话节奏</span><span><strong>任务匹配</strong>实时链路不依赖长链路规划</span><span><strong>中文短表达</strong>适合语音播报与桌面提示</span><span><strong>调用成本</strong>适合高频调试与三端联调</span></div></div>
 
