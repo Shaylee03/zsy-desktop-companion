@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Moqi 模型选型与延迟优化">
+  <title>模型选型与延迟 | Moqi</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../styles.css?v=3">
+  <link rel="stylesheet" href="../detail.css?v=3">
+</head>
+<body class="detail-page">
+  <header class="detail-header"><a class="brand" href="../../">Moqi</a><nav><a href="../../#iteration">返回模型概览</a><a href="../failure-cases/">Failure Cases</a><a href="../system/">系统与数据</a></nav><a href="https://github.com/Shaylee03/zsy-desktop-companion">GitHub</a></header>
+  <main>
+    <section class="detail-hero"><div class="page-shell"><p class="eyebrow">Model Selection & Latency</p><h1>不是选择能力最强的模型，而是选择最适合实时陪伴的模型</h1><p>实时桌面陪伴更强调响应速度、中文短表达、结构化输出稳定性和调用成本，不需要每次都进行复杂长链路推理。</p></div></section>
+    <div class="detail-main page-shell">
+      <section class="detail-section"><header><h2>模型在系统中负责什么</h2><p>确定性规则先限定模型的参与范围，避免把会议静默、隐私和拒绝冷却交给模型自由判断。</p></header><div class="detail-grid three"><article class="detail-card"><small>State</small><h3>状态理解</h3><p>根据桌面摘要理解用户可能处于专注、会议、离席或任务切换状态。</p></article><article class="detail-card"><small>Expression</small><h3>表达生成</h3><p>结合当前场景和相关偏好，生成适合机器人表达的简短中文反馈。</p></article><article class="detail-card"><small>Schema</small><h3>结构化输出</h3><p>返回是否主动、反馈等级、表达内容和机器人能力指令，供程序执行。</p></article></div><div class="detail-callout model-rule-callout"><h3>规则优先于模型</h3><p>会议静默、拒绝后冷却、隐私边界和高风险规则由程序控制；模型只在规则允许的范围内参与理解与生成。</p></div></section>
+
+      <section class="detail-section"><header><h2>场景化对比方式</h2><p>没有使用通用排行榜作为唯一依据，而是围绕项目中的典型任务做小范围可行性对比，不将其包装为大规模 Benchmark。</p></header><div class="metric-grid"><article><h3>响应延迟</h3><p>请求发出到机器人开始反馈的时间，是否符合实时交互节奏。</p></article><article><h3>中文短表达</h3><p>能否在较短字数内自然表达，避免解释性过强的长段内容。</p></article><article><h3>输出稳定性</h3><p>能否稳定遵循字段、格式和字数要求。</p></article><article><h3>场景理解</h3><p>能否区分专注、会议、离席与短暂停顿。</p></article><article><h3>调用成本</h3><p>是否适合原型阶段反复调试和较高频率调用。</p></article></div></section>
+
+      <section class="detail-section"><header><h2>代码与官方资料核对后的模型表</h2><p>表格只使用当前项目代码中出现的参数，以及官方明确说明的兼容映射，不补充未调用过的第三方模型。</p></header><div class="detail-table-wrap model-detail-wrap"><table class="detail-table model-detail-table"><thead><tr><th>模型 / 参数</th><th>使用模式</th><th>实际依据</th><th>当前判断</th></tr></thead><tbody>
+        <tr><td data-label="模型 / 参数"><code>deepseek-v4-pro</code></td><td data-label="使用模式">主 / 深链路</td><td data-label="实际依据">本地后端 Hermes 与直接生成链路使用该参数。</td><td data-label="当前判断">保留给复杂处理或快速通道回退。</td></tr>
+        <tr><td data-label="模型 / 参数"><code>deepseek-chat</code><br><small>兼容名</small></td><td data-label="使用模式">快速非思考</td><td data-label="实际依据">fast client 当前默认参数；官方目前映射至 V4-Flash 非思考模式。</td><td data-label="当前判断">现有兼容参数，需在停用前显式迁移。</td></tr>
+        <tr class="selected-detail-row"><td data-label="模型 / 参数"><code>deepseek-v4-flash</code></td><td data-label="使用模式">快速非思考</td><td data-label="实际依据">官方 V4-Flash 显式 API 名称，也是现有兼容路由的底层模型。</td><td data-label="当前判断"><strong>实时交互链路最终选型</strong></td></tr>
+      </tbody></table></div><p class="research-note">核对日期：2026-07-15。DeepSeek 官方说明 <code>deepseek-chat</code> 当前对应 V4-Flash 非思考模式，并将于 2026-07-24 停用。该结论说明模型路由与迁移关系，不等同于自建性能测试。</p><div class="source-links"><a href="https://api-docs.deepseek.com/">DeepSeek API 模型参数</a><a href="https://api-docs.deepseek.com/news/news260424/">DeepSeek V4 发布说明</a><a href="https://api-docs.deepseek.com/quick_start/pricing/">官方模型与价格</a></div></section>
+
+      <section class="detail-section"><header><h2>为什么最终选择 Flash</h2><p>目标是先验证实时主动交互，而不是让所有任务固定使用同一个模型。</p></header><div class="detail-grid"><article class="detail-card"><small>01</small><h3>响应速度</h3><p>等待过长会破坏对话与陪伴节奏，当前更需要尽快开始反馈。</p></article><article class="detail-card"><small>02</small><h3>任务不依赖长推理</h3><p>实时链路主要完成状态理解、等级选择与简短内容生成。</p></article><article class="detail-card"><small>03</small><h3>中文短表达</h3><p>配合字数约束，更适合机器人语音与桌面提示。</p></article><article class="detail-card"><small>04</small><h3>调用成本</h3><p>适合原型阶段进行高频调用、提示词调整和三端联调。</p></article></div><div class="detail-callout"><small>Final Choice</small><h3>当前实时链路：deepseek-v4-flash 快速非思考模式</h3><p>现有代码中的兼容参数需要显式迁移为该正式 API 名称；复杂任务继续分层处理。</p></div></section>
+
+      <section class="detail-section"><header><h2>不同任务不必由同一个模型承担</h2><p>实时任务、复杂任务与明确边界分别使用最合适的处理方式。</p></header><div class="detail-grid three"><article class="detail-card"><small>Realtime</small><h3>实时链路</h3><p>快速非思考模型负责状态理解、交互等级与简短回复。</p></article><article class="detail-card"><small>Async</small><h3>非实时链路</h3><p>记忆总结合并与冲突分析可异步交给推理能力更强的模型。</p></article><article class="detail-card"><small>Rules</small><h3>硬规则层</h3><p>会议静默、拒绝冷却、隐私与高风险边界不交给模型决定。</p></article></div><div class="detail-callout"><h3>实时任务优先速度和稳定性，复杂任务优先推理能力，明确边界优先使用规则。</h3></div></section>
+
+      <section class="detail-section"><header><h2>延迟迭代</h2><p>数字来自原型开发中的典型场景观察，不代表统一网络环境下的大规模性能测试。</p></header><div class="detail-grid three"><article class="detail-card"><small>V0 · 能力堆叠</small><h3>部分交互超过 10 秒</h3><p>接入搜索、时间和日历后，模型可能进入多步工具判断与调用。</p></article><article class="detail-card"><small>V1 · 范围收敛</small><h3>典型约 1.65 秒</h3><p>删除非核心工具、限制搜索，并将回复约束为简短表达。</p></article><article class="detail-card"><small>V2 · 链路优化</small><h3>典型体验接近 1 秒级</h3><p>采用更快的非思考模型并减少不必要请求步骤。</p></article></div><p class="research-note">以上是开发过程中的体验值，不是平均时延、P95 或准确率等正式 Benchmark 指标。</p><div class="detail-callout"><h3>产品结论</h3><p>这次优化不仅是模型或服务器调整，更是一次产品范围收敛：删除非核心能力，让实时陪伴的核心体验先成立。</p></div></section>
+    </div>
+  </main>
+  <footer class="detail-footer"><div class="page-shell"><span>Moqi · Model Selection & Latency</span><a href="../../#iteration">返回主页面模型部分 →</a></div></footer>
+</body>
+</html>
