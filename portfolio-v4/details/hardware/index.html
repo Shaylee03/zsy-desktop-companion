@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Moqi 硬件集成、控制链路、安全降级与隐私边界">
+  <title>硬件集成 | Moqi</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../styles.css?v=5">
+  <link rel="stylesheet" href="../detail.css?v=5">
+</head>
+<body class="detail-page">
+  <header class="detail-header">
+    <a class="brand" href="../../index.html">Moqi</a>
+    <nav><a href="../../index.html#hardware">返回硬件概览</a><a href="../system/index.html">系统与数据</a><a href="../contribution/index.html">贡献边界</a></nav>
+    <a href="https://github.com/Shaylee03/zsy-desktop-companion">GitHub</a>
+  </header>
+
+  <main>
+    <section class="detail-hero">
+      <div class="page-shell">
+        <p class="eyebrow">Hardware Integration</p>
+        <h1>高层交互策略如何落到实体机器人</h1>
+        <p>Moqi 使用第三方机器人本体。项目负责云端策略、结构化协议、能力映射和三端联调；设备固件负责底层音频、显示与舵机执行。</p>
+      </div>
+    </section>
+
+    <div class="detail-main page-shell">
+      <section class="detail-section">
+        <header><h2>机器人本体</h2><p>主控为 ESP32-S3 N16R8，其中 N16R8 表示 16MB Flash 和 8MB PSRAM，为本地唤醒、音频编解码、显示、动作和网络通信提供设备侧基础。</p></header>
+        <div class="hardware-detail-overview">
+          <figure><img src="../../../assets/111.png" alt="Moqi 使用的第三方桌面表情机器人本体"><figcaption>Third-party robot body</figcaption></figure>
+          <div class="hardware-detail-core">
+            <small>ESP32-S3 N16R8</small>
+            <h3>设备侧基础能力</h3>
+            <div class="hardware-detail-capacity"><span><strong>16MB</strong>Flash</span><span><strong>8MB</strong>PSRAM</span></div>
+            <ul><li>本地唤醒与基础音频处理</li><li>Opus 音频编解码与缓冲</li><li>OLED 状态、表情和字幕显示</li><li>动作库执行与 Wi-Fi 通信</li></ul>
+          </div>
+        </div>
+        <div class="detail-table-wrap hardware-detail-table-wrap">
+          <table class="detail-table hardware-detail-table">
+            <thead><tr><th>模块</th><th>型号或规格</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr><td data-label="模块"><strong>主控</strong></td><td data-label="型号或规格"><code>ESP32-S3 N16R8</code></td><td data-label="作用">负责本地唤醒、音频编解码、显示、动作和网络通信</td></tr>
+              <tr><td data-label="模块"><strong>麦克风</strong></td><td data-label="型号或规格"><code>INMP441</code> 数字麦克风</td><td data-label="作用">采集用户语音</td></tr>
+              <tr><td data-label="模块"><strong>音频输出</strong></td><td data-label="型号或规格"><code>MAX98357A</code> 数字功放与扬声器</td><td data-label="作用">播放云端返回的 TTS 音频</td></tr>
+              <tr><td data-label="模块"><strong>屏幕</strong></td><td data-label="型号或规格"><code>SSD1306</code> 128×64 OLED</td><td data-label="作用">显示交互状态、表情和短字幕</td></tr>
+              <tr><td data-label="模块"><strong>动作模块</strong></td><td data-label="型号或规格">水平与垂直两个舵机</td><td data-label="作用">完成转头、抬头、低头、点头和摇头</td></tr>
+              <tr><td data-label="模块"><strong>本地交互</strong></td><td data-label="型号或规格">BOOT、音量按键</td><td data-label="作用">完成配网、按键操作和音量调节</td></tr>
+              <tr><td data-label="模块"><strong>网络</strong></td><td data-label="型号或规格">Wi-Fi 模块</td><td data-label="作用">与云端保持 WebSocket 长连接</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <header><h2>硬件控制链路</h2><p>云端只下发结构化的高层意图，设备固件完成具体执行。语音、屏幕和动作共享同一套设备状态与异常降级逻辑。</p></header>
+        <div class="control-chain-list">
+          <article class="control-chain-card">
+            <div class="control-chain-title"><small>01 · Voice Input</small><h3>语音输入</h3></div>
+            <div class="control-chain-body"><div class="chain-steps"><span>INMP441</span><i>→</i><span>I2S</span><i>→</i><span>本地唤醒</span><i>→</i><span>Opus 编码</span><i>→</i><span>WebSocket</span><i>→</i><span>云端</span></div><p>进入聆听状态后，设备将 Opus 音频流上传。云端完成语音识别、对话理解、回复策略、主动交互判断和个性化记忆调用。</p></div>
+          </article>
+          <article class="control-chain-card">
+            <div class="control-chain-title"><small>02 · Voice Output</small><h3>语音输出</h3></div>
+            <div class="control-chain-body"><div class="chain-steps"><span>云端 TTS</span><i>→</i><span>Opus 音频流</span><i>→</i><span>解码与缓冲</span><i>→</i><span>I2S</span><i>→</i><span>MAX98357A</span><i>→</i><span>扬声器</span></div><p>设备接收云端音频流后完成解码和缓冲，再通过数字功放与扬声器播放。</p></div>
+          </article>
+          <article class="control-chain-card">
+            <div class="control-chain-title"><small>03 · Display</small><h3>屏幕显示</h3></div>
+            <div class="control-chain-body"><div class="chain-steps"><span>高层显示指令</span><i>→</i><span>协议解析</span><i>→</i><span>OLED 接口</span><i>→</i><span>状态 / 表情 / 字幕</span></div><p>云端下发聆听、思考、说话、表情和字幕等指令，固件调用已有 SSD1306 显示接口完成呈现。</p></div>
+          </article>
+          <article class="control-chain-card">
+            <div class="control-chain-title"><small>04 · Motion</small><h3>舵机动作</h3></div>
+            <div class="control-chain-body"><div class="chain-steps"><span>动作意图</span><i>→</i><span>白名单与状态检查</span><i>→</i><span>固件动作库</span><i>→</i><span>LEDC 50Hz PWM</span><i>→</i><span>双舵机</span></div><p>云端选择点头、摇头或抬头等动作意图；角度、速度、轨迹、机械限位和动作回中由第三方固件动作库负责。</p></div>
+          </article>
+        </div>
+        <div class="detail-callout"><h3>项目贡献边界</h3><p>本项目负责场景与动作意图映射、结构化协议、状态约束和三端联调，不涉及舵机轨迹、动作幅度、机械结构或底层 PWM 控制设计。</p></div>
+      </section>
+
+      <section class="detail-section">
+        <header><h2>安全与异常处理</h2><p>硬件执行前先完成确定性校验。无法解析、状态不匹配或已经过期的指令不会进入动作与显示层。</p></header>
+        <div class="safety-gate-grid">
+          <article><span>01</span><strong>协议解析</strong><p>只接收规定结构的机器人指令。</p></article>
+          <article><span>02</span><strong>字段校验</strong><p>检查必填字段、类型和取值范围。</p></article>
+          <article><span>03</span><strong>动作白名单</strong><p>只允许调用设备已支持的动作。</p></article>
+          <article><span>04</span><strong>状态检查</strong><p>结合待机、聆听、说话等状态判断能否执行。</p></article>
+          <article><span>05</span><strong>时效判断</strong><p>拦截超时、重复或失去语境的指令。</p></article>
+        </div>
+        <div class="safety-result"><strong>校验失败</strong><span>不执行硬件动作</span><i>→</i><span>记录明确原因</span><i>→</i><span>降级为可用反馈通道</span></div>
+
+        <div class="detail-grid hardware-failure-grid">
+          <article class="detail-card"><small>Microphone</small><h3>麦克风异常</h3><p>提示用户检查设备，保留控制中心或文字入口。</p></article>
+          <article class="detail-card"><small>Speaker</small><h3>扬声器异常</h3><p>降级为字幕、表情和轻动作反馈。</p></article>
+          <article class="detail-card"><small>Display</small><h3>屏幕异常</h3><p>保留语音与动作反馈，并在本地端提示设备状态。</p></article>
+          <article class="detail-card"><small>Servo</small><h3>舵机异常</h3><p>停止动作输出，降级为屏幕或语音表达。</p></article>
+        </div>
+
+        <div class="productization-panel">
+          <div><small>Productization Extension</small><h3>舵机异常检测的后续扩展</h3><p>产品化阶段可增加动作执行超时、位置反馈、电流与温度反馈、故障码、手动停止入口和异常状态动作禁用。</p></div>
+          <strong>安全优先 → 任务反馈其次 → 拟人表现最后</strong>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <header><h2>隐私设计</h2><p>Moqi 采用本地优先、最小必要和用户可控的设计原则。Windows 本地端先形成脱敏摘要，再向云端提供完成介入判断所需的最小上下文。</p></header>
+        <div class="privacy-signal-grid">
+          <article><small>01</small><strong>前台应用类别</strong></article>
+          <article><small>02</small><strong>使用时长</strong></article>
+          <article><small>03</small><strong>键鼠活跃度</strong></article>
+          <article><small>04</small><strong>AFK 状态</strong></article>
+          <article><small>05</small><strong>设备状态</strong></article>
+        </div>
+        <div class="privacy-flow"><span>本地状态信号</span><i>→</i><span>SQLite 原始轨迹</span><i>→</i><span>本地脱敏摘要</span><i>→</i><span>云端最小上下文</span></div>
+        <div class="detail-callout"><h3>不采集用户实际输入的按键内容</h3><p>键鼠信号只保留时间窗口内的活跃次数。原始轨迹存放在本地 SQLite，云端接收的是宽泛任务类别、状态摘要和必要设备信息。</p></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="detail-footer"><div class="page-shell"><span>Moqi · Hardware Integration</span><a href="../../index.html#hardware">返回主页面硬件部分 →</a></div></footer>
+</body>
+</html>
